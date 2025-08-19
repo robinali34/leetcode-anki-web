@@ -1,6 +1,37 @@
 # 🎯 LeetCode Anki Card Generator
 
-A comprehensive web application that generates Anki-style flashcards for LeetCode problems, helping you study algorithms and data structures systematically.
+A web application that generates Anki cards from LeetCode problems to help you study algorithms and data structures effectively.
+
+## 🌐 GitHub Pages Deployment
+
+This project includes a static website version that can be hosted on GitHub Pages for easy access without running the Python application locally.
+
+### Quick Deploy
+
+1. **Automatic Deployment**: The `gh-pages` branch is automatically deployed via GitHub Actions when you push changes to it.
+
+2. **Manual Update**: Use the provided script to update the static website:
+   ```bash
+   ./update-gh-pages.sh
+   ```
+
+3. **Access Your Website**: Once deployed, your website will be available at:
+   ```
+   https://robinali34.github.io/leetcode-anki-web/
+   ```
+
+### What's Included in Static Version
+
+The static website includes:
+- ✅ Main landing page (`index.html`)
+- ✅ Documentation files
+- ✅ Responsive design with Bootstrap
+- ✅ All necessary assets and styling
+
+### Branch Structure
+
+- **`main`**: Full Python application with Flask backend
+- **`gh-pages`**: Static website files for GitHub Pages hosting
 
 ## ✨ Features
 
@@ -137,151 +168,3 @@ lc-anki/
 export FLASK_ENV=development
 export FLASK_DEBUG=1
 ```
-
-### Customization
-- Modify `solution_generator.py` to add more problem solutions
-- Update `card_generator.py` to change card types
-- Customize templates in the `templates/` directory
-
-## 📊 Data Management
-
-### Adding New Problems
-```python
-from leetcode_scraper import LeetCodeScraper
-
-scraper = LeetCodeScraper()
-scraper.update_problems()  # Fetch latest from LeetCode
-```
-
-### Adding Solutions
-```python
-from solution_generator import SolutionGenerator
-
-generator = SolutionGenerator()
-generator.add_solution(
-    problem_id=123,
-    pseudocode="Your pseudocode here",
-    python_code="Your Python code here"
-)
-```
-
-## 🚀 Advanced Features
-
-### Dynamic Programming Problems
-```python
-from leetcode_scraper import LeetCodeScraper
-
-scraper = LeetCodeScraper()
-scraper.update_dynamic_programming_problems()
-```
-
-### Custom Card Types
-Extend `card_generator.py` to add new card types:
-- Code Review Cards
-- Interview Questions
-- Time Complexity Analysis
-- Space Complexity Analysis
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **Port 5000 already in use**
-   ```bash
-   # Kill existing process
-   lsof -ti:5000 | xargs kill -9
-   
-   # Or use different port
-   export FLASK_RUN_PORT=5001
-   ```
-
-2. **Import errors**
-   ```bash
-   # Ensure virtual environment is activated
-   source venv/bin/activate
-   
-   # Reinstall dependencies
-   pip install -r requirements.txt
-   ```
-
-3. **Data not loading**
-   ```bash
-   # Check data directory exists
-   mkdir -p data/cards
-   
-   # Initialize sample data
-   python -c "from leetcode_scraper import LeetCodeScraper; s=LeetCodeScraper(); s.initialize_sample_data()"
-   ```
-
-### Debug Mode
-```bash
-export FLASK_DEBUG=1
-python app.py
-```
-
-## 📈 Performance
-
-- **Problem Loading**: ~200 problems in <1 second
-- **Card Generation**: ~7 cards per problem in <2 seconds
-- **Search**: Real-time filtering with instant results
-- **Memory Usage**: ~50MB for full dataset
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Add your improvements
-4. Submit a pull request
-
-### Areas for Contribution
-- Additional problem solutions
-- New card types
-- UI/UX improvements
-- Performance optimizations
-- Test coverage
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-**MIT License** - A permissive license that allows for:
-- ✅ Commercial use
-- ✅ Modification
-- ✅ Distribution
-- ✅ Private use
-- ✅ No warranty or liability
-
-## 🙏 Acknowledgments
-
-- **LeetCode**: For providing the problem database
-- **Anki**: For the spaced repetition methodology
-- **Flask**: For the web framework
-- **Bootstrap**: For the responsive UI components
-
-## 📞 Support
-
-- **Issues**: Report bugs via GitHub Issues
-- **Discussions**: Join community discussions
-- **Documentation**: Check this README and inline code comments
-
-## 🔄 Updates
-
-### Recent Changes
-- ✅ Added 7-rainbow color scheme for tags
-- ✅ Implemented comprehensive problem solutions
-- ✅ Added tag-based filtering and navigation
-- ✅ Enhanced card generation with 7 card types
-- ✅ Improved UI with responsive design
-
-### Roadmap
-- [ ] User authentication and progress tracking
-- [ ] Export cards to Anki format
-- [ ] Mobile app version
-- [ ] Advanced analytics dashboard
-- [ ] Community solution sharing
-
----
-
-**Happy Coding! 🚀💻**
-
-*Transform your LeetCode practice into effective, long-term learning with systematic Anki card generation.* 
