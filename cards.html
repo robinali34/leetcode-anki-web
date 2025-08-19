@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🃏 Anki Cards - LeetCode Anki Card Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        .card-container {
+            perspective: 1000px;
+            margin-bottom: 2rem;
+        }
+        .anki-card {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+            height: 300px;
+            cursor: pointer;
+        }
+        .anki-card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .card-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .card-back {
+            background: white;
+            color: #333;
+            transform: rotateY(180deg);
+        }
+        .card-type-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        .card-back .card-type-badge {
+            background: #667eea;
+            color: white;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+        }
+        .filter-section {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .card-controls {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+        .card-controls button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .card-controls button:hover {
+            transform: scale(1.05);
+        }
+        .btn-easy { background: #28a745; color: white; }
+        .btn-medium { background: #ffc107; color: black; }
+        .btn-hard { background: #dc3545; color: white; }
+        .btn-again { background: #6c757d; color: white; }
+        .study-progress {
+            height: 8px;
+            border-radius: 4px;
+            background: #e9ecef;
+            overflow: hidden;
+        }
+        .study-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-brain me-2"></i>LeetCode Anki Generator
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tags.html">Tags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="problems.html">Problems</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="cards.html">Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/robinali34/leetcode-anki-web" target="_blank">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">🃏 Anki Study Cards</h1>
+            <p class="lead">Master LeetCode problems with spaced repetition learning</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title" id="total-cards">0</h3>
+                        <p class="card-text">Total Cards</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title" id="studied-today">0</h3>
+                        <p class="card-text">Studied Today</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title" id="due-cards">0</h3>
+                        <p class="card-text">Due Today</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title" id="streak">0</h3>
+                        <p class="card-text">Day Streak</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Progress -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title mb-3">
+                            <i class="fas fa-chart-line me-2"></i>Study Progress
+                        </h6>
+                        <div class="study-progress">
+                            <div class="study-progress-bar" id="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-muted">0% Complete</small>
+                            <small class="text-muted" id="progress-text">0 of 0 cards mastered</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filter-section">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="card-type-filter" class="form-label">Card Type</label>
+                    <select class="form-select" id="card-type-filter">
+                        <option value="">All Types</option>
+                        <option value="Problem Statement">Problem Statement</option>
+                        <option value="Solution Approach">Solution Approach</option>
+                        <option value="Time Complexity">Time Complexity</option>
+                        <option value="Space Complexity">Space Complexity</option>
+                        <option value="Key Insights">Key Insights</option>
+                        <option value="Common Mistakes">Common Mistakes</option>
+                        <option value="Follow-up Questions">Follow-up Questions</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="difficulty-filter" class="form-label">Difficulty</label>
+                    <select class="form-select" id="difficulty-filter">
+                        <option value="">All Difficulties</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="status-filter" class="form-label">Study Status</label>
+                    <select class="form-select" id="status-filter">
+                        <option value="">All Status</option>
+                        <option value="New">New</option>
+                        <option value="Learning">Learning</option>
+                        <option value="Review">Review</option>
+                        <option value="Mastered">Mastered</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Actions</label>
+                    <div class="d-grid">
+                        <button class="btn btn-primary" id="start-study">
+                            <i class="fas fa-play me-1"></i>Start Study Session
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="row" id="cards-container">
+            <!-- Cards will be populated by JavaScript -->
+        </div>
+
+        <!-- Study Session Modal -->
+        <div class="modal fade" id="studyModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Study Session</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-container">
+                            <div class="anki-card" id="study-card">
+                                <div class="card-front">
+                                    <span class="card-type-badge" id="study-card-type">Problem Statement</span>
+                                    <h4 id="study-card-front">Loading...</h4>
+                                </div>
+                                <div class="card-back">
+                                    <span class="card-type-badge" id="study-card-type-back">Problem Statement</span>
+                                    <div id="study-card-back">Loading...</div>
+                                    <div class="card-controls">
+                                        <button class="btn-again" onclick="rateCard('again')">Again</button>
+                                        <button class="btn-hard" onclick="rateCard('hard')">Hard</button>
+                                        <button class="btn-medium" onclick="rateCard('medium')">Medium</button>
+                                        <button class="btn-easy" onclick="rateCard('easy')">Easy</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="me-auto">
+                            <span class="badge bg-info" id="study-progress">Card 1 of 10</span>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">End Session</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample cards data
+        const sampleCards = [
+            {
+                id: 1,
+                problemId: 1,
+                problemTitle: "Two Sum",
+                difficulty: "Easy",
+                cardType: "Problem Statement",
+                front: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+                back: "You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.",
+                status: "New",
+                lastReviewed: null,
+                nextReview: null,
+                interval: 1,
+                easeFactor: 2.5
+            },
+            {
+                id: 2,
+                problemId: 1,
+                problemTitle: "Two Sum",
+                difficulty: "Easy",
+                cardType: "Solution Approach",
+                front: "What is the optimal approach to solve the Two Sum problem?",
+                back: "Use a Hash Table approach: 1) Iterate through the array, 2) For each number, check if (target - current) exists in hash table, 3) If yes, return both indices, 4) If no, add current number and its index to hash table. Time: O(n), Space: O(n)",
+                status: "New",
+                lastReviewed: null,
+                nextReview: null,
+                interval: 1,
+                easeFactor: 2.5
+            },
+            {
+                id: 3,
+                problemId: 1,
+                problemTitle: "Two Sum",
+                difficulty: "Easy",
+                cardType: "Time Complexity",
+                front: "What is the time complexity of the optimal Two Sum solution?",
+                back: "O(n) - We only need to traverse the array once, and hash table operations (insert and lookup) are O(1) on average.",
+                status: "New",
+                lastReviewed: null,
+                nextReview: null,
+                interval: 1,
+                easeFactor: 2.5
+            },
+            {
+                id: 4,
+                problemId: 2,
+                problemTitle: "Add Two Numbers",
+                difficulty: "Medium",
+                cardType: "Problem Statement",
+                front: "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.",
+                back: "You may assume the two numbers do not contain any leading zero, except the number 0 itself. Each linked list represents a number in reverse order.",
+                status: "New",
+                lastReviewed: null,
+                nextReview: null,
+                interval: 1,
+                easeFactor: 2.5
+            },
+            {
+                id: 5,
+                problemId: 2,
+                problemTitle: "Add Two Numbers",
+                difficulty: "Medium",
+                cardType: "Key Insights",
+                front: "What are the key insights for solving Add Two Numbers?",
+                back: "1) Process digits from least significant to most significant (reverse order), 2) Handle carry-over between digits, 3) Create new nodes for the result, 4) Handle cases where lists have different lengths, 5) Don't forget the final carry if it exists.",
+                status: "New",
+                lastReviewed: null,
+                nextReview: null,
+                interval: 1,
+                easeFactor: 2.5
+            }
+        ];
+
+        let currentCards = [...sampleCards];
+        let studySessionCards = [];
+        let currentStudyIndex = 0;
+
+        function updateStats() {
+            document.getElementById('total-cards').textContent = currentCards.length;
+            document.getElementById('studied-today').textContent = currentCards.filter(card => 
+                card.lastReviewed && new Date(card.lastReviewed).toDateString() === new Date().toDateString()
+            ).length;
+            document.getElementById('due-cards').textContent = currentCards.filter(card => 
+                !card.nextReview || new Date(card.nextReview) <= new Date()
+            ).length;
+            document.getElementById('streak').textContent = calculateStreak();
+
+            // Update progress
+            const masteredCards = currentCards.filter(card => card.status === 'Mastered').length;
+            const progress = currentCards.length > 0 ? (masteredCards / currentCards.length) * 100 : 0;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = `${masteredCards} of ${currentCards.length} cards mastered`;
+        }
+
+        function calculateStreak() {
+            // Simple streak calculation - in a real app, this would be more sophisticated
+            return Math.floor(Math.random() * 7) + 1;
+        }
+
+        function renderCards() {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+
+            currentCards.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'col-md-6 col-lg-4';
+                cardElement.innerHTML = `
+                    <div class="card-container">
+                        <div class="anki-card" onclick="flipCard(this)">
+                            <div class="card-front">
+                                <span class="card-type-badge">${card.cardType}</span>
+                                <h6 class="mb-3">${card.problemTitle}</h6>
+                                <p class="mb-3">${card.front}</p>
+                                <div class="mt-auto">
+                                    <span class="badge bg-${getDifficultyColor(card.difficulty)} me-2">${card.difficulty}</span>
+                                    <span class="badge bg-${getStatusColor(card.status)}">${card.status}</span>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <span class="card-type-badge">${card.cardType}</span>
+                                <h6 class="mb-3">${card.problemTitle}</h6>
+                                <p class="mb-3">${card.back}</p>
+                                <div class="mt-auto">
+                                    <span class="badge bg-${getDifficultyColor(card.difficulty)} me-2">${card.difficulty}</span>
+                                    <span class="badge bg-${getStatusColor(card.status)}">${card.status}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(cardElement);
+            });
+        }
+
+        function flipCard(cardElement) {
+            cardElement.classList.toggle('flipped');
+        }
+
+        function getDifficultyColor(difficulty) {
+            switch(difficulty) {
+                case 'Easy': return 'success';
+                case 'Medium': return 'warning';
+                case 'Hard': return 'danger';
+                default: return 'secondary';
+            }
+        }
+
+        function getStatusColor(status) {
+            switch(status) {
+                case 'New': return 'secondary';
+                case 'Learning': return 'info';
+                case 'Review': return 'warning';
+                case 'Mastered': return 'success';
+                default: return 'secondary';
+            }
+        }
+
+        function applyFilters() {
+            const cardType = document.getElementById('card-type-filter').value;
+            const difficulty = document.getElementById('difficulty-filter').value;
+            const status = document.getElementById('status-filter').value;
+
+            currentCards = sampleCards.filter(card => {
+                const matchesType = !cardType || card.cardType === cardType;
+                const matchesDifficulty = !difficulty || card.difficulty === difficulty;
+                const matchesStatus = !status || card.status === status;
+
+                return matchesType && matchesDifficulty && matchesStatus;
+            });
+
+            updateStats();
+            renderCards();
+        }
+
+        function startStudySession() {
+            const dueCards = currentCards.filter(card => 
+                !card.nextReview || new Date(card.nextReview) <= new Date()
+            );
+            
+            if (dueCards.length === 0) {
+                alert('No cards due for review! All caught up.');
+                return;
+            }
+
+            studySessionCards = dueCards;
+            currentStudyIndex = 0;
+            showStudyCard();
+            
+            const modal = new bootstrap.Modal(document.getElementById('studyModal'));
+            modal.show();
+        }
+
+        function showStudyCard() {
+            if (currentStudyIndex >= studySessionCards.length) {
+                endStudySession();
+                return;
+            }
+
+            const card = studySessionCards[currentStudyIndex];
+            document.getElementById('study-card-type').textContent = card.cardType;
+            document.getElementById('study-card-type-back').textContent = card.cardType;
+            document.getElementById('study-card-front').textContent = card.front;
+            document.getElementById('study-card-back').innerHTML = card.back;
+            document.getElementById('study-progress').textContent = `Card ${currentStudyIndex + 1} of ${studySessionCards.length}`;
+
+            // Reset card to front
+            document.getElementById('study-card').classList.remove('flipped');
+        }
+
+        function rateCard(rating) {
+            const card = studySessionCards[currentStudyIndex];
+            
+            // Update card based on rating (simplified spaced repetition algorithm)
+            switch(rating) {
+                case 'again':
+                    card.interval = 1;
+                    card.easeFactor = Math.max(1.3, card.easeFactor - 0.2);
+                    break;
+                case 'hard':
+                    card.interval = card.interval * 1.2;
+                    card.easeFactor = Math.max(1.3, card.easeFactor - 0.15);
+                    break;
+                case 'medium':
+                    card.interval = card.interval * card.easeFactor;
+                    break;
+                case 'easy':
+                    card.interval = card.interval * card.easeFactor * 1.3;
+                    card.easeFactor = Math.min(2.5, card.easeFactor + 0.15);
+                    break;
+            }
+
+            // Update status and next review
+            card.lastReviewed = new Date();
+            card.nextReview = new Date(Date.now() + card.interval * 24 * 60 * 60 * 1000);
+            
+            if (card.interval > 7) {
+                card.status = 'Mastered';
+            } else if (card.interval > 3) {
+                card.status = 'Review';
+            } else {
+                card.status = 'Learning';
+            }
+
+            // Move to next card
+            currentStudyIndex++;
+            showStudyCard();
+        }
+
+        function endStudySession() {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('studyModal'));
+            modal.hide();
+            
+            // Update the main cards list with study results
+            studySessionCards.forEach(studyCard => {
+                const mainCard = sampleCards.find(card => card.id === studyCard.id);
+                if (mainCard) {
+                    Object.assign(mainCard, studyCard);
+                }
+            });
+            
+            updateStats();
+            renderCards();
+            alert('Study session completed!');
+        }
+
+        // Event listeners
+        document.getElementById('card-type-filter').addEventListener('change', applyFilters);
+        document.getElementById('difficulty-filter').addEventListener('change', applyFilters);
+        document.getElementById('status-filter').addEventListener('change', applyFilters);
+        document.getElementById('start-study').addEventListener('click', startStudySession);
+
+        // Check for selected problems from problems page
+        window.addEventListener('load', () => {
+            const selectedProblems = localStorage.getItem('selectedProblems');
+            if (selectedProblems) {
+                const problemIds = JSON.parse(selectedProblems);
+                // Filter cards to show only those for selected problems
+                currentCards = sampleCards.filter(card => problemIds.includes(card.problemId));
+                localStorage.removeItem('selectedProblems');
+                updateStats();
+                renderCards();
+            }
+        });
+
+        // Initialize
+        updateStats();
+        renderCards();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏷️ Tags - LeetCode Anki Card Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        .tag-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+        .tag-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .tag-btn {
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            font-weight: 500;
+            margin: 0.25rem;
+        }
+        .tag-btn:hover {
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+        .tag-count-badge {
+            font-size: 0.75em;
+            padding: 0.25em 0.5em;
+        }
+        .difficulty-badge {
+            font-size: 0.8em;
+            padding: 0.4em 0.8em;
+            border-radius: 12px;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+        }
+        .tag-category {
+            border-left: 4px solid;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .tag-category.red { border-left-color: #dc3545; }
+        .tag-category.yellow { border-left-color: #ffc107; }
+        .tag-category.green { border-left-color: #198754; }
+        .tag-category.cyan { border-left-color: #0dcaf0; }
+        .tag-category.blue { border-left-color: #0d6efd; }
+        .tag-category.gray { border-left-color: #6c757d; }
+        .tag-category.black { border-left-color: #212529; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-brain me-2"></i>LeetCode Anki Generator
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="tags.html">Tags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="problems.html">Problems</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cards.html">Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/robinali34/leetcode-anki-web" target="_blank">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">🏷️ Problem Tags</h1>
+            <p class="lead">Explore LeetCode problems by topic and difficulty</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title" id="total-tags">0</h3>
+                        <p class="card-text">Total Tags</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title" id="total-problems">0</h3>
+                        <p class="card-text">Total Problems</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title" id="easy-count">0</h3>
+                        <p class="card-text">Easy Problems</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title" id="medium-count">0</h3>
+                        <p class="card-text">Medium Problems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="text" class="form-control" id="tag-search" placeholder="Search tags...">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary" id="sort-by-count">Sort by Count</button>
+                    <button class="btn btn-outline-primary" id="sort-by-name">Sort by Name</button>
+                    <button class="btn btn-outline-secondary" id="reset-filters">Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tags by Category -->
+        <div id="tags-container">
+            <!-- Red category (most popular) -->
+            <div class="tag-category red">
+                <h4 class="text-danger mb-3">🔥 Most Popular (>150 problems)</h4>
+                <div class="row" id="red-tags"></div>
+            </div>
+
+            <!-- Yellow category -->
+            <div class="tag-category yellow">
+                <h4 class="text-warning mb-3">⭐ Popular Topics (100-150 problems)</h4>
+                <div class="row" id="yellow-tags"></div>
+            </div>
+
+            <!-- Green category -->
+            <div class="tag-category green">
+                <h4 class="text-success mb-3">🌱 Common Topics (50-100 problems)</h4>
+                <div class="row" id="green-tags"></div>
+            </div>
+
+            <!-- Cyan category -->
+            <div class="tag-category cyan">
+                <h4 class="text-info mb-3">💡 Medium Topics (25-50 problems)</h4>
+                <div class="row" id="cyan-tags"></div>
+            </div>
+
+            <!-- Blue category -->
+            <div class="tag-category blue">
+                <h4 class="text-primary mb-3">📈 Growing Topics (10-25 problems)</h4>
+                <div class="row" id="blue-tags"></div>
+            </div>
+
+            <!-- Gray category -->
+            <div class="tag-category gray">
+                <h4 class="text-secondary mb-3">🔧 Specialized Topics (5-10 problems)</h4>
+                <div class="row" id="gray-tags"></div>
+            </div>
+
+            <!-- Black category -->
+            <div class="tag-category black">
+                <h4 class="text-dark mb-3">🎯 Niche Topics (<5 problems)</h4>
+                <div class="row" id="black-tags"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample data for demonstration
+        const sampleTags = [
+            { name: "Array", count: 156, difficulty: "Easy", color: "danger" },
+            { name: "String", count: 145, difficulty: "Easy", color: "warning" },
+            { name: "Hash Table", count: 138, difficulty: "Easy", color: "warning" },
+            { name: "Dynamic Programming", count: 125, difficulty: "Hard", color: "warning" },
+            { name: "Math", count: 98, difficulty: "Easy", color: "success" },
+            { name: "Sorting", count: 87, difficulty: "Medium", color: "success" },
+            { name: "Greedy", count: 76, difficulty: "Medium", color: "success" },
+            { name: "Depth-First Search", count: 65, difficulty: "Medium", color: "success" },
+            { name: "Binary Search", count: 58, difficulty: "Medium", color: "success" },
+            { name: "Database", count: 42, difficulty: "Medium", color: "info" },
+            { name: "Tree", count: 38, difficulty: "Medium", color: "info" },
+            { name: "Matrix", count: 35, difficulty: "Medium", color: "info" },
+            { name: "Two Pointers", count: 28, difficulty: "Medium", color: "info" },
+            { name: "Bit Manipulation", count: 22, difficulty: "Hard", color: "primary" },
+            { name: "Stack", count: 18, difficulty: "Medium", color: "primary" },
+            { name: "Heap (Priority Queue)", count: 15, difficulty: "Hard", color: "primary" },
+            { name: "Graph", count: 12, difficulty: "Hard", color: "primary" },
+            { name: "Design", count: 8, difficulty: "Hard", color: "secondary" },
+            { name: "Backtracking", count: 6, difficulty: "Hard", color: "secondary" },
+            { name: "Sliding Window", count: 4, difficulty: "Medium", color: "dark" },
+            { name: "Monotonic Stack", count: 3, difficulty: "Hard", color: "dark" },
+            { name: "Union Find", count: 2, difficulty: "Hard", color: "dark" }
+        ];
+
+        let currentTags = [...sampleTags];
+
+        function updateStats() {
+            document.getElementById('total-tags').textContent = currentTags.length;
+            document.getElementById('total-problems').textContent = currentTags.reduce((sum, tag) => sum + tag.count, 0);
+            document.getElementById('easy-count').textContent = currentTags.filter(tag => tag.difficulty === 'Easy').length;
+            document.getElementById('medium-count').textContent = currentTags.filter(tag => tag.difficulty === 'Medium').length;
+        }
+
+        function getDifficultyColor(difficulty) {
+            switch(difficulty) {
+                case 'Easy': return 'success';
+                case 'Medium': return 'warning';
+                case 'Hard': return 'danger';
+                default: return 'secondary';
+            }
+        }
+
+        function renderTags() {
+            const categories = {
+                red: currentTags.filter(tag => tag.count > 150),
+                yellow: currentTags.filter(tag => tag.count > 100 && tag.count <= 150),
+                green: currentTags.filter(tag => tag.count > 50 && tag.count <= 100),
+                cyan: currentTags.filter(tag => tag.count > 25 && tag.count <= 50),
+                blue: currentTags.filter(tag => tag.count > 10 && tag.count <= 25),
+                gray: currentTags.filter(tag => tag.count > 5 && tag.count <= 10),
+                black: currentTags.filter(tag => tag.count <= 5)
+            };
+
+            Object.keys(categories).forEach(category => {
+                const container = document.getElementById(`${category}-tags`);
+                container.innerHTML = '';
+
+                categories[category].forEach(tag => {
+                    const tagCard = document.createElement('div');
+                    tagCard.className = 'col-md-6 col-lg-4';
+                    tagCard.innerHTML = `
+                        <div class="card tag-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="card-title mb-0">${tag.name}</h6>
+                                    <span class="badge bg-${getDifficultyColor(tag.difficulty)} difficulty-badge">
+                                        ${tag.difficulty}
+                                    </span>
+                                </div>
+                                <p class="card-text text-muted mb-3">
+                                    <i class="fas fa-code me-1"></i>${tag.count} problems
+                                </p>
+                                <button class="btn btn-outline-${tag.color} tag-btn btn-sm" 
+                                        onclick="filterByTag('${tag.name}')">
+                                    View Problems
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(tagCard);
+                });
+            });
+        }
+
+        function filterByTag(tagName) {
+            // Store the tag in localStorage for the problems page
+            localStorage.setItem('selectedTag', tagName);
+            window.location.href = 'problems.html';
+        }
+
+        function searchTags(query) {
+            if (!query.trim()) {
+                currentTags = [...sampleTags];
+            } else {
+                currentTags = sampleTags.filter(tag => 
+                    tag.name.toLowerCase().includes(query.toLowerCase())
+                );
+            }
+            renderTags();
+            updateStats();
+        }
+
+        function sortByCount() {
+            currentTags.sort((a, b) => b.count - a.count);
+            renderTags();
+        }
+
+        function sortByName() {
+            currentTags.sort((a, b) => a.name.localeCompare(b.name));
+            renderTags();
+        }
+
+        function resetFilters() {
+            currentTags = [...sampleTags];
+            document.getElementById('tag-search').value = '';
+            renderTags();
+            updateStats();
+        }
+
+        // Event listeners
+        document.getElementById('tag-search').addEventListener('input', (e) => searchTags(e.target.value));
+        document.getElementById('sort-by-count').addEventListener('click', sortByCount);
+        document.getElementById('sort-by-name').addEventListener('click', sortByName);
+        document.getElementById('reset-filters').addEventListener('click', resetFilters);
+
+        // Initialize
+        updateStats();
+        renderTags();
+    </script>
+</body>
+</html> 
