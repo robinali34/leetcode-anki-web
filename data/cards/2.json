@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ad82843f-752f-44dd-be52-9f7fdfae0e18",
+    "type": "problem_statement",
+    "front": "Problem 2: Add Two Numbers",
+    "back": "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit.",
+    "tags": [
+      "problem",
+      "statement"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-18T22:46:27.308944",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "e1733e58-7747-4063-a7d0-1bf539bb2165",
+    "type": "test_cases",
+    "front": "Example test cases for Add Two Numbers",
+    "back": "```\n[2,4,3]\n[5,6,4]\n```",
+    "tags": [
+      "test_cases",
+      "examples"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-18T22:46:27.308975",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "93435300-6f0a-420e-8911-4edbd1ff3bae",
+    "type": "algorithm",
+    "front": "What's the algorithm approach for Add Two Numbers?",
+    "back": "Analyze the problem step by step",
+    "tags": [
+      "algorithm",
+      "approach"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-18T22:46:27.308999",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "234b4e39-2a08-4cae-993f-9e7098807d5a",
+    "type": "complexity",
+    "front": "What's the time and space complexity for Add Two Numbers?",
+    "back": "Analyze the algorithm to determine complexity",
+    "tags": [
+      "complexity",
+      "analysis"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-18T22:46:27.309015",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "1e8a6216-b4c8-43bd-936e-48f5ac3958cd",
+    "type": "concepts",
+    "front": "What are the key concepts for Add Two Numbers?",
+    "back": "Key concepts: Linked List, Math, Recursion",
+    "tags": [
+      "concepts",
+      "tags"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-18T22:46:27.309029",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  }
+]

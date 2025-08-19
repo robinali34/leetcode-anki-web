@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 LeetCode Anki Card Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+        .problem-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            border-radius: 15px;
+        }
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .tag-btn {
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .tag-btn:hover {
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+        .btn-outline-info:hover {
+            background-color: #0dcaf0;
+            border-color: #0dcaf0;
+            color: #000;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-outline-dark:hover {
+            background-color: #212529;
+            border-color: #212529;
+        }
+        .tag-count-badge {
+            font-size: 0.75em;
+            padding: 0.25em 0.5em;
+        }
+        /* Rainbow color scheme for tags */
+        .btn-outline-danger { color: #dc3545; border-color: #dc3545; }
+        .btn-outline-warning { color: #ffc107; border-color: #ffc107; }
+        .btn-outline-success { color: #198754; border-color: #198754; }
+        .btn-outline-info { color: #0dcaf0; border-color: #0dcaf0; }
+        .btn-outline-primary { color: #0d6efd; border-color: #0d6efd; }
+        .btn-outline-secondary { color: #6c757d; border-color: #6c757d; }
+        .btn-outline-dark { color: #212529; border-color: #212529; }
+        .difficulty-badge {
+            font-size: 0.8em;
+            padding: 0.4em 0.8em;
+            border-radius: 12px;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-brain me-2"></i>LeetCode Anki Generator
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#problems">Problems</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tags">Tags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/yourusername/lc-anki" target="_blank">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title">🎯 LeetCode Anki Card Generator</h1>
+            <p class="hero-subtitle">Transform your LeetCode practice into effective, long-term learning with systematic Anki card generation</p>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <i class="fas fa-code feature-icon"></i>
+                        <h5>200+ Problems</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <i class="fas fa-palette feature-icon"></i>
+                        <h5>Rainbow Tags</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <i class="fas fa-lightbulb feature-icon"></i>
+                        <h5>Smart Solutions</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <i class="fas fa-graduation-cap feature-icon"></i>
+                        <h5>Study Cards</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Filter by Tags Section -->
+        <div class="row mb-4" id="tags">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0"><i class="fas fa-tags me-2"></i>Filter by Tags</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap gap-2" id="tag-buttons">
+                            <!-- Tags will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0"><i class="fas fa-info-circle me-2"></i>About Tag Colors</h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="small text-muted mb-2">
+                            <span class="badge bg-danger me-1">Red</span> = >150 problems (most popular)
+                        </p>
+                        <p class="small text-muted mb-2">
+                            <span class="badge bg-warning me-1">Yellow</span> = Popular topics
+                        </p>
+                        <p class="small text-muted mb-2">
+                            <span class="badge bg-success me-1">Green</span> = Common topics
+                        </p>
+                        <p class="small text-muted mb-2">
+                            <span class="badge bg-info me-1">Cyan</span> = Medium topics
+                        </p>
+                        <p class="small text-muted mb-2">
+                            <span class="badge bg-primary me-1">Blue</span> = Growing topics
+                        </p>
+                        <p class="small text-muted mb-2">
+                            <span class="badge bg-secondary me-1">Gray</span> = Specialized topics
+                        </p>
+                        <p class="small text-muted">
+                            <span class="badge bg-dark me-1">Black</span> = Niche topics
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problems Section -->
+        <div class="row" id="problems">
+            <div class="col-12">
+                <h4 class="mb-3"><i class="fas fa-list me-2"></i>LeetCode Problems</h4>
+                <div class="row" id="problems-container">
+                    <!-- Problems will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">
+                <i class="fas fa-heart text-danger me-1"></i>
+                Made with love for the LeetCode community
+            </p>
+            <p class="small text-muted mt-2">
+                <a href="https://github.com/yourusername/lc-anki" class="text-light text-decoration-none" target="_blank">
+                    <i class="fab fa-github me-1"></i>View on GitHub
+                </a>
+                <span class="mx-2">•</span>
+                <a href="LICENSE" class="text-light text-decoration-none">MIT License</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample problem data for static demo
+        const sampleProblems = [
+            {
+                id: 1,
+                title: "Two Sum",
+                difficulty: "Easy",
+                description: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+                tags: ["Array", "Hash Table"],
+                acceptance: "52.3%"
+            },
+            {
+                id: 2,
+                title: "Add Two Numbers",
+                difficulty: "Medium",
+                description: "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order.",
+                tags: ["Linked List", "Math", "Recursion"],
+                acceptance: "38.9%"
+            },
+            {
+                id: 3,
+                title: "Longest Substring Without Repeating Characters",
+                difficulty: "Medium",
+                description: "Given a string s, find the length of the longest substring without repeating characters.",
+                tags: ["Hash Table", "String", "Sliding Window"],
+                acceptance: "33.8%"
+            },
+            {
+                id: 4,
+                title: "Median of Two Sorted Arrays",
+                difficulty: "Hard",
+                description: "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.",
+                tags: ["Array", "Binary Search", "Divide and Conquer"],
+                acceptance: "35.2%"
+            },
+            {
+                id: 5,
+                title: "Longest Palindromic Substring",
+                difficulty: "Medium",
+                description: "Given a string s, return the longest palindromic substring in s.",
+                tags: ["String", "Dynamic Programming"],
+                acceptance: "32.1%"
+            },
+            {
+                id: 53,
+                title: "Maximum Subarray",
+                difficulty: "Medium",
+                description: "Given an integer array nums, find the subarray with the largest sum, and return its sum.",
+                tags: ["Array", "Divide and Conquer", "Dynamic Programming"],
+                acceptance: "50.1%"
+            }
+        ];
+
+        // Tag data with counts for rainbow coloring
+        const tagData = {
+            "Array": 376,
+            "String": 298,
+            "Hash Table": 245,
+            "Dynamic Programming": 48,
+            "Math": 156,
+            "Linked List": 67,
+            "Recursion": 3,
+            "Sliding Window": 23,
+            "Binary Search": 89,
+            "Divide and Conquer": 34,
+            "Tree": 134,
+            "Graph": 78,
+            "Two Pointers": 16,
+            "Backtracking": 45,
+            "Heap": 32,
+            "Priority Queue": 28,
+            "Trie": 12,
+            "Segment Tree": 8,
+            "Union Find": 6,
+            "Binary Indexed Tree": 4
+        };
+
+        // Function to get button class based on count
+        function getButtonClass(count) {
+            if (count > 150) {
+                return "btn-outline-danger btn-lg";
+            } else {
+                const rainbowIndex = (count - 1) % 7;
+                const colors = [
+                    "btn-outline-danger",
+                    "btn-outline-warning", 
+                    "btn-outline-success",
+                    "btn-outline-info",
+                    "btn-outline-primary",
+                    "btn-outline-secondary",
+                    "btn-outline-dark"
+                ];
+                const sizes = count <= 25 ? "btn-sm" : count <= 75 ? "btn-md" : "btn-lg";
+                return `${colors[rainbowIndex]} ${sizes}`;
+            }
+        }
+
+        // Function to get badge class based on count
+        function getBadgeClass(count) {
+            if (count > 150) {
+                return "bg-danger";
+            } else {
+                const rainbowIndex = (count - 1) % 7;
+                const colors = [
+                    "bg-danger",
+                    "bg-warning",
+                    "bg-success", 
+                    "bg-info",
+                    "bg-primary",
+                    "bg-secondary",
+                    "bg-dark"
+                ];
+                return colors[rainbowIndex];
+            }
+        }
+
+        // Function to get difficulty badge class
+        function getDifficultyClass(difficulty) {
+            switch(difficulty.toLowerCase()) {
+                case 'easy': return 'bg-success';
+                case 'medium': return 'bg-warning';
+                case 'hard': return 'bg-danger';
+                default: return 'bg-secondary';
+            }
+        }
+
+        // Render tag buttons
+        function renderTagButtons() {
+            const container = document.getElementById('tag-buttons');
+            const sortedTags = Object.entries(tagData).sort((a, b) => b[1] - a[1]);
+            
+            sortedTags.forEach(([tag, count]) => {
+                const buttonClass = getButtonClass(count);
+                const button = document.createElement('a');
+                button.href = `#${tag.toLowerCase().replace(/\s+/g, '-')}`;
+                button.className = `btn ${buttonClass} tag-btn`;
+                button.innerHTML = `
+                    <i class="fas fa-tag me-1"></i>${tag}
+                    <span class="badge bg-secondary ms-1 tag-count-badge">${count}</span>
+                `;
+                container.appendChild(button);
+            });
+        }
+
+        // Render problems
+        function renderProblems() {
+            const container = document.getElementById('problems-container');
+            
+            sampleProblems.forEach(problem => {
+                const problemCard = document.createElement('div');
+                problemCard.className = 'col-md-6 col-lg-4 mb-4';
+                problemCard.innerHTML = `
+                    <div class="card problem-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="card-title mb-0">${problem.id}. ${problem.title}</h6>
+                                <span class="badge ${getDifficultyClass(problem.difficulty)} difficulty-badge">
+                                    ${problem.difficulty}
+                                </span>
+                            </div>
+                            <p class="card-text small text-muted mb-3">${problem.description}</p>
+                            <div class="mb-2">
+                                ${problem.tags.map(tag => {
+                                    const count = tagData[tag] || 0;
+                                    const badgeClass = getBadgeClass(count);
+                                    return `<span class="badge ${badgeClass} me-1">${tag}</span>`;
+                                }).join('')}
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Acceptance: ${problem.acceptance}</small>
+                                <button class="btn btn-outline-primary btn-sm" onclick="showProblemDetails(${problem.id})">
+                                    <i class="fas fa-eye me-1"></i>View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(problemCard);
+            });
+        }
+
+        // Show problem details (demo function)
+        function showProblemDetails(problemId) {
+            const problem = sampleProblems.find(p => p.id === problemId);
+            if (problem) {
+                alert(`Problem ${problemId}: ${problem.title}\n\nThis is a demo. In the full version, you would see:\n- Complete problem description\n- Test cases\n- Pseudocode solutions\n- Python code solutions\n- Generate Anki cards\n\nVisit the GitHub repository for the full Flask application!`);
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTagButtons();
+            renderProblems();
+        });
+    </script>
+</body>
+</html> 

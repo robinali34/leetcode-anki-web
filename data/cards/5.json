@@ -1,0 +1,116 @@
+[
+  {
+    "id": "ea81abab-a6b1-48ed-b471-43a918ea0f98",
+    "type": "problem_statement",
+    "front": "Problem 5: Longest Palindromic Substring",
+    "back": "Given a string s, return the longest palindromic substring in s.",
+    "tags": [
+      "problem",
+      "statement"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-19T10:09:44.806051",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "1aa26a4c-228e-4d8f-bac5-6d12745226b3",
+    "type": "test_cases",
+    "front": "Example test cases for Longest Palindromic Substring",
+    "back": "```\n\"babad\"\n```",
+    "tags": [
+      "test_cases",
+      "examples"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-19T10:09:44.806080",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "a0939e77-1eda-494e-bce3-d5b3e4b9a630",
+    "type": "algorithm",
+    "front": "What's the algorithm approach for Longest Palindromic Substring?",
+    "back": "Consider dynamic programming solution",
+    "tags": [
+      "algorithm",
+      "approach"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-19T10:09:44.806097",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "df3b32f1-51c0-4020-bb24-132cd276684c",
+    "type": "complexity",
+    "front": "What's the time and space complexity for Longest Palindromic Substring?",
+    "back": "Time: O(n\u00b2) or O(n\u00b3), Space: O(n) - depends on state space",
+    "tags": [
+      "complexity",
+      "analysis"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-19T10:09:44.806108",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "7204b0d3-d1ad-4d2f-ac44-04f5df2986ae",
+    "type": "concepts",
+    "front": "What are the key concepts for Longest Palindromic Substring?",
+    "back": "Key concepts: String, Dynamic Programming",
+    "tags": [
+      "concepts",
+      "tags"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-19T10:09:44.806116",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "c386d277-bb8a-444c-9d95-dc062114d09a",
+    "type": "pseudocode",
+    "front": "Show the pseudocode solution for Longest Palindromic Substring",
+    "back": "PSEUDOCODE for Longest Palindromic Substring:\n1. Initialize start = 0, max_length = 1\n2. For each character at index i:\n   a. Check odd-length palindromes: expandAroundCenter(i, i)\n   b. Check even-length palindromes: expandAroundCenter(i, i+1)\n3. expandAroundCenter function:\n   a. While left >= 0 and right < len(s) and s[left] == s[right]\n   b. Decrement left, increment right\n   c. Update start and max_length if current length > max_length\n4. Return s[start:start + max_length]\n\nTime Complexity: O(n\u00b2) - for each character, expand palindrome\nSpace Complexity: O(1) - constant extra space",
+    "tags": [
+      "solution",
+      "pseudocode",
+      "algorithm"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-19T10:09:44.806129",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  },
+  {
+    "id": "2eb522df-5a18-43ed-824d-efca56d32b50",
+    "type": "python_code",
+    "front": "Show the Python code solution for Longest Palindromic Substring",
+    "back": "```python\ndef longestPalindrome(s):\n    if not s:\n        return \"\"\n    \n    start = 0\n    max_length = 1\n    \n    def expandAroundCenter(left, right):\n        nonlocal start, max_length\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        \n        # Update if current palindrome is longer\n        if right - left - 1 > max_length:\n            start = left + 1\n            max_length = right - left - 1\n    \n    # Check each character as center\n    for i in range(len(s)):\n        # Odd length palindromes\n        expandAroundCenter(i, i)\n        # Even length palindromes\n        expandAroundCenter(i, i + 1)\n    \n    return s[start:start + max_length]\n\n# Example usage\ns = \"babad\"\nresult = longestPalindrome(s)\nprint(f\"Longest palindrome: {result}\")  # Output: \"bab\" or \"aba\"\n```",
+    "tags": [
+      "solution",
+      "python",
+      "implementation"
+    ],
+    "difficulty": "MEDIUM",
+    "created_at": "2025-08-19T10:09:44.806138",
+    "last_reviewed": null,
+    "review_count": 0,
+    "ease_factor": 2.5,
+    "interval": 0
+  }
+]
