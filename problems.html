@@ -755,6 +755,16 @@
                 updateStats();
                 renderProblems();
             }
+            
+            // Check for selected problem ID from home page
+            const selectedProblemId = localStorage.getItem('selectedProblemId');
+            if (selectedProblemId) {
+                localStorage.removeItem('selectedProblemId');
+                // Show the problem details modal automatically
+                setTimeout(() => {
+                    showProblemDetails(parseInt(selectedProblemId));
+                }, 500); // Small delay to ensure page is fully loaded
+            }
         });
 
         // Initialize
