@@ -238,7 +238,7 @@
                 <h4 class="mb-3"><i class="fas fa-list me-2"></i>LeetCode Problems</h4>
                 <div class="alert alert-info mb-3">
                     <i class="fas fa-info-circle me-2"></i>
-                    <strong>Tip:</strong> Click "View Full Details" on any problem to see complete descriptions, test cases, solutions, and generate Anki cards. You'll be taken to our comprehensive problems page.
+                    <strong>Tip:</strong> Click "View Full Details" on any problem to see a quick overview popup. For complete descriptions, test cases, and solutions, use the "View Full Details" button in the popup to go to our comprehensive problems page.
                 </div>
                 <div class="row" id="problems-container">
                     <!-- Problems will be populated by JavaScript -->
@@ -446,12 +446,98 @@
             });
         }
 
-        // Show problem details - redirect to problems page with specific problem
+        // Show problem details modal directly on home page
         function showProblemDetails(problemId) {
-            // Store the problem ID to show in problems page
-            localStorage.setItem('selectedProblemId', problemId);
-            // Redirect to problems page
-            window.location.href = 'problems.html';
+            const problem = sampleProblems.find(p => p.id === problemId);
+            if (!problem) return;
+
+            // Create and show the modal
+            const modal = document.createElement('div');
+            modal.className = 'modal fade';
+            modal.id = 'problemModal';
+            modal.setAttribute('tabindex', '-1');
+            modal.innerHTML = `
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                <span class="badge ${getDifficultyClass(problem.difficulty)} me-2">${problem.difficulty}</span>
+                                #${problem.id}. ${problem.title}
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h6 class="fw-bold">Problem Description</h6>
+                                    <p class="mb-4">${problem.description}</p>
+                                    
+                                    <h6 class="fw-bold">Tags</h6>
+                                    <div class="mb-3">
+                                        ${problem.tags.map(tag => {
+                                            const count = tagData[tag] || 0;
+                                            const badgeClass = getBadgeClass(count);
+                                            return `<span class="badge ${badgeClass} me-1 mb-1">${tag}</span>`;
+                                        }).join('')}
+                                    </div>
+                                    
+                                    <h6 class="fw-bold">Acceptance Rate</h6>
+                                    <p class="mb-4">${problem.acceptance}</p>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <h6 class="fw-bold">Quick Actions</h6>
+                                    <div class="d-grid gap-2 mb-3">
+                                        <a href="problems.html" class="btn btn-primary">
+                                            <i class="fas fa-list me-2"></i>View All Problems
+                                        </a>
+                                        <a href="cards.html" class="btn btn-success">
+                                            <i class="fas fa-graduation-cap me-2"></i>Generate Anki Cards
+                                        </a>
+                                        <a href="tags.html" class="btn btn-info">
+                                            <i class="fas fa-tags me-2"></i>Browse by Tags
+                                        </a>
+                                    </div>
+                                    
+                                    <h6 class="fw-bold">Problem Stats</h6>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row text-center">
+                                                <div class="col-6">
+                                                    <h6 class="text-muted">Difficulty</h6>
+                                                    <span class="badge ${getDifficultyClass(problem.difficulty)} fs-6">${problem.difficulty}</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h6 class="text-muted">ID</h6>
+                                                    <span class="fs-6 fw-bold">#${problem.id}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a href="problems.html" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt me-1"></i>View Full Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal to page
+            document.body.appendChild(modal);
+            
+            // Show the modal
+            const bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.show();
+            
+            // Remove modal from DOM when hidden
+            modal.addEventListener('hidden.bs.modal', function() {
+                document.body.removeChild(modal);
+            });
         }
 
         // Initialize the page
