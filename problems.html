@@ -149,6 +149,20 @@
     </section>
 
     <div class="container">
+        <!-- Tag Filter Indicator -->
+        <div class="row mb-4" id="tag-filter-indicator" style="display: none;">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <i class="fas fa-filter me-2"></i>
+                    <strong>Filtered by tag:</strong> 
+                    <span id="current-tag-filter" class="badge bg-primary"></span>
+                    <a href="problems.html" class="btn btn-sm btn-outline-primary ms-3">
+                        <i class="fas fa-times me-1"></i>Clear Filter
+                    </a>
+                </div>
+            </div>
+        </div>
+        
         <!-- Statistics Cards -->
         <div class="row mb-4">
             <div class="col-md-3 mb-3">
@@ -516,10 +530,28 @@
 
         function populateTagFilter() {
             const tagFilter = document.getElementById('tag-filter');
-            allTags.forEach(tag => {
+            
+            // Calculate tag counts
+            const tagCounts = {};
+            sampleProblems.forEach(problem => {
+                if (problem.tags && Array.isArray(problem.tags)) {
+                    problem.tags.forEach(tag => {
+                        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                    });
+                }
+            });
+            
+            // Sort tags by count (descending)
+            const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+            
+            // Clear existing options
+            tagFilter.innerHTML = '<option value="">All Tags</option>';
+            
+            // Add tag options with counts
+            sortedTags.forEach(([tag, count]) => {
                 const option = document.createElement('option');
                 option.value = tag;
-                option.textContent = tag;
+                option.textContent = `${tag} (${count})`;
                 tagFilter.appendChild(option);
             });
         }
@@ -646,6 +678,17 @@
             currentPage = 1;
             updateStats();
             renderProblems();
+            
+            // Show/hide tag filter indicator
+            const tagFilterIndicator = document.getElementById('tag-filter-indicator');
+            const currentTagFilter = document.getElementById('current-tag-filter');
+            
+            if (tag) {
+                tagFilterIndicator.style.display = 'block';
+                currentTagFilter.textContent = tag;
+            } else {
+                tagFilterIndicator.style.display = 'none';
+            }
         }
 
         function resetFilters() {
@@ -658,6 +701,9 @@
             currentPage = 1;
             updateStats();
             renderProblems();
+            
+            // Hide tag filter indicator
+            document.getElementById('tag-filter-indicator').style.display = 'none';
         }
 
         function showProblemDetails(problemId) {
@@ -764,6 +810,22 @@
                 setTimeout(() => {
                     showProblemDetails(parseInt(selectedProblemId));
                 }, 500); // Small delay to ensure page is fully loaded
+            }
+            
+            // Check for tag filter from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const tagFilter = urlParams.get('tag');
+            if (tagFilter) {
+                // Set the tag filter dropdown
+                document.getElementById('tag-filter').value = tagFilter;
+                // Apply the filter
+                applyFilters();
+                // Update page title to show filtered tag
+                document.title = `📝 ${tagFilter} Problems - LeetCode Anki Card Generator`;
+                
+                // Show tag filter indicator
+                document.getElementById('tag-filter-indicator').style.display = 'block';
+                document.getElementById('current-tag-filter').textContent = tagFilter;
             }
         });
 
