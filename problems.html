@@ -605,7 +605,11 @@
             // Check for tag filter from URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const tagFilter = urlParams.get('tag');
+            console.log('URL Parameters:', window.location.search);
+            console.log('Tag Filter:', tagFilter);
+            
             if (tagFilter) {
+                console.log('Applying tag filter:', tagFilter);
                 // Set the tag filter dropdown
                 document.getElementById('tag-filter').value = tagFilter;
                 // Apply the filter
@@ -616,6 +620,8 @@
                 // Show tag filter indicator
                 document.getElementById('tag-filter-indicator').style.display = 'block';
                 document.getElementById('current-tag-filter').textContent = tagFilter;
+            } else {
+                console.log('No tag filter found in URL');
             }
         });
 

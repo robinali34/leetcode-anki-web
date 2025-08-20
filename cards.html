@@ -33806,19 +33806,31 @@
             const urlParams = new URLSearchParams(window.location.search);
             const problemFilter = urlParams.get('problem');
             
+            console.log('URL Parameters:', window.location.search);
+            console.log('Problem Filter:', problemFilter);
+            
             updateStats();
             populateFilters();
             
             // Apply problem filter if specified in URL
             if (problemFilter) {
+                console.log('Setting problem filter to:', problemFilter);
                 document.getElementById('problem-filter').value = problemFilter;
                 document.title = `📚 Anki Cards - ${problemFilter} - LeetCode Problems`;
                 
                 // Show a filter indicator
                 showProblemFilterIndicator(problemFilter);
+                
+                // Force the filter to be applied immediately
+                setTimeout(() => {
+                    console.log('Applying filters after delay...');
+                    applyFilters();
+                }, 100);
+            } else {
+                console.log('No problem filter found');
+                applyFilters();
             }
             
-            applyFilters();
             renderPagination();
         });
 
@@ -33839,6 +33851,9 @@
             const problemFilter = document.getElementById('problem-filter');
             const problems = [...new Set(sampleCards.map(card => card.problemTitle))].sort();
             
+            console.log('Populating problem filter with problems:', problems.slice(0, 10));
+            console.log('Total unique problems:', problems.length);
+            
             // Clear existing options except the first one
             problemFilter.innerHTML = '<option value="">All Problems</option>';
             
@@ -33848,6 +33863,8 @@
                 option.textContent = problem;
                 problemFilter.appendChild(option);
             });
+            
+            console.log('Problem filter options count:', problemFilter.options.length);
         }
 
         // Show problem filter indicator
@@ -33893,6 +33910,9 @@
             const problem = document.getElementById('problem-filter').value;
             const search = document.getElementById('search-filter').value.toLowerCase();
 
+            console.log('Applying filters:', { difficulty, cardType, problem, search });
+            console.log('Total cards before filtering:', sampleCards.length);
+
             filteredCards = sampleCards.filter(card => {
                 if (difficulty && card.difficulty !== difficulty) return false;
                 if (cardType && card.cardType !== cardType) return false;
@@ -33900,6 +33920,9 @@
                 if (search && !card.front.toLowerCase().includes(search) && !card.back.toLowerCase().includes(search)) return false;
                 return true;
             });
+
+            console.log('Filtered cards count:', filteredCards.length);
+            console.log('Sample filtered cards:', filteredCards.slice(0, 3).map(c => c.problemTitle));
 
             currentPage = 1;
             renderCards();
