@@ -297,9 +297,9 @@
         }
 
         function filterByTag(tagName) {
-            // Store the tag in localStorage for the problems page
-            localStorage.setItem('selectedTag', tagName);
-            window.location.href = 'problems.html';
+            // Redirect to problems page with tag filter in URL
+            const encodedTag = encodeURIComponent(tagName);
+            window.location.href = `problems.html?tag=${encodedTag}`;
         }
 
         function searchTags(query) {
