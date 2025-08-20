@@ -875,10 +875,16 @@
 
         // Function to generate Anki cards for a specific problem
         function generateAnkiCards(problemId) {
-            // Store the problem ID for the cards page
-            localStorage.setItem('selectedProblems', JSON.stringify([problemId]));
-            // Redirect to cards page
-            window.location.href = 'cards.html';
+            // Find the problem to get its title
+            const problem = sampleProblems.find(p => p.id === problemId);
+            if (problem) {
+                // Redirect to cards page with problem filter
+                const encodedTitle = encodeURIComponent(problem.title);
+                window.location.href = `cards.html?problem=${encodedTitle}`;
+            } else {
+                // Fallback to general cards page
+                window.location.href = 'cards.html';
+            }
         }
 
         // Initialize the page

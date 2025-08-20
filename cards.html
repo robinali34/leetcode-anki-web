@@ -33747,8 +33747,24 @@
         let studyCards = [];
 
         document.addEventListener('DOMContentLoaded', function() {
+            // Check for problem filter from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const problemFilter = urlParams.get('problem');
+            
             updateStats();
+            populateFilters();
+            
+            // Apply problem filter if specified in URL
+            if (problemFilter) {
+                document.getElementById('problem-filter').value = problemFilter;
+                document.title = `📚 Anki Cards - ${problemFilter} - LeetCode Problems`;
+                
+                // Show a filter indicator
+                showProblemFilterIndicator(problemFilter);
+            }
+            
             applyFilters();
+            renderPagination();
         });
 
         function updateStats() {
@@ -33763,14 +33779,69 @@
             document.getElementById('review-cards').textContent = review;
         }
 
+        // Populate filter dropdowns
+        function populateFilters() {
+            const problemFilter = document.getElementById('problem-filter');
+            const problems = [...new Set(sampleCards.map(card => card.problemTitle))].sort();
+            
+            // Clear existing options except the first one
+            problemFilter.innerHTML = '<option value="">All Problems</option>';
+            
+            problems.forEach(problem => {
+                const option = document.createElement('option');
+                option.value = problem;
+                option.textContent = problem;
+                problemFilter.appendChild(option);
+            });
+        }
+
+        // Show problem filter indicator
+        function showProblemFilterIndicator(problemTitle) {
+            const filterSection = document.querySelector('.filter-section');
+            const indicator = document.createElement('div');
+            indicator.className = 'alert alert-info mt-3';
+            indicator.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="fas fa-filter me-2"></i>
+                        <strong>Filtered by Problem:</strong> ${problemTitle}
+                    </div>
+                    <button class="btn btn-outline-info btn-sm" onclick="clearProblemFilter()">
+                        <i class="fas fa-times me-1"></i>Clear Filter
+                    </button>
+                </div>
+            `;
+            filterSection.appendChild(indicator);
+        }
+
+        // Clear problem filter
+        function clearProblemFilter() {
+            document.getElementById('problem-filter').value = '';
+            // Remove the filter indicator
+            const indicator = document.querySelector('.alert-info');
+            if (indicator) {
+                indicator.remove();
+            }
+            // Update URL to remove problem parameter
+            const url = new URL(window.location);
+            url.searchParams.delete('problem');
+            window.history.replaceState({}, '', url);
+            // Reset title
+            document.title = '📚 Anki Study Cards - LeetCode Problems';
+            // Reapply filters
+            applyFilters();
+        }
+
         function applyFilters() {
             const difficulty = document.getElementById('difficulty-filter').value;
             const cardType = document.getElementById('card-type-filter').value;
+            const problem = document.getElementById('problem-filter').value;
             const search = document.getElementById('search-filter').value.toLowerCase();
 
             filteredCards = sampleCards.filter(card => {
                 if (difficulty && card.difficulty !== difficulty) return false;
                 if (cardType && card.cardType !== cardType) return false;
+                if (problem && card.problemTitle !== problem) return false;
                 if (search && !card.front.toLowerCase().includes(search) && !card.back.toLowerCase().includes(search)) return false;
                 return true;
             });
@@ -33929,6 +34000,7 @@
 
         document.getElementById('difficulty-filter').addEventListener('change', applyFilters);
         document.getElementById('card-type-filter').addEventListener('change', applyFilters);
+        document.getElementById('problem-filter').addEventListener('change', applyFilters);
         document.getElementById('search-filter').addEventListener('input', applyFilters);
     </script>
 </body>
