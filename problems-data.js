@@ -1,4 +1,4 @@
-// Top 300 LeetCode Problems Data
+// Top 300 LeetCode Problems Data with Comprehensive DP Problems
 const topLeetCodeProblems = [
   {
     "id": 1,
@@ -112,27 +112,28 @@ const topLeetCodeProblems = [
   {
     "id": 5,
     "title": "Longest Palindromic Substring",
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "tags": [
+      "String",
       "Dynamic Programming"
     ],
-    "acceptance": "45%",
-    "fullDescription": "Problem 5: Longest Palindromic Substring - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
+    "acceptance": "32.1%",
+    "fullDescription": "Find the longest palindromic substring in a string using dynamic programming approach.",
     "testCases": [
       {
-        "input": "Example input for Longest Palindromic Substring",
-        "output": "Expected output for Longest Palindromic Substring",
-        "explanation": "Explanation of how to solve Longest Palindromic Substring"
+        "input": "s = \"babad\"",
+        "output": "\"bab\"",
+        "explanation": "Longest palindromic substring is 'bab'."
       }
     ],
-    "pseudocode": "Algorithm for Longest Palindromic Substring:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Longest Palindromic Substring\ndef solve_5():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "Use DP table to track palindrome lengths\nFill table diagonally for all substrings",
+    "pythonCode": "DP approach with O(n\u00b2) time complexity",
+    "timeComplexity": "O(n\u00b2)",
+    "spaceComplexity": "O(n\u00b2)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Longest Palindromic Substring",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP table approach",
+      "Fill diagonally",
+      "Check palindrome conditions"
     ]
   },
   {
@@ -245,28 +246,29 @@ const topLeetCodeProblems = [
   {
     "id": 10,
     "title": "Regular Expression Matching",
-    "difficulty": "Easy",
+    "difficulty": "Hard",
     "tags": [
-      "Tree",
-      "Graph"
+      "String",
+      "Dynamic Programming",
+      "Recursion"
     ],
-    "acceptance": "50%",
-    "fullDescription": "Problem 10: Regular Expression Matching - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
+    "acceptance": "28.1%",
+    "fullDescription": "Implement regular expression matching with support for '.' and '*' using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Regular Expression Matching",
-        "output": "Expected output for Regular Expression Matching",
-        "explanation": "Explanation of how to solve Regular Expression Matching"
+        "input": "s = \"aa\", p = \"a*\"",
+        "output": "true",
+        "explanation": "Pattern matches the string."
       }
     ],
-    "pseudocode": "Algorithm for Regular Expression Matching:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Regular Expression Matching\ndef solve_10():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP table for pattern matching\nHandle * and . operators",
+    "pythonCode": "DP approach for regex matching",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Regular Expression Matching",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Handle * and . operators",
+      "Use DP table",
+      "Pattern matching"
     ]
   },
   {
@@ -836,26 +838,27 @@ const topLeetCodeProblems = [
     "title": "Longest Valid Parentheses",
     "difficulty": "Hard",
     "tags": [
-      "Array",
-      "String"
+      "String",
+      "Dynamic Programming",
+      "Stack"
     ],
-    "acceptance": "42%",
-    "fullDescription": "Problem 32: Longest Valid Parentheses - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "32.1%",
+    "fullDescription": "Find the length of the longest valid parentheses substring using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Longest Valid Parentheses",
-        "output": "Expected output for Longest Valid Parentheses",
-        "explanation": "Explanation of how to solve Longest Valid Parentheses"
+        "input": "s = \"(()\"",
+        "output": "2",
+        "explanation": "Longest valid substring is '()'."
       }
     ],
-    "pseudocode": "Algorithm for Longest Valid Parentheses:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Longest Valid Parentheses\ndef solve_32():\n    # Implementation here\n    pass",
+    "pseudocode": "DP array to track valid lengths\nHandle opening and closing parentheses",
+    "pythonCode": "DP with stack approach",
     "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Longest Valid Parentheses",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP array",
+      "Stack combination",
+      "Track valid lengths"
     ]
   },
   {
@@ -1101,28 +1104,30 @@ const topLeetCodeProblems = [
   {
     "id": 42,
     "title": "Trapping Rain Water",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "tags": [
-      "Tree",
-      "Graph"
+      "Array",
+      "Two Pointers",
+      "Dynamic Programming",
+      "Stack"
     ],
-    "acceptance": "52%",
-    "fullDescription": "Problem 42: Trapping Rain Water - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
+    "acceptance": "60.1%",
+    "fullDescription": "Compute how much water can be trapped after raining using dynamic programming approach.",
     "testCases": [
       {
-        "input": "Example input for Trapping Rain Water",
-        "output": "Expected output for Trapping Rain Water",
-        "explanation": "Explanation of how to solve Trapping Rain Water"
+        "input": "height = [0,1,0,2,1,0,1,3,2,1,2,1]",
+        "output": "6",
+        "explanation": "Total trapped water is 6 units."
       }
     ],
-    "pseudocode": "Algorithm for Trapping Rain Water:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Trapping Rain Water\ndef solve_42():\n    # Implementation here\n    pass",
+    "pseudocode": "Precompute left and right max heights\nCalculate trapped water for each position",
+    "pythonCode": "DP with precomputed arrays",
     "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Trapping Rain Water",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Precompute max heights",
+      "Calculate trapped water",
+      "DP optimization"
     ]
   },
   {
@@ -1157,26 +1162,28 @@ const topLeetCodeProblems = [
     "title": "Wildcard Matching",
     "difficulty": "Hard",
     "tags": [
-      "Array",
-      "String"
+      "String",
+      "Dynamic Programming",
+      "Greedy",
+      "Recursion"
     ],
-    "acceptance": "54%",
-    "fullDescription": "Problem 44: Wildcard Matching - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "27.1%",
+    "fullDescription": "Implement wildcard pattern matching with support for '?' and '*' using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Wildcard Matching",
-        "output": "Expected output for Wildcard Matching",
-        "explanation": "Explanation of how to solve Wildcard Matching"
+        "input": "s = \"aa\", p = \"*\"",
+        "output": "true",
+        "explanation": "'*' matches any sequence."
       }
     ],
-    "pseudocode": "Algorithm for Wildcard Matching:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Wildcard Matching\ndef solve_44():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP approach for wildcard matching\nHandle ? and * operators",
+    "pythonCode": "DP table for wildcard matching",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Wildcard Matching",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Handle ? and * operators",
+      "DP approach",
+      "Pattern matching"
     ]
   },
   {
@@ -1184,25 +1191,27 @@ const topLeetCodeProblems = [
     "title": "Jump Game II",
     "difficulty": "Medium",
     "tags": [
-      "Dynamic Programming"
+      "Array",
+      "Dynamic Programming",
+      "Greedy"
     ],
-    "acceptance": "55%",
-    "fullDescription": "Problem 45: Jump Game II - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
+    "acceptance": "37.1%",
+    "fullDescription": "Find minimum number of jumps to reach the last index using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Jump Game II",
-        "output": "Expected output for Jump Game II",
-        "explanation": "Explanation of how to solve Jump Game II"
+        "input": "nums = [2,3,1,1,4]",
+        "output": "2",
+        "explanation": "Jump from index 0 to 1, then to last."
       }
     ],
-    "pseudocode": "Algorithm for Jump Game II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Jump Game II\ndef solve_45():\n    # Implementation here\n    pass",
+    "pseudocode": "Greedy approach with jumps\nTrack reachable range",
+    "pythonCode": "Greedy jump selection",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Jump Game II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Greedy approach",
+      "Track reachable range",
+      "Jump optimization"
     ]
   },
   {
@@ -1449,28 +1458,29 @@ const topLeetCodeProblems = [
   {
     "id": 55,
     "title": "Jump Game",
-    "difficulty": "Easy",
+    "difficulty": "Medium",
     "tags": [
-      "Hash Table",
-      "Two Pointers"
+      "Array",
+      "Dynamic Programming",
+      "Greedy"
     ],
-    "acceptance": "65%",
-    "fullDescription": "Problem 55: Jump Game - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "37.1%",
+    "fullDescription": "Determine if you can reach the last index using dynamic programming approach.",
     "testCases": [
       {
-        "input": "Example input for Jump Game",
-        "output": "Expected output for Jump Game",
-        "explanation": "Explanation of how to solve Jump Game"
+        "input": "nums = [2,3,1,1,4]",
+        "output": "true",
+        "explanation": "Can jump to the last index."
       }
     ],
-    "pseudocode": "Algorithm for Jump Game:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Jump Game\ndef solve_55():\n    # Implementation here\n    pass",
+    "pseudocode": "Track maximum reachable position\nGreedy approach",
+    "pythonCode": "Greedy approach",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Jump Game",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Track reachable position",
+      "Greedy approach",
+      "DP optimization"
     ]
   },
   {
@@ -1636,28 +1646,29 @@ const topLeetCodeProblems = [
   {
     "id": 62,
     "title": "Unique Paths",
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "tags": [
-      "Tree",
-      "Graph"
+      "Math",
+      "Dynamic Programming",
+      "Combinatorics"
     ],
-    "acceptance": "42%",
-    "fullDescription": "Problem 62: Unique Paths - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
+    "acceptance": "62.1%",
+    "fullDescription": "Find number of unique paths from top-left to bottom-right using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Unique Paths",
-        "output": "Expected output for Unique Paths",
-        "explanation": "Explanation of how to solve Unique Paths"
+        "input": "m = 3, n = 7",
+        "output": "28",
+        "explanation": "28 unique paths exist."
       }
     ],
-    "pseudocode": "Algorithm for Unique Paths:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Unique Paths\ndef solve_62():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP grid with path counting\nFill from top-left to bottom-right",
+    "pythonCode": "DP grid filling approach",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Unique Paths",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP grid",
+      "Path counting",
+      "Fill systematically"
     ]
   },
   {
@@ -1665,53 +1676,55 @@ const topLeetCodeProblems = [
     "title": "Unique Paths II",
     "difficulty": "Medium",
     "tags": [
-      "Hash Table",
-      "Two Pointers"
+      "Array",
+      "Dynamic Programming",
+      "Matrix"
     ],
-    "acceptance": "43%",
-    "fullDescription": "Problem 63: Unique Paths II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "37.1%",
+    "fullDescription": "Find unique paths with obstacles using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Unique Paths II",
-        "output": "Expected output for Unique Paths II",
-        "explanation": "Explanation of how to solve Unique Paths II"
+        "input": "obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]",
+        "output": "2",
+        "explanation": "Two paths avoiding obstacle."
       }
     ],
-    "pseudocode": "Algorithm for Unique Paths II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Unique Paths II\ndef solve_63():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP with obstacle checking\nSkip blocked cells",
+    "pythonCode": "DP with obstacle handling",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Unique Paths II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Check obstacles",
+      "DP approach",
+      "Handle blocked cells"
     ]
   },
   {
     "id": 64,
     "title": "Minimum Path Sum",
-    "difficulty": "Easy",
+    "difficulty": "Medium",
     "tags": [
       "Array",
-      "String"
+      "Dynamic Programming",
+      "Matrix"
     ],
-    "acceptance": "44%",
-    "fullDescription": "Problem 64: Minimum Path Sum - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "62.1%",
+    "fullDescription": "Find minimum path sum from top-left to bottom-right using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Minimum Path Sum",
-        "output": "Expected output for Minimum Path Sum",
-        "explanation": "Explanation of how to solve Minimum Path Sum"
+        "input": "grid = [[1,3,1],[1,5,1],[4,2,1]]",
+        "output": "7",
+        "explanation": "Path 1\u21923\u21921\u21921\u21921 minimizes sum to 7."
       }
     ],
-    "pseudocode": "Algorithm for Minimum Path Sum:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Minimum Path Sum\ndef solve_64():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP grid with path cost\nChoose minimum path at each step",
+    "pythonCode": "DP grid filling with cost",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Minimum Path Sum",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP approach",
+      "Choose minimum path",
+      "Cost optimization"
     ]
   },
   {
@@ -1852,26 +1865,27 @@ const topLeetCodeProblems = [
     "title": "Climbing Stairs",
     "difficulty": "Easy",
     "tags": [
-      "Tree",
-      "Graph"
+      "Math",
+      "Dynamic Programming",
+      "Memoization"
     ],
-    "acceptance": "50%",
-    "fullDescription": "Problem 70: Climbing Stairs - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
+    "acceptance": "52.1%",
+    "fullDescription": "Find number of distinct ways to climb to the top using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Climbing Stairs",
-        "output": "Expected output for Climbing Stairs",
-        "explanation": "Explanation of how to solve Climbing Stairs"
+        "input": "n = 3",
+        "output": "3",
+        "explanation": "Three ways: 1+1+1, 1+2, 2+1."
       }
     ],
-    "pseudocode": "Algorithm for Climbing Stairs:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Climbing Stairs\ndef solve_70():\n    # Implementation here\n    pass",
+    "pseudocode": "Fibonacci sequence\nDP with previous two values",
+    "pythonCode": "DP with Fibonacci pattern",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Climbing Stairs",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Fibonacci pattern",
+      "DP approach",
+      "Previous two values"
     ]
   },
   {
@@ -1904,28 +1918,28 @@ const topLeetCodeProblems = [
   {
     "id": 72,
     "title": "Edit Distance",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "tags": [
-      "Array",
-      "String"
+      "String",
+      "Dynamic Programming"
     ],
-    "acceptance": "52%",
-    "fullDescription": "Problem 72: Edit Distance - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "52.1%",
+    "fullDescription": "Find minimum operations to convert word1 to word2 using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Edit Distance",
-        "output": "Expected output for Edit Distance",
-        "explanation": "Explanation of how to solve Edit Distance"
+        "input": "word1 = \"horse\", word2 = \"ros\"",
+        "output": "3",
+        "explanation": "horse \u2192 rorse \u2192 rose \u2192 ros"
       }
     ],
-    "pseudocode": "Algorithm for Edit Distance:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Edit Distance\ndef solve_72():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP matrix for edit operations\nHandle insert, delete, replace",
+    "pythonCode": "DP table approach",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Edit Distance",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP matrix",
+      "Three operations",
+      "Minimum cost path"
     ]
   },
   {
@@ -2225,54 +2239,58 @@ const topLeetCodeProblems = [
   {
     "id": 84,
     "title": "Largest Rectangle in Histogram",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "tags": [
       "Array",
-      "String"
+      "Stack",
+      "Monotonic Stack"
     ],
-    "acceptance": "64%",
-    "fullDescription": "Problem 84: Largest Rectangle in Histogram - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "47.1%",
+    "fullDescription": "Find largest rectangle area in histogram using dynamic programming approach.",
     "testCases": [
       {
-        "input": "Example input for Largest Rectangle in Histogram",
-        "output": "Expected output for Largest Rectangle in Histogram",
-        "explanation": "Explanation of how to solve Largest Rectangle in Histogram"
+        "input": "heights = [2,1,5,6,2,3]",
+        "output": "10",
+        "explanation": "Largest rectangle has area 10."
       }
     ],
-    "pseudocode": "Algorithm for Largest Rectangle in Histogram:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Largest Rectangle in Histogram\ndef solve_84():\n    # Implementation here\n    pass",
+    "pseudocode": "Monotonic stack approach\nCalculate area for each bar",
+    "pythonCode": "Stack-based solution",
     "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Largest Rectangle in Histogram",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Monotonic stack",
+      "Calculate area",
+      "DP optimization"
     ]
   },
   {
     "id": 85,
     "title": "Maximal Rectangle",
-    "difficulty": "Easy",
+    "difficulty": "Hard",
     "tags": [
-      "Dynamic Programming"
+      "Array",
+      "Dynamic Programming",
+      "Stack",
+      "Matrix"
     ],
-    "acceptance": "65%",
-    "fullDescription": "Problem 85: Maximal Rectangle - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
+    "acceptance": "47.1%",
+    "fullDescription": "Find maximal rectangle containing only 1's using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Maximal Rectangle",
-        "output": "Expected output for Maximal Rectangle",
-        "explanation": "Explanation of how to solve Maximal Rectangle"
+        "input": "matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]",
+        "output": "6",
+        "explanation": "Maximal rectangle has area 6."
       }
     ],
-    "pseudocode": "Algorithm for Maximal Rectangle:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Maximal Rectangle\ndef solve_85():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "Convert to histogram for each row\nUse largest rectangle approach",
+    "pythonCode": "Histogram method for each row",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Maximal Rectangle",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Convert to histogram",
+      "Use largest rectangle",
+      "DP approach"
     ]
   },
   {
@@ -2305,28 +2323,28 @@ const topLeetCodeProblems = [
   {
     "id": 87,
     "title": "Scramble String",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "tags": [
-      "Hash Table",
-      "Two Pointers"
+      "String",
+      "Dynamic Programming"
     ],
-    "acceptance": "67%",
-    "fullDescription": "Problem 87: Scramble String - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "37.1%",
+    "fullDescription": "Determine if s2 is a scrambled string of s1 using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Scramble String",
-        "output": "Expected output for Scramble String",
-        "explanation": "Explanation of how to solve Scramble String"
+        "input": "s1 = \"great\", s2 = \"rgeat\"",
+        "output": "true",
+        "explanation": "s2 is a scrambled string of s1."
       }
     ],
-    "pseudocode": "Algorithm for Scramble String:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Scramble String\ndef solve_87():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP with substring checking\nCheck all possible splits",
+    "pythonCode": "DP approach",
+    "timeComplexity": "O(n\u2074)",
+    "spaceComplexity": "O(n\u00b3)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Scramble String",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP approach",
+      "Check all splits",
+      "Substring validation"
     ]
   },
   {
@@ -2412,28 +2430,28 @@ const topLeetCodeProblems = [
   {
     "id": 91,
     "title": "Decode Ways",
-    "difficulty": "Easy",
+    "difficulty": "Medium",
     "tags": [
-      "Hash Table",
-      "Two Pointers"
+      "String",
+      "Dynamic Programming"
     ],
-    "acceptance": "41%",
-    "fullDescription": "Problem 91: Decode Ways - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "32.1%",
+    "fullDescription": "Find number of ways to decode a string using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Decode Ways",
-        "output": "Expected output for Decode Ways",
-        "explanation": "Explanation of how to solve Decode Ways"
+        "input": "s = \"12\"",
+        "output": "2",
+        "explanation": "Could be decoded as 'AB' (1 2) or 'L' (12)."
       }
     ],
-    "pseudocode": "Algorithm for Decode Ways:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Decode Ways\ndef solve_91():\n    # Implementation here\n    pass",
+    "pseudocode": "DP with decoding rules\nCheck valid 1-digit and 2-digit codes",
+    "pythonCode": "DP approach",
     "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Decode Ways",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP approach",
+      "Valid codes",
+      "1-digit and 2-digit"
     ]
   },
   {
@@ -2519,28 +2537,30 @@ const topLeetCodeProblems = [
   {
     "id": 95,
     "title": "Unique Binary Search Trees II",
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "tags": [
-      "Hash Table",
-      "Two Pointers"
+      "Dynamic Programming",
+      "Tree",
+      "Binary Search Tree",
+      "Backtracking"
     ],
-    "acceptance": "45%",
-    "fullDescription": "Problem 95: Unique Binary Search Trees II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "52.1%",
+    "fullDescription": "Generate all structurally unique BST's using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Unique Binary Search Trees II",
-        "output": "Expected output for Unique Binary Search Trees II",
-        "explanation": "Explanation of how to solve Unique Binary Search Trees II"
+        "input": "n = 3",
+        "output": "[[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]",
+        "explanation": "All unique BSTs."
       }
     ],
-    "pseudocode": "Algorithm for Unique Binary Search Trees II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Unique Binary Search Trees II\ndef solve_95():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "Recursive tree building\nUse Catalan numbers",
+    "pythonCode": "Recursive approach",
+    "timeComplexity": "O(4^n/\u221an)",
+    "spaceComplexity": "O(4^n/\u221an)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Unique Binary Search Trees II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Recursive building",
+      "Catalan numbers",
+      "DP optimization"
     ]
   },
   {
@@ -2548,52 +2568,55 @@ const topLeetCodeProblems = [
     "title": "Unique Binary Search Trees",
     "difficulty": "Medium",
     "tags": [
-      "Array",
-      "String"
+      "Math",
+      "Dynamic Programming",
+      "Tree",
+      "Binary Search Tree"
     ],
-    "acceptance": "46%",
-    "fullDescription": "Problem 96: Unique Binary Search Trees - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "62.1%",
+    "fullDescription": "Count structurally unique BST's using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Unique Binary Search Trees",
-        "output": "Expected output for Unique Binary Search Trees",
-        "explanation": "Explanation of how to solve Unique Binary Search Trees"
+        "input": "n = 3",
+        "output": "5",
+        "explanation": "5 unique BSTs exist."
       }
     ],
-    "pseudocode": "Algorithm for Unique Binary Search Trees:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Unique Binary Search Trees\ndef solve_96():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "Catalan numbers\nDP with formula",
+    "pythonCode": "DP with Catalan numbers",
+    "timeComplexity": "O(n\u00b2)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Unique Binary Search Trees",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Catalan numbers",
+      "DP approach",
+      "Formula application"
     ]
   },
   {
     "id": 97,
     "title": "Interleaving String",
-    "difficulty": "Easy",
+    "difficulty": "Medium",
     "tags": [
+      "String",
       "Dynamic Programming"
     ],
-    "acceptance": "47%",
-    "fullDescription": "Problem 97: Interleaving String - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
+    "acceptance": "37.1%",
+    "fullDescription": "Check if s3 is formed by interleaving s1 and s2 using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Interleaving String",
-        "output": "Expected output for Interleaving String",
-        "explanation": "Explanation of how to solve Interleaving String"
+        "input": "s1 = \"aabcc\", s2 = \"dbbca\", s3 = \"aadbbcbcac\"",
+        "output": "true",
+        "explanation": "s3 is interleaved from s1 and s2."
       }
     ],
-    "pseudocode": "Algorithm for Interleaving String:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Interleaving String\ndef solve_97():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP matrix for interleaving\nCheck all possibilities",
+    "pythonCode": "DP table approach",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Interleaving String",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP matrix",
+      "Check interleaving",
+      "All possibilities"
     ]
   },
   {
@@ -3054,28 +3077,28 @@ const topLeetCodeProblems = [
   {
     "id": 115,
     "title": "Distinct Subsequences",
-    "difficulty": "Easy",
+    "difficulty": "Hard",
     "tags": [
-      "Hash Table",
-      "Two Pointers"
+      "String",
+      "Dynamic Programming"
     ],
-    "acceptance": "65%",
-    "fullDescription": "Problem 115: Distinct Subsequences - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "42.1%",
+    "fullDescription": "Count distinct subsequences of s that equal t using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Distinct Subsequences",
-        "output": "Expected output for Distinct Subsequences",
-        "explanation": "Explanation of how to solve Distinct Subsequences"
+        "input": "s = \"rabbbit\", t = \"rabbit\"",
+        "output": "3",
+        "explanation": "3 distinct subsequences."
       }
     ],
-    "pseudocode": "Algorithm for Distinct Subsequences:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Distinct Subsequences\ndef solve_115():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP matrix for subsequence counting\nMatch characters",
+    "pythonCode": "DP approach",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Distinct Subsequences",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP matrix",
+      "Subsequence counting",
+      "Character matching"
     ]
   },
   {
@@ -3191,25 +3214,25 @@ const topLeetCodeProblems = [
     "difficulty": "Medium",
     "tags": [
       "Array",
-      "String"
+      "Dynamic Programming"
     ],
-    "acceptance": "40%",
-    "fullDescription": "Problem 120: Triangle - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "52.1%",
+    "fullDescription": "Find minimum path sum from top to bottom of triangle using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Triangle",
-        "output": "Expected output for Triangle",
-        "explanation": "Explanation of how to solve Triangle"
+        "input": "triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]",
+        "output": "11",
+        "explanation": "Path 2\u21923\u21925\u21921 minimizes sum to 11."
       }
     ],
-    "pseudocode": "Algorithm for Triangle:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Triangle\ndef solve_120():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "Bottom-up DP\nChoose minimum of adjacent elements",
+    "pythonCode": "Bottom-up DP approach",
+    "timeComplexity": "O(n\u00b2)",
+    "spaceComplexity": "O(n\u00b2)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Triangle",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Bottom-up DP",
+      "Choose minimum",
+      "Adjacent elements"
     ]
   },
   {
@@ -3217,106 +3240,109 @@ const topLeetCodeProblems = [
     "title": "Best Time to Buy and Sell Stock",
     "difficulty": "Easy",
     "tags": [
+      "Array",
       "Dynamic Programming"
     ],
-    "acceptance": "41%",
-    "fullDescription": "Problem 121: Best Time to Buy and Sell Stock - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
+    "acceptance": "52.1%",
+    "fullDescription": "Find maximum profit from one transaction using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Best Time to Buy and Sell Stock",
-        "output": "Expected output for Best Time to Buy and Sell Stock",
-        "explanation": "Explanation of how to solve Best Time to Buy and Sell Stock"
+        "input": "prices = [7,1,5,3,6,4]",
+        "output": "5",
+        "explanation": "Buy at 1, sell at 6 for profit 5."
       }
     ],
-    "pseudocode": "Algorithm for Best Time to Buy and Sell Stock:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Best Time to Buy and Sell Stock\ndef solve_121():\n    # Implementation here\n    pass",
+    "pseudocode": "Track minimum price\nCalculate max profit",
+    "pythonCode": "DP with min tracking",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Best Time to Buy and Sell Stock",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Track minimum",
+      "Calculate profit",
+      "DP optimization"
     ]
   },
   {
     "id": 122,
     "title": "Best Time to Buy and Sell Stock II",
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "tags": [
-      "Tree",
-      "Graph"
+      "Array",
+      "Dynamic Programming",
+      "Greedy"
     ],
-    "acceptance": "42%",
-    "fullDescription": "Problem 122: Best Time to Buy and Sell Stock II - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
+    "acceptance": "62.1%",
+    "fullDescription": "Find maximum profit from multiple transactions using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Best Time to Buy and Sell Stock II",
-        "output": "Expected output for Best Time to Buy and Sell Stock II",
-        "explanation": "Explanation of how to solve Best Time to Buy and Sell Stock II"
+        "input": "prices = [7,1,5,3,6,4]",
+        "output": "7",
+        "explanation": "Buy at 1, sell at 5; buy at 3, sell at 6."
       }
     ],
-    "pseudocode": "Algorithm for Best Time to Buy and Sell Stock II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Best Time to Buy and Sell Stock II\ndef solve_122():\n    # Implementation here\n    pass",
+    "pseudocode": "Greedy approach\nBuy low, sell high",
+    "pythonCode": "Greedy with DP",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Best Time to Buy and Sell Stock II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Greedy approach",
+      "Buy low sell high",
+      "DP optimization"
     ]
   },
   {
     "id": 123,
     "title": "Best Time to Buy and Sell Stock III",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "tags": [
-      "Hash Table",
-      "Two Pointers"
+      "Array",
+      "Dynamic Programming"
     ],
-    "acceptance": "43%",
-    "fullDescription": "Problem 123: Best Time to Buy and Sell Stock III - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "47.1%",
+    "fullDescription": "Find maximum profit from at most two transactions using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Best Time to Buy and Sell Stock III",
-        "output": "Expected output for Best Time to Buy and Sell Stock III",
-        "explanation": "Explanation of how to solve Best Time to Buy and Sell Stock III"
+        "input": "prices = [3,3,5,0,0,3,1,4]",
+        "output": "6",
+        "explanation": "Buy at 3, sell at 5; buy at 0, sell at 4."
       }
     ],
-    "pseudocode": "Algorithm for Best Time to Buy and Sell Stock III:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Best Time to Buy and Sell Stock III\ndef solve_123():\n    # Implementation here\n    pass",
+    "pseudocode": "DP with state machine\nTrack buy/sell states",
+    "pythonCode": "DP state machine",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Best Time to Buy and Sell Stock III",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "State machine",
+      "Buy/sell states",
+      "DP approach"
     ]
   },
   {
     "id": 124,
     "title": "Binary Tree Maximum Path Sum",
-    "difficulty": "Easy",
+    "difficulty": "Hard",
     "tags": [
-      "Array",
-      "String"
+      "Tree",
+      "Depth-First Search",
+      "Dynamic Programming"
     ],
-    "acceptance": "44%",
-    "fullDescription": "Problem 124: Binary Tree Maximum Path Sum - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "37.1%",
+    "fullDescription": "Find maximum path sum in binary tree using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Maximum Path Sum",
-        "output": "Expected output for Binary Tree Maximum Path Sum",
-        "explanation": "Explanation of how to solve Binary Tree Maximum Path Sum"
+        "input": "root = [1,2,3]",
+        "output": "6",
+        "explanation": "Path 2\u21921\u21923 has maximum sum 6."
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Maximum Path Sum:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Maximum Path Sum\ndef solve_124():\n    # Implementation here\n    pass",
+    "pseudocode": "DFS with path tracking\nUpdate global maximum",
+    "pythonCode": "DFS with DP",
     "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Binary Tree Maximum Path Sum",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DFS approach",
+      "Path tracking",
+      "Global maximum"
     ]
   },
   {
@@ -3482,55 +3508,56 @@ const topLeetCodeProblems = [
   {
     "id": 131,
     "title": "Palindrome Partitioning",
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "tags": [
-      "Hash Table",
-      "Two Pointers"
+      "String",
+      "Dynamic Programming",
+      "Backtracking"
     ],
-    "acceptance": "51%",
-    "fullDescription": "Problem 131: Palindrome Partitioning - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "62.1%",
+    "fullDescription": "Partition string into palindromic substrings using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Palindrome Partitioning",
-        "output": "Expected output for Palindrome Partitioning",
-        "explanation": "Explanation of how to solve Palindrome Partitioning"
+        "input": "s = \"aab\"",
+        "output": "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]",
+        "explanation": "All palindromic partitions."
       }
     ],
-    "pseudocode": "Algorithm for Palindrome Partitioning:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Palindrome Partitioning\ndef solve_131():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "Backtracking with palindrome check\nUse DP for optimization",
+    "pythonCode": "Backtracking with DP",
+    "timeComplexity": "O(n \u00d7 2^n)",
+    "spaceComplexity": "O(n\u00b2)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Palindrome Partitioning",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Backtracking",
+      "Palindrome check",
+      "DP optimization"
     ]
   },
   {
     "id": 132,
     "title": "Palindrome Partitioning II",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "tags": [
-      "Array",
-      "String"
+      "String",
+      "Dynamic Programming"
     ],
-    "acceptance": "52%",
-    "fullDescription": "Problem 132: Palindrome Partitioning II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "37.1%",
+    "fullDescription": "Find minimum cuts for palindrome partitioning using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Palindrome Partitioning II",
-        "output": "Expected output for Palindrome Partitioning II",
-        "explanation": "Explanation of how to solve Palindrome Partitioning II"
+        "input": "s = \"aab\"",
+        "output": "1",
+        "explanation": "Cut after 'aa' to get palindromes."
       }
     ],
-    "pseudocode": "Algorithm for Palindrome Partitioning II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Palindrome Partitioning II\ndef solve_132():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP for palindrome check\nDP for minimum cuts",
+    "pythonCode": "Double DP approach",
+    "timeComplexity": "O(n\u00b2)",
+    "spaceComplexity": "O(n\u00b2)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Palindrome Partitioning II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Palindrome DP",
+      "Minimum cuts",
+      "Double DP"
     ]
   },
   {
@@ -3696,28 +3723,29 @@ const topLeetCodeProblems = [
   {
     "id": 139,
     "title": "Word Break",
-    "difficulty": "Easy",
+    "difficulty": "Medium",
     "tags": [
       "Hash Table",
-      "Two Pointers"
+      "String",
+      "Dynamic Programming"
     ],
-    "acceptance": "59%",
-    "fullDescription": "Problem 139: Word Break - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "47.1%",
+    "fullDescription": "Check if string can be segmented using dictionary words via dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Word Break",
-        "output": "Expected output for Word Break",
-        "explanation": "Explanation of how to solve Word Break"
+        "input": "s = \"leetcode\", wordDict = [\"leet\",\"code\"]",
+        "output": "true",
+        "explanation": "String can be segmented."
       }
     ],
-    "pseudocode": "Algorithm for Word Break:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Word Break\ndef solve_139():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP array for segmentation\nCheck all possible splits",
+    "pythonCode": "DP approach",
+    "timeComplexity": "O(n\u00b3)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Word Break",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP array",
+      "Check splits",
+      "Word matching"
     ]
   },
   {
@@ -3725,26 +3753,28 @@ const topLeetCodeProblems = [
     "title": "Word Break II",
     "difficulty": "Hard",
     "tags": [
-      "Array",
-      "String"
+      "Hash Table",
+      "String",
+      "Dynamic Programming",
+      "Backtracking"
     ],
-    "acceptance": "60%",
-    "fullDescription": "Problem 140: Word Break II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "42.1%",
+    "fullDescription": "Return all possible word break combinations using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Word Break II",
-        "output": "Expected output for Word Break II",
-        "explanation": "Explanation of how to solve Word Break II"
+        "input": "s = \"catsanddog\", wordDict = [\"cat\",\"cats\",\"and\",\"sand\",\"dog\"]",
+        "output": "[\"cats and dog\",\"cat sand dog\"]",
+        "explanation": "All possible combinations."
       }
     ],
-    "pseudocode": "Algorithm for Word Break II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Word Break II\ndef solve_140():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP with backtracking\nStore all valid combinations",
+    "pythonCode": "DP with backtracking",
+    "timeComplexity": "O(n\u00b3)",
+    "spaceComplexity": "O(n\u00b3)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Word Break II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP approach",
+      "Backtracking",
+      "Store combinations"
     ]
   },
   {
@@ -4044,28 +4074,28 @@ const topLeetCodeProblems = [
   {
     "id": 152,
     "title": "Maximum Product Subarray",
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "tags": [
       "Array",
-      "String"
+      "Dynamic Programming"
     ],
-    "acceptance": "42%",
-    "fullDescription": "Problem 152: Maximum Product Subarray - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "37.1%",
+    "fullDescription": "Find maximum product subarray using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Maximum Product Subarray",
-        "output": "Expected output for Maximum Product Subarray",
-        "explanation": "Explanation of how to solve Maximum Product Subarray"
+        "input": "nums = [2,3,-2,4]",
+        "output": "6",
+        "explanation": "Subarray [2,3] has maximum product 6."
       }
     ],
-    "pseudocode": "Algorithm for Maximum Product Subarray:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Maximum Product Subarray\ndef solve_152():\n    # Implementation here\n    pass",
+    "pseudocode": "Track min and max products\nHandle negative numbers",
+    "pythonCode": "DP with min/max tracking",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Maximum Product Subarray",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Track min/max",
+      "Handle negatives",
+      "DP approach"
     ]
   },
   {
@@ -4632,28 +4662,29 @@ const topLeetCodeProblems = [
   {
     "id": 174,
     "title": "Dungeon Game",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "tags": [
-      "Tree",
-      "Graph"
+      "Array",
+      "Dynamic Programming",
+      "Matrix"
     ],
-    "acceptance": "64%",
-    "fullDescription": "Problem 174: Dungeon Game - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
+    "acceptance": "37.1%",
+    "fullDescription": "Find minimum initial health for dungeon game using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Dungeon Game",
-        "output": "Expected output for Dungeon Game",
-        "explanation": "Explanation of how to solve Dungeon Game"
+        "input": "dungeon = [[-2,-3,3],[-5,-10,1],[10,30,-5]]",
+        "output": "7",
+        "explanation": "Minimum initial health is 7."
       }
     ],
-    "pseudocode": "Algorithm for Dungeon Game:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Dungeon Game\ndef solve_174():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "Bottom-up DP from end\nCalculate minimum health needed",
+    "pythonCode": "Bottom-up DP approach",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Dungeon Game",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Bottom-up DP",
+      "Minimum health",
+      "End to start"
     ]
   },
   {
@@ -5010,25 +5041,25 @@ const topLeetCodeProblems = [
     "difficulty": "Hard",
     "tags": [
       "Array",
-      "String"
+      "Dynamic Programming"
     ],
-    "acceptance": "48%",
-    "fullDescription": "Problem 188: Best Time to Buy and Sell Stock IV - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "37.1%",
+    "fullDescription": "Find maximum profit from at most k transactions using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Best Time to Buy and Sell Stock IV",
-        "output": "Expected output for Best Time to Buy and Sell Stock IV",
-        "explanation": "Explanation of how to solve Best Time to Buy and Sell Stock IV"
+        "input": "k = 2, prices = [2,4,1]",
+        "output": "2",
+        "explanation": "Buy at 2, sell at 4 for profit 2."
       }
     ],
-    "pseudocode": "Algorithm for Best Time to Buy and Sell Stock IV:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Best Time to Buy and Sell Stock IV\ndef solve_188():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP with k transactions\nTrack buy/sell states",
+    "pythonCode": "DP with k states",
+    "timeComplexity": "O(kn)",
+    "spaceComplexity": "O(kn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Best Time to Buy and Sell Stock IV",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "K transactions",
+      "State tracking",
+      "DP approach"
     ]
   },
   {
@@ -5276,26 +5307,26 @@ const topLeetCodeProblems = [
     "title": "House Robber",
     "difficulty": "Medium",
     "tags": [
-      "Tree",
-      "Graph"
+      "Array",
+      "Dynamic Programming"
     ],
-    "acceptance": "58%",
-    "fullDescription": "Problem 198: House Robber - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
+    "acceptance": "47.1%",
+    "fullDescription": "Find maximum money that can be robbed without alerting police using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for House Robber",
-        "output": "Expected output for House Robber",
-        "explanation": "Explanation of how to solve House Robber"
+        "input": "nums = [1,2,3,1]",
+        "output": "4",
+        "explanation": "Rob house 1 and 3 for maximum 4."
       }
     ],
-    "pseudocode": "Algorithm for House Robber:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for House Robber\ndef solve_198():\n    # Implementation here\n    pass",
+    "pseudocode": "DP with skip/rob decision\nChoose maximum of skip or rob",
+    "pythonCode": "DP approach",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for House Robber",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Skip/rob decision",
+      "Choose maximum",
+      "DP optimization"
     ]
   },
   {
@@ -5678,25 +5709,26 @@ const topLeetCodeProblems = [
     "title": "House Robber II",
     "difficulty": "Medium",
     "tags": [
+      "Array",
       "Dynamic Programming"
     ],
-    "acceptance": "43%",
-    "fullDescription": "Problem 213: House Robber II - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
+    "acceptance": "42.1%",
+    "fullDescription": "House robber problem with circular arrangement using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for House Robber II",
-        "output": "Expected output for House Robber II",
-        "explanation": "Explanation of how to solve House Robber II"
+        "input": "nums = [2,3,2]",
+        "output": "3",
+        "explanation": "Rob house 2 for maximum 3."
       }
     ],
-    "pseudocode": "Algorithm for House Robber II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for House Robber II\ndef solve_213():\n    # Implementation here\n    pass",
+    "pseudocode": "Two DP runs\nExclude first or last house",
+    "pythonCode": "Two DP approaches",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for House Robber II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Two DP runs",
+      "Exclude first/last",
+      "Circular constraint"
     ]
   },
   {
@@ -5890,27 +5922,29 @@ const topLeetCodeProblems = [
   {
     "id": 221,
     "title": "Maximal Square",
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "tags": [
-      "Dynamic Programming"
+      "Array",
+      "Dynamic Programming",
+      "Matrix"
     ],
-    "acceptance": "51%",
-    "fullDescription": "Problem 221: Maximal Square - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
+    "acceptance": "47.1%",
+    "fullDescription": "Find largest square containing only 1's using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Maximal Square",
-        "output": "Expected output for Maximal Square",
-        "explanation": "Explanation of how to solve Maximal Square"
+        "input": "matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]",
+        "output": "4",
+        "explanation": "Largest square has area 4."
       }
     ],
-    "pseudocode": "Algorithm for Maximal Square:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Maximal Square\ndef solve_221():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP matrix for square size\nUpdate based on neighbors",
+    "pythonCode": "DP matrix approach",
+    "timeComplexity": "O(mn)",
+    "spaceComplexity": "O(mn)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Maximal Square",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP matrix",
+      "Square size",
+      "Neighbor update"
     ]
   },
   {
@@ -7042,26 +7076,27 @@ const topLeetCodeProblems = [
     "title": "Ugly Number II",
     "difficulty": "Medium",
     "tags": [
-      "Array",
-      "String"
+      "Hash Table",
+      "Math",
+      "Dynamic Programming"
     ],
-    "acceptance": "64%",
-    "fullDescription": "Problem 264: Ugly Number II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "47.1%",
+    "fullDescription": "Find nth ugly number using dynamic programming approach.",
     "testCases": [
       {
-        "input": "Example input for Ugly Number II",
-        "output": "Expected output for Ugly Number II",
-        "explanation": "Explanation of how to solve Ugly Number II"
+        "input": "n = 10",
+        "output": "12",
+        "explanation": "10th ugly number is 12."
       }
     ],
-    "pseudocode": "Algorithm for Ugly Number II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Ugly Number II\ndef solve_264():\n    # Implementation here\n    pass",
+    "pseudocode": "Three pointers approach\nMultiply by 2, 3, 5",
+    "pythonCode": "Three pointers DP",
     "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Ugly Number II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Three pointers",
+      "Multiply factors",
+      "DP approach"
     ]
   },
   {
@@ -7443,26 +7478,27 @@ const topLeetCodeProblems = [
     "title": "Perfect Squares",
     "difficulty": "Medium",
     "tags": [
-      "Hash Table",
-      "Two Pointers"
+      "Math",
+      "Dynamic Programming",
+      "Breadth-First Search"
     ],
-    "acceptance": "49%",
-    "fullDescription": "Problem 279: Perfect Squares - A computational problem that tests your algorithmic thinking and problem-solving skills.",
+    "acceptance": "52.1%",
+    "fullDescription": "Find minimum number of perfect squares that sum to n using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Perfect Squares",
-        "output": "Expected output for Perfect Squares",
-        "explanation": "Explanation of how to solve Perfect Squares"
+        "input": "n = 12",
+        "output": "3",
+        "explanation": "12 = 4 + 4 + 4."
       }
     ],
-    "pseudocode": "Algorithm for Perfect Squares:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Perfect Squares\ndef solve_279():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP array for minimum squares\nCheck all perfect squares",
+    "pythonCode": "DP approach",
+    "timeComplexity": "O(n\u221an)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Perfect Squares",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP array",
+      "Perfect squares",
+      "Minimum count"
     ]
   },
   {
@@ -8006,25 +8042,26 @@ const topLeetCodeProblems = [
     "difficulty": "Medium",
     "tags": [
       "Array",
-      "String"
+      "Binary Search",
+      "Dynamic Programming"
     ],
-    "acceptance": "40%",
-    "fullDescription": "Problem 300: Longest Increasing Subsequence - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
+    "acceptance": "52.1%",
+    "fullDescription": "Find length of longest increasing subsequence using dynamic programming.",
     "testCases": [
       {
-        "input": "Example input for Longest Increasing Subsequence",
-        "output": "Expected output for Longest Increasing Subsequence",
-        "explanation": "Explanation of how to solve Longest Increasing Subsequence"
+        "input": "nums = [10,9,2,5,3,7,101,18]",
+        "output": "4",
+        "explanation": "LIS is [2,5,7,101] with length 4."
       }
     ],
-    "pseudocode": "Algorithm for Longest Increasing Subsequence:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Longest Increasing Subsequence\ndef solve_300():\n    # Implementation here\n    pass",
-    "timeComplexity": "O(n)",
-    "spaceComplexity": "O(1)",
+    "pseudocode": "DP array for LIS length\nBinary search optimization",
+    "pythonCode": "DP with binary search",
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(n)",
     "keyInsights": [
-      "Key insight 1: Understand the problem constraints for Longest Increasing Subsequence",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "DP array",
+      "Binary search",
+      "LIS tracking"
     ]
   }
 ];
