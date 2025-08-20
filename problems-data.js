@@ -1,4 +1,4 @@
-// Top 300 LeetCode Problems Data with Comprehensive DP Problems
+// Top 300 LeetCode Problems Data with Comprehensive Solutions
 const topLeetCodeProblems = [
   {
     "id": 1,
@@ -17,8 +17,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Two Sum"
       }
     ],
-    "pseudocode": "Algorithm for Two Sum:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Two Sum\ndef solve_1():\n    # Implementation here\n    pass",
+    "pseudocode": "function twoSum(nums, target):\n    hashMap = {}\n    for i = 0 to nums.length - 1:\n        complement = target - nums[i]\n        if complement in hashMap:\n            return [hashMap[complement], i]\n        hashMap[nums[i]] = i\n    return []",
+    "pythonCode": "def twoSum(nums, target):\n    hash_map = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in hash_map:\n            return [hash_map[complement], i]\n        hash_map[num] = i\n    return []",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(n)",
     "keyInsights": [
@@ -45,8 +45,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Add Two Numbers"
       }
     ],
-    "pseudocode": "Algorithm for Add Two Numbers:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Add Two Numbers\ndef solve_2():\n    # Implementation here\n    pass",
+    "pseudocode": "function addTwoNumbers(l1, l2):\n    dummy = new ListNode(0)\n    current = dummy\n    carry = 0\n    \n    while l1 != null OR l2 != null OR carry > 0:\n        x = l1.val if l1 != null else 0\n        y = l2.val if l2 != null else 0\n        sum = x + y + carry\n        \n        carry = sum / 10\n        current.next = new ListNode(sum % 10)\n        current = current.next\n        \n        if l1 != null: l1 = l1.next\n        if l2 != null: l2 = l2.next\n    \n    return dummy.next",
+    "pythonCode": "def addTwoNumbers(l1, l2):\n    dummy = ListNode(0)\n    current = dummy\n    carry = 0\n    \n    while l1 or l2 or carry:\n        x = l1.val if l1 else 0\n        y = l2.val if l2 else 0\n        total = x + y + carry\n        \n        carry = total // 10\n        current.next = ListNode(total % 10)\n        current = current.next\n        \n        if l1: l1 = l1.next\n        if l2: l2 = l2.next\n    \n    return dummy.next",
     "timeComplexity": "O(max(m,n))",
     "spaceComplexity": "O(max(m,n))",
     "keyInsights": [
@@ -72,8 +72,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Longest Substring Without Repeating Characters"
       }
     ],
-    "pseudocode": "Algorithm for Longest Substring Without Repeating Characters:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Longest Substring Without Repeating Characters\ndef solve_3():\n    # Implementation here\n    pass",
+    "pseudocode": "function lengthOfLongestSubstring(s):\n    charSet = new Set()\n    left = 0\n    maxLength = 0\n    \n    for right = 0 to s.length - 1:\n        while s[right] in charSet:\n            charSet.remove(s[left])\n            left++\n        charSet.add(s[right])\n        maxLength = max(maxLength, right - left + 1)\n    \n    return maxLength",
+    "pythonCode": "def lengthOfLongestSubstring(s):\n    char_set = set()\n    left = 0\n    max_length = 0\n    \n    for right in range(len(s)):\n        while s[right] in char_set:\n            char_set.remove(s[left])\n            left += 1\n        char_set.add(s[right])\n        max_length = max(max_length, right - left + 1)\n    \n    return max_length",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -99,8 +99,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Median of Two Sorted Arrays"
       }
     ],
-    "pseudocode": "Algorithm for Median of Two Sorted Arrays:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Median of Two Sorted Arrays\ndef solve_4():\n    # Implementation here\n    pass",
+    "pseudocode": "function findMedianSortedArrays(nums1, nums2):\n    if nums1.length > nums2.length:\n        swap(nums1, nums2)\n    \n    m, n = nums1.length, nums2.length\n    left, right = 0, m\n    \n    while left <= right:\n        partitionX = (left + right) // 2\n        partitionY = (m + n + 1) // 2 - partitionX\n        \n        maxLeftX = partitionX == 0 ? -\u221e : nums1[partitionX - 1]\n        minRightX = partitionX == m ? \u221e : nums1[partitionX]\n        maxLeftY = partitionY == 0 ? -\u221e : nums2[partitionY - 1]\n        minRightY = partitionY == n ? \u221e : nums2[partitionY]\n        \n        if maxLeftX <= minRightY and maxLeftY <= minRightX:\n            if (m + n) % 2 == 0:\n                return (max(maxLeftX, maxLeftY) + min(minRightX, minRightY)) / 2\n            else:\n                return max(maxLeftX, maxLeftY)\n        elif maxLeftX > minRightY:\n            right = partitionX - 1\n        else:\n            left = partitionX + 1",
+    "pythonCode": "def findMedianSortedArrays(nums1, nums2):\n    if len(nums1) > len(nums2):\n        nums1, nums2 = nums2, nums1\n    \n    m, n = len(nums1), len(nums2)\n    left, right = 0, m\n    \n    while left <= right:\n        partition_x = (left + right) // 2\n        partition_y = (m + n + 1) // 2 - partition_x\n        \n        max_left_x = float('-inf') if partition_x == 0 else nums1[partition_x - 1]\n        min_right_x = float('inf') if partition_x == m else nums1[partition_x]\n        max_left_y = float('-inf') if partition_y == 0 else nums2[partition_y - 1]\n        min_right_y = float('inf') if partition_y == n else nums2[partition_y]\n        \n        if max_left_x <= min_right_y and max_left_y <= min_right_x:\n            if (m + n) % 2 == 0:\n                return (max(max_left_x, max_left_y) + min(min_right_x, min_right_y)) / 2\n            else:\n                return max(max_left_x, max_left_y)\n        elif max_left_x > min_right_y:\n            right = partition_x - 1\n        else:\n            left = partition_x + 1",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -126,8 +126,8 @@ const topLeetCodeProblems = [
         "explanation": "Longest palindromic substring is 'bab'."
       }
     ],
-    "pseudocode": "Use DP table to track palindrome lengths\nFill table diagonally for all substrings",
-    "pythonCode": "DP approach with O(n\u00b2) time complexity",
+    "pseudocode": "function longestPalindrome(s):\n    if s.length < 2:\n        return s\n    \n    start = 0\n    maxLength = 1\n    \n    for i = 0 to s.length - 1:\n        // Check odd length palindromes\n        len1 = expandAroundCenter(s, i, i)\n        // Check even length palindromes\n        len2 = expandAroundCenter(s, i, i + 1)\n        \n        len = max(len1, len2)\n        if len > maxLength:\n            start = i - (len - 1) // 2\n            maxLength = len\n    \n    return s.substring(start, start + maxLength)\n\nfunction expandAroundCenter(s, left, right):\n    while left >= 0 and right < s.length and s[left] == s[right]:\n        left--\n        right++\n    return right - left - 1",
+    "pythonCode": "def longestPalindrome(s):\n    if len(s) < 2:\n        return s\n    \n    start = 0\n    max_length = 1\n    \n    def expand_around_center(left, right):\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        return right - left - 1\n    \n    for i in range(len(s)):\n        # Check odd length palindromes\n        len1 = expand_around_center(i, i)\n        # Check even length palindromes\n        len2 = expand_around_center(i, i + 1)\n        \n        curr_len = max(len1, len2)\n        if curr_len > max_length:\n            start = i - (curr_len - 1) // 2\n            max_length = curr_len\n    \n    return s[start:start + max_length]",
     "timeComplexity": "O(n\u00b2)",
     "spaceComplexity": "O(n\u00b2)",
     "keyInsights": [
@@ -153,8 +153,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Zigzag Conversion"
       }
     ],
-    "pseudocode": "Algorithm for Zigzag Conversion:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Zigzag Conversion\ndef solve_6():\n    # Implementation here\n    pass",
+    "pseudocode": "function convert(s, numRows):\n    if numRows == 1:\n        return s\n    \n    rows = new Array(numRows).fill(\"\")\n    currentRow = 0\n    goingDown = false\n    \n    for char in s:\n        rows[currentRow] += char\n        \n        if currentRow == 0 or currentRow == numRows - 1:\n            goingDown = !goingDown\n        \n        if goingDown:\n            currentRow++\n        else:\n            currentRow--\n    \n    return rows.join(\"\")",
+    "pythonCode": "def convert(s, numRows):\n    if numRows == 1:\n        return s\n    \n    rows = [\"\"] * numRows\n    current_row = 0\n    going_down = False\n    \n    for char in s:\n        rows[current_row] += char\n        \n        if current_row == 0 or current_row == numRows - 1:\n            going_down = not going_down\n        \n        if going_down:\n            current_row += 1\n        else:\n            current_row -= 1\n    \n    return \"\".join(rows)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -180,8 +180,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Reverse Integer"
       }
     ],
-    "pseudocode": "Algorithm for Reverse Integer:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Reverse Integer\ndef solve_7():\n    # Implementation here\n    pass",
+    "pseudocode": "function reverse(x):\n    isNegative = x < 0\n    x = abs(x)\n    reversed = 0\n    \n    while x > 0:\n        digit = x % 10\n        reversed = reversed * 10 + digit\n        x = x // 10\n    \n    if isNegative:\n        reversed = -reversed\n    \n    if reversed < -2^31 or reversed > 2^31 - 1:\n        return 0\n    \n    return reversed",
+    "pythonCode": "def reverse(x):\n    is_negative = x < 0\n    x = abs(x)\n    reversed_num = 0\n    \n    while x > 0:\n        digit = x % 10\n        reversed_num = reversed_num * 10 + digit\n        x //= 10\n    \n    if is_negative:\n        reversed_num = -reversed_num\n    \n    if reversed_num < -2**31 or reversed_num > 2**31 - 1:\n        return 0\n    \n    return reversed_num",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -207,8 +207,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve String to Integer (atoi)"
       }
     ],
-    "pseudocode": "Algorithm for String to Integer (atoi):\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for String to Integer (atoi)\ndef solve_8():\n    # Implementation here\n    pass",
+    "pseudocode": "function myAtoi(s):\n    i = 0\n    n = s.length\n    \n    // Skip whitespace\n    while i < n and s[i] == ' ':\n        i++\n    \n    if i == n:\n        return 0\n    \n    // Handle sign\n    sign = 1\n    if s[i] == '+' or s[i] == '-':\n        sign = -1 if s[i] == '-' else 1\n        i++\n    \n    // Convert digits\n    result = 0\n    while i < n and s[i].isdigit():\n        digit = int(s[i])\n        result = result * 10 + digit\n        \n        // Check overflow\n        if sign == 1 and result > 2^31 - 1:\n            return 2^31 - 1\n        if sign == -1 and result > 2^31:\n            return -2^31\n        \n        i++\n    \n    return sign * result",
+    "pythonCode": "def myAtoi(s):\n    i = 0\n    n = len(s)\n    \n    # Skip whitespace\n    while i < n and s[i] == ' ':\n        i += 1\n    \n    if i == n:\n        return 0\n    \n    # Handle sign\n    sign = 1\n    if s[i] in ['+', '-']:\n        sign = -1 if s[i] == '-' else 1\n        i += 1\n    \n    # Convert digits\n    result = 0\n    while i < n and s[i].isdigit():\n        digit = int(s[i])\n        result = result * 10 + digit\n        \n        # Check overflow\n        if sign == 1 and result > 2**31 - 1:\n            return 2**31 - 1\n        if sign == -1 and result > 2**31:\n            return -2**31\n        \n        i += 1\n    \n    return sign * result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -233,8 +233,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Palindrome Number"
       }
     ],
-    "pseudocode": "Algorithm for Palindrome Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Palindrome Number\ndef solve_9():\n    # Implementation here\n    pass",
+    "pseudocode": "function isPalindrome(x):\n    if x < 0:\n        return false\n    \n    original = x\n    reversed = 0\n    \n    while x > 0:\n        digit = x % 10\n        reversed = reversed * 10 + digit\n        x = x // 10\n    \n    return original == reversed",
+    "pythonCode": "def isPalindrome(x):\n    if x < 0:\n        return False\n    \n    original = x\n    reversed_num = 0\n    \n    while x > 0:\n        digit = x % 10\n        reversed_num = reversed_num * 10 + digit\n        x //= 10\n    \n    return original == reversed_num",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -288,8 +288,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Container With Most Water"
       }
     ],
-    "pseudocode": "Algorithm for Container With Most Water:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Container With Most Water\ndef solve_11():\n    # Implementation here\n    pass",
+    "pseudocode": "function maxArea(height):\n    maxArea = 0\n    left = 0\n    right = height.length - 1\n    \n    while left < right:\n        width = right - left\n        h = min(height[left], height[right])\n        area = width * h\n        maxArea = max(maxArea, area)\n        \n        if height[left] < height[right]:\n            left++\n        else:\n            right--\n    \n    return maxArea",
+    "pythonCode": "def maxArea(height):\n    max_area = 0\n    left, right = 0, len(height) - 1\n    \n    while left < right:\n        width = right - left\n        h = min(height[left], height[right])\n        area = width * h\n        max_area = max(max_area, area)\n        \n        if height[left] < height[right]:\n            left += 1\n        else:\n            right -= 1\n    \n    return max_area",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -315,8 +315,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Integer to Roman"
       }
     ],
-    "pseudocode": "Algorithm for Integer to Roman:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Integer to Roman\ndef solve_12():\n    # Implementation here\n    pass",
+    "pseudocode": "function intToRoman(num):\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    \n    result = \"\"\n    \n    for i = 0 to values.length - 1:\n        while num >= values[i]:\n            result += symbols[i]\n            num -= values[i]\n    \n    return result",
+    "pythonCode": "def intToRoman(num):\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n    \n    result = \"\"\n    \n    for i in range(len(values)):\n        while num >= values[i]:\n            result += symbols[i]\n            num -= values[i]\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -341,8 +341,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Roman to Integer"
       }
     ],
-    "pseudocode": "Algorithm for Roman to Integer:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Roman to Integer\ndef solve_13():\n    # Implementation here\n    pass",
+    "pseudocode": "function romanToInt(s):\n    romanValues = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    \n    result = 0\n    prevValue = 0\n    \n    for i = s.length - 1 to 0:\n        currentValue = romanValues[s[i]]\n        \n        if currentValue < prevValue:\n            result -= currentValue\n        else:\n            result += currentValue\n        \n        prevValue = currentValue\n    \n    return result",
+    "pythonCode": "def romanToInt(s):\n    roman_values = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    \n    result = 0\n    prev_value = 0\n    \n    for i in range(len(s) - 1, -1, -1):\n        current_value = roman_values[s[i]]\n        \n        if current_value < prev_value:\n            result -= current_value\n        else:\n            result += current_value\n        \n        prev_value = current_value\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -368,8 +368,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Longest Common Prefix"
       }
     ],
-    "pseudocode": "Algorithm for Longest Common Prefix:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Longest Common Prefix\ndef solve_14():\n    # Implementation here\n    pass",
+    "pseudocode": "function longestCommonPrefix(strs):\n    if strs.length == 0:\n        return \"\"\n    \n    prefix = strs[0]\n    \n    for i = 1 to strs.length - 1:\n        while strs[i].indexOf(prefix) != 0:\n            prefix = prefix.substring(0, prefix.length - 1)\n            if prefix.isEmpty():\n                return \"\"\n    \n    return prefix",
+    "pythonCode": "def longestCommonPrefix(strs):\n    if not strs:\n        return \"\"\n    \n    prefix = strs[0]\n    \n    for i in range(1, len(strs)):\n        while strs[i].find(prefix) != 0:\n            prefix = prefix[:-1]\n            if not prefix:\n                return \"\"\n    \n    return prefix",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -395,8 +395,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve 3Sum"
       }
     ],
-    "pseudocode": "Algorithm for 3Sum:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for 3Sum\ndef solve_15():\n    # Implementation here\n    pass",
+    "pseudocode": "function threeSum(nums):\n    result = []\n    sort(nums)\n    \n    for i = 0 to nums.length - 3:\n        if i > 0 and nums[i] == nums[i-1]:\n            continue\n        \n        left = i + 1\n        right = nums.length - 1\n        \n        while left < right:\n            sum = nums[i] + nums[left] + nums[right]\n            \n            if sum == 0:\n                result.add([nums[i], nums[left], nums[right]])\n                \n                while left < right and nums[left] == nums[left+1]:\n                    left++\n                while left < right and nums[right] == nums[right-1]:\n                    right--\n                \n                left++\n                right--\n            elif sum < 0:\n                left++\n            else:\n                right--\n    \n    return result",
+    "pythonCode": "def threeSum(nums):\n    result = []\n    nums.sort()\n    \n    for i in range(len(nums) - 2):\n        if i > 0 and nums[i] == nums[i-1]:\n            continue\n        \n        left = i + 1\n        right = len(nums) - 1\n        \n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            \n            if total == 0:\n                result.append([nums[i], nums[left], nums[right]])\n                \n                while left < right and nums[left] == nums[left+1]:\n                    left += 1\n                while left < right and nums[right] == nums[right-1]:\n                    right -= 1\n                \n                left += 1\n                right -= 1\n            elif total < 0:\n                left += 1\n            else:\n                right -= 1\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -422,8 +422,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve 3Sum Closest"
       }
     ],
-    "pseudocode": "Algorithm for 3Sum Closest:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for 3Sum Closest\ndef solve_16():\n    # Implementation here\n    pass",
+    "pseudocode": "function threeSumClosest(nums, target):\n    nums.sort()\n    closest = nums[0] + nums[1] + nums[2]\n    \n    for i = 0 to nums.length - 2:\n        left = i + 1\n        right = nums.length - 1\n        \n        while left < right:\n            sum = nums[i] + nums[left] + nums[right]\n            \n            if abs(sum - target) < abs(closest - target):\n                closest = sum\n            \n            if sum < target:\n                left++\n            else:\n                right--\n    \n    return closest",
+    "pythonCode": "def threeSumClosest(nums, target):\n    nums.sort()\n    closest = nums[0] + nums[1] + nums[2]\n    \n    for i in range(len(nums) - 2):\n        left, right = i + 1, len(nums) - 1\n        \n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            \n            if abs(total - target) < abs(closest - target):\n                closest = total\n            \n            if total < target:\n                left += 1\n            else:\n                right -= 1\n    \n    return closest",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -448,8 +448,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Letter Combinations of a Phone Number"
       }
     ],
-    "pseudocode": "Algorithm for Letter Combinations of a Phone Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Letter Combinations of a Phone Number\ndef solve_17():\n    # Implementation here\n    pass",
+    "pseudocode": "function letterCombinations(digits):\n    if digits.length == 0:\n        return []\n    \n    phoneMap = {\n        '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',\n        '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'\n    }\n    \n    result = []\n    backtrack(digits, 0, \"\", result, phoneMap)\n    return result\n\nfunction backtrack(digits, index, current, result, phoneMap):\n    if index == digits.length:\n        result.add(current)\n        return\n    \n    letters = phoneMap[digits[index]]\n    for letter in letters:\n        backtrack(digits, index + 1, current + letter, result, phoneMap)",
+    "pythonCode": "def letterCombinations(digits):\n    if not digits:\n        return []\n    \n    phone_map = {\n        '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',\n        '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'\n    }\n    \n    result = []\n    \n    def backtrack(index, current):\n        if index == len(digits):\n            result.append(current)\n            return\n        \n        letters = phone_map[digits[index]]\n        for letter in letters:\n            backtrack(index + 1, current + letter)\n    \n    backtrack(0, \"\")\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -475,8 +475,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve 4Sum"
       }
     ],
-    "pseudocode": "Algorithm for 4Sum:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for 4Sum\ndef solve_18():\n    # Implementation here\n    pass",
+    "pseudocode": "function fourSum(nums, target):\n    nums.sort()\n    result = []\n    \n    for i = 0 to nums.length - 3:\n        if i > 0 and nums[i] == nums[i-1]:\n            continue\n        \n        for j = i + 1 to nums.length - 2:\n            if j > i + 1 and nums[j] == nums[j-1]:\n                continue\n            \n            left = j + 1\n            right = nums.length - 1\n            \n            while left < right:\n                sum = nums[i] + nums[j] + nums[left] + nums[right]\n                \n                if sum == target:\n                    result.add([nums[i], nums[j], nums[left], nums[right]])\n                    \n                    while left < right and nums[left] == nums[left+1]:\n                        left++\n                    while left < right and nums[right] == nums[right-1]:\n                        right--\n                    \n                    left++\n                    right--\n                elif sum < target:\n                    left++\n                else:\n                    right--\n    \n    return result",
+    "pythonCode": "def fourSum(nums, target):\n    nums.sort()\n    result = []\n    \n    for i in range(len(nums) - 3):\n        if i > 0 and nums[i] == nums[i-1]:\n            continue\n        \n        for j in range(i + 1, len(nums) - 2):\n            if j > i + 1 and nums[j] == nums[j-1]:\n                continue\n            \n            left, right = j + 1, len(nums) - 1\n            \n            while left < right:\n                total = nums[i] + nums[j] + nums[left] + nums[right]\n                \n                if total == target:\n                    result.append([nums[i], nums[j], nums[left], nums[right]])\n                    \n                    while left < right and nums[left] == nums[left+1]:\n                        left += 1\n                    while left < right and nums[right] == nums[right-1]:\n                        right -= 1\n                    \n                    left += 1\n                    right -= 1\n                elif total < target:\n                    left += 1\n                else:\n                    right -= 1\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -502,8 +502,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Remove Nth Node From End of List"
       }
     ],
-    "pseudocode": "Algorithm for Remove Nth Node From End of List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Remove Nth Node From End of List\ndef solve_19():\n    # Implementation here\n    pass",
+    "pseudocode": "function removeNthFromEnd(head, n):\n    dummy = new ListNode(0)\n    dummy.next = head\n    \n    first = dummy\n    second = dummy\n    \n    // Move first pointer n+1 steps ahead\n    for i = 1 to n+1:\n        first = first.next\n    \n    // Move both pointers until first reaches end\n    while first != null:\n        first = first.next\n        second = second.next\n    \n    // Remove the nth node from end\n    second.next = second.next.next\n    \n    return dummy.next",
+    "pythonCode": "def removeNthFromEnd(head, n):\n    dummy = ListNode(0)\n    dummy.next = head\n    \n    first = dummy\n    second = dummy\n    \n    # Move first pointer n+1 steps ahead\n    for i in range(n + 1):\n        first = first.next\n    \n    # Move both pointers until first reaches end\n    while first:\n        first = first.next\n        second = second.next\n    \n    # Remove the nth node from end\n    second.next = second.next.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -529,8 +529,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Valid Parentheses"
       }
     ],
-    "pseudocode": "Algorithm for Valid Parentheses:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Valid Parentheses\ndef solve_20():\n    # Implementation here\n    pass",
+    "pseudocode": "function isValid(s):\n    stack = []\n    brackets = {\n        ')': '(',\n        '}': '{',\n        ']': '['\n    }\n    \n    for char in s:\n        if char in brackets.values():\n            stack.push(char)\n        elif char in brackets:\n            if stack.isEmpty() or stack.pop() != brackets[char]:\n                return false\n    \n    return stack.isEmpty()",
+    "pythonCode": "def isValid(s):\n    stack = []\n    brackets = {\n        ')': '(',\n        '}': '{',\n        ']': '['\n    }\n    \n    for char in s:\n        if char in brackets.values():\n            stack.append(char)\n        elif char in brackets:\n            if not stack or stack.pop() != brackets[char]:\n                return False\n    \n    return len(stack) == 0",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -555,8 +555,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Merge Two Sorted Lists"
       }
     ],
-    "pseudocode": "Algorithm for Merge Two Sorted Lists:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Merge Two Sorted Lists\ndef solve_21():\n    # Implementation here\n    pass",
+    "pseudocode": "function mergeTwoLists(l1, l2):\n    dummy = new ListNode(0)\n    current = dummy\n    \n    while l1 != null and l2 != null:\n        if l1.val <= l2.val:\n            current.next = l1\n            l1 = l1.next\n        else:\n            current.next = l2\n            l2 = l2.next\n        current = current.next\n    \n    // Attach remaining nodes\n    if l1 != null:\n        current.next = l1\n    if l2 != null:\n        current.next = l2\n    \n    return dummy.next",
+    "pythonCode": "def mergeTwoLists(l1, l2):\n    dummy = ListNode(0)\n    current = dummy\n    \n    while l1 and l2:\n        if l1.val <= l2.val:\n            current.next = l1\n            l1 = l1.next\n        else:\n            current.next = l2\n            l2 = l2.next\n        current = current.next\n    \n    # Attach remaining nodes\n    if l1:\n        current.next = l1\n    if l2:\n        current.next = l2\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -582,8 +582,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Generate Parentheses"
       }
     ],
-    "pseudocode": "Algorithm for Generate Parentheses:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Generate Parentheses\ndef solve_22():\n    # Implementation here\n    pass",
+    "pseudocode": "function generateParenthesis(n):\n    result = []\n    backtrack(result, \"\", 0, 0, n)\n    return result\n\nfunction backtrack(result, current, open, close, max):\n    if current.length == max * 2:\n        result.add(current)\n        return\n    \n    if open < max:\n        backtrack(result, current + \"(\", open + 1, close, max)\n    if close < open:\n        backtrack(result, current + \")\", open, close + 1, max)",
+    "pythonCode": "def generateParenthesis(n):\n    result = []\n    \n    def backtrack(current, open_count, close_count):\n        if len(current) == n * 2:\n            result.append(current)\n            return\n        \n        if open_count < n:\n            backtrack(current + \"(\", open_count + 1, close_count)\n        if close_count < open_count:\n            backtrack(current + \")\", open_count, close_count + 1)\n    \n    backtrack(\"\", 0, 0)\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -609,8 +609,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Merge k Sorted Lists"
       }
     ],
-    "pseudocode": "Algorithm for Merge k Sorted Lists:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Merge k Sorted Lists\ndef solve_23():\n    # Implementation here\n    pass",
+    "pseudocode": "function mergeKLists(lists):\n    if lists.length == 0:\n        return null\n    \n    minHeap = new PriorityQueue()\n    \n    // Add first node of each list to min heap\n    for list in lists:\n        if list != null:\n            minHeap.offer(list)\n    \n    dummy = new ListNode(0)\n    current = dummy\n    \n    while !minHeap.isEmpty():\n        node = minHeap.poll()\n        current.next = node\n        current = current.next\n        \n        if node.next != null:\n            minHeap.offer(node.next)\n    \n    return dummy.next",
+    "pythonCode": "def mergeKLists(lists):\n    if not lists:\n        return None\n    \n    import heapq\n    \n    min_heap = []\n    \n    # Add first node of each list to min heap\n    for i, lst in enumerate(lists):\n        if lst:\n            heapq.heappush(min_heap, (lst.val, i, lst))\n    \n    dummy = ListNode(0)\n    current = dummy\n    \n    while min_heap:\n        val, i, node = heapq.heappop(min_heap)\n        current.next = node\n        current = current.next\n        \n        if node.next:\n            heapq.heappush(min_heap, (node.next.val, i, node.next))\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -636,8 +636,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Swap Nodes in Pairs"
       }
     ],
-    "pseudocode": "Algorithm for Swap Nodes in Pairs:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Swap Nodes in Pairs\ndef solve_24():\n    # Implementation here\n    pass",
+    "pseudocode": "function swapPairs(head):\n    if head == null or head.next == null:\n        return head\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null and current.next.next != null:\n        first = current.next\n        second = current.next.next\n        \n        // Swap the pairs\n        first.next = second.next\n        second.next = first\n        current.next = second\n        \n        current = first\n    \n    return dummy.next",
+    "pythonCode": "def swapPairs(head):\n    if not head or not head.next:\n        return head\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next and current.next.next:\n        first = current.next\n        second = current.next.next\n        \n        # Swap the pairs\n        first.next = second.next\n        second.next = first\n        current.next = second\n        \n        current = first\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -662,8 +662,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Reverse Nodes in k-Group"
       }
     ],
-    "pseudocode": "Algorithm for Reverse Nodes in k-Group:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Reverse Nodes in k-Group\ndef solve_25():\n    # Implementation here\n    pass",
+    "pseudocode": "function reverseKGroup(head, k):\n    if head == null or k == 1:\n        return head\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Check if we have k nodes\n        count = 0\n        temp = current.next\n        while temp != null and count < k:\n            temp = temp.next\n            count++\n        \n        if count < k:\n            break\n        \n        // Reverse k nodes\n        prev = current.next\n        curr = prev.next\n        \n        for i = 1 to k - 1:\n            next = curr.next\n            curr.next = prev\n            prev = curr\n            curr = next\n        \n        // Connect the reversed group\n        current.next.next = curr\n        current.next = prev\n        current = current.next.next\n    \n    return dummy.next",
+    "pythonCode": "def reverseKGroup(head, k):\n    if not head or k == 1:\n        return head\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Check if we have k nodes\n        count = 0\n        temp = current.next\n        while temp and count < k:\n            temp = temp.next\n            count += 1\n        \n        if count < k:\n            break\n        \n        # Reverse k nodes\n        prev = current.next\n        curr = prev.next\n        \n        for i in range(1, k):\n            next_node = curr.next\n            curr.next = prev\n            prev = curr\n            curr = next_node\n        \n        # Connect the reversed group\n        current.next.next = curr\n        current.next = prev\n        current = current.next.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -689,8 +689,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Remove Duplicates from Sorted Array"
       }
     ],
-    "pseudocode": "Algorithm for Remove Duplicates from Sorted Array:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Remove Duplicates from Sorted Array\ndef solve_26():\n    # Implementation here\n    pass",
+    "pseudocode": "function removeDuplicates(nums):\n    if nums.length == 0:\n        return 0\n    \n    k = 1\n    \n    for i = 1 to nums.length - 1:\n        if nums[i] != nums[i-1]:\n            nums[k] = nums[i]\n            k++\n    \n    return k",
+    "pythonCode": "def removeDuplicates(nums):\n    if not nums:\n        return 0\n    \n    k = 1\n    \n    for i in range(1, len(nums)):\n        if nums[i] != nums[i-1]:\n            nums[k] = nums[i]\n            k += 1\n    \n    return k",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -716,8 +716,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Remove Element"
       }
     ],
-    "pseudocode": "Algorithm for Remove Element:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Remove Element\ndef solve_27():\n    # Implementation here\n    pass",
+    "pseudocode": "function removeElement(nums, val):\n    k = 0\n    \n    for i = 0 to nums.length - 1:\n        if nums[i] != val:\n            nums[k] = nums[i]\n            k++\n    \n    return k",
+    "pythonCode": "def removeElement(nums, val):\n    k = 0\n    \n    for i in range(len(nums)):\n        if nums[i] != val:\n            nums[k] = nums[i]\n            k += 1\n    \n    return k",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -743,8 +743,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Find the Index of the First Occurrence in a String"
       }
     ],
-    "pseudocode": "Algorithm for Find the Index of the First Occurrence in a String:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Find the Index of the First Occurrence in a String\ndef solve_28():\n    # Implementation here\n    pass",
+    "pseudocode": "function strStr(haystack, needle):\n    if needle.length == 0:\n        return 0\n    \n    for i = 0 to haystack.length - needle.length:\n        for j = 0 to needle.length:\n            if haystack[i + j] != needle[j]:\n                break\n            if j == needle.length - 1:\n                return i\n    \n    return -1",
+    "pythonCode": "def strStr(haystack, needle):\n    if not needle:\n        return 0\n    \n    for i in range(len(haystack) - len(needle) + 1):\n        for j in range(len(needle)):\n            if haystack[i + j] != needle[j]:\n                break\n            if j == len(needle) - 1:\n                return i\n    \n    return -1",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -769,8 +769,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Divide Two Integers"
       }
     ],
-    "pseudocode": "Algorithm for Divide Two Integers:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Divide Two Integers\ndef solve_29():\n    # Implementation here\n    pass",
+    "pseudocode": "function divide(dividend, divisor):\n    if dividend == -2^31 and divisor == -1:\n        return 2^31 - 1\n    \n    negative = (dividend < 0) != (divisor < 0)\n    dividend = abs(dividend)\n    divisor = abs(divisor)\n    \n    result = 0\n    while dividend >= divisor:\n        temp = divisor\n        multiple = 1\n        while dividend >= (temp << 1):\n            temp <<= 1\n            multiple <<= 1\n        dividend -= temp\n        result += multiple\n    \n    return negative ? -result : result",
+    "pythonCode": "def divide(dividend, divisor):\n    if dividend == -2**31 and divisor == -1:\n        return 2**31 - 1\n    \n    negative = (dividend < 0) != (divisor < 0)\n    dividend = abs(dividend)\n    divisor = abs(divisor)\n    \n    result = 0\n    while dividend >= divisor:\n        temp = divisor\n        multiple = 1\n        while dividend >= (temp << 1):\n            temp <<= 1\n            multiple <<= 1\n        dividend -= temp\n        result += multiple\n    \n    return -result if negative else result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -796,8 +796,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Substring with Concatenation of All Words"
       }
     ],
-    "pseudocode": "Algorithm for Substring with Concatenation of All Words:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Substring with Concatenation of All Words\ndef solve_30():\n    # Implementation here\n    pass",
+    "pseudocode": "function findSubstring(s, words):\n    if not words or not s:\n        return []\n    \n    wordLength = words[0].length\n    wordCount = words.length\n    totalLength = wordLength * wordCount\n    result = []\n    \n    wordFreq = {}\n    for word in words:\n        wordFreq[word] = wordFreq.get(word, 0) + 1\n    \n    for i = 0 to s.length - totalLength + 1:\n        seen = {}\n        for j = 0 to wordCount:\n            word = s.substring(i + j * wordLength, i + (j + 1) * wordLength)\n            if word not in wordFreq:\n                break\n            seen[word] = seen.get(word, 0) + 1\n            if seen[word] > wordFreq[word]:\n                break\n            if j == wordCount - 1:\n                result.add(i)\n    \n    return result",
+    "pythonCode": "def findSubstring(s, words):\n    if not words or not s:\n        return []\n    \n    word_length = len(words[0])\n    word_count = len(words)\n    total_length = word_length * word_count\n    result = []\n    \n    word_freq = {}\n    for word in words:\n        word_freq[word] = word_freq.get(word, 0) + 1\n    \n    for i in range(len(s) - total_length + 1):\n        seen = {}\n        for j in range(word_count):\n            word = s[i + j * word_length:i + (j + 1) * word_length]\n            if word not in word_freq:\n                break\n            seen[word] = seen.get(word, 0) + 1\n            if seen[word] > word_freq[word]:\n                break\n            if j == word_count - 1:\n                result.append(i)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -823,8 +823,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Next Permutation"
       }
     ],
-    "pseudocode": "Algorithm for Next Permutation:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Next Permutation\ndef solve_31():\n    # Implementation here\n    pass",
+    "pseudocode": "function nextPermutation(nums):\n    i = nums.length - 2\n    \n    // Find first decreasing element from right\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i--\n    \n    if i >= 0:\n        j = nums.length - 1\n        // Find element just larger than nums[i]\n        while j >= 0 and nums[j] <= nums[i]:\n            j--\n        \n        // Swap nums[i] and nums[j]\n        swap(nums, i, j)\n    \n    // Reverse the subarray after position i\n    reverse(nums, i + 1)",
+    "pythonCode": "def nextPermutation(nums):\n    i = len(nums) - 2\n    \n    # Find first decreasing element from right\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n    \n    if i >= 0:\n        j = len(nums) - 1\n        # Find element just larger than nums[i]\n        while j >= 0 and nums[j] <= nums[i]:\n            j -= 1\n        \n        # Swap nums[i] and nums[j]\n        nums[i], nums[j] = nums[j], nums[i]\n    \n    # Reverse the subarray after position i\n    left, right = i + 1, len(nums) - 1\n    while left < right:\n        nums[left], nums[right] = nums[right], nums[left]\n        left += 1\n        right -= 1",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -851,8 +851,8 @@ const topLeetCodeProblems = [
         "explanation": "Longest valid substring is '()'."
       }
     ],
-    "pseudocode": "DP array to track valid lengths\nHandle opening and closing parentheses",
-    "pythonCode": "DP with stack approach",
+    "pseudocode": "function longestValidParentheses(s):\n    stack = [-1]  // Initialize with -1\n    maxLength = 0\n    \n    for i = 0 to s.length - 1:\n        if s[i] == '(':\n            stack.push(i)\n        else:\n            stack.pop()\n            if stack.isEmpty():\n                stack.push(i)\n            else:\n                maxLength = max(maxLength, i - stack.peek())\n    \n    return maxLength",
+    "pythonCode": "def longestValidParentheses(s):\n    stack = [-1]  # Initialize with -1\n    max_length = 0\n    \n    for i in range(len(s)):\n        if s[i] == '(':\n            stack.append(i)\n        else:\n            stack.pop()\n            if not stack:\n                stack.append(i)\n            else:\n                max_length = max(max_length, i - stack[-1])\n    \n    return max_length",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(n)",
     "keyInsights": [
@@ -877,8 +877,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Search in Rotated Sorted Array"
       }
     ],
-    "pseudocode": "Algorithm for Search in Rotated Sorted Array:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Search in Rotated Sorted Array\ndef solve_33():\n    # Implementation here\n    pass",
+    "pseudocode": "function search(nums, target):\n    left = 0\n    right = nums.length - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        if nums[mid] == target:\n            return mid\n        \n        // Check if left half is sorted\n        if nums[left] <= nums[mid]:\n            if nums[left] <= target < nums[mid]:\n                right = mid - 1\n            else:\n                left = mid + 1\n        else:\n            // Right half is sorted\n            if nums[mid] < target <= nums[right]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    \n    return -1",
+    "pythonCode": "def search(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        if nums[mid] == target:\n            return mid\n        \n        # Check if left half is sorted\n        if nums[left] <= nums[mid]:\n            if nums[left] <= target < nums[mid]:\n                right = mid - 1\n            else:\n                left = mid + 1\n        else:\n            # Right half is sorted\n            if nums[mid] < target <= nums[right]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    \n    return -1",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -904,8 +904,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Find First and Last Position of Element in Sorted Array"
       }
     ],
-    "pseudocode": "Algorithm for Find First and Last Position of Element in Sorted Array:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Find First and Last Position of Element in Sorted Array\ndef solve_34():\n    # Implementation here\n    pass",
+    "pseudocode": "function searchRange(nums, target):\n    left = findFirst(nums, target)\n    if left == -1:\n        return [-1, -1]\n    \n    right = findLast(nums, target)\n    return [left, right]\n\nfunction findFirst(nums, target):\n    left = 0\n    right = nums.length - 1\n    result = -1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            result = mid\n            right = mid - 1\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return result\n\nfunction findLast(nums, target):\n    left = 0\n    right = nums.length - 1\n    result = -1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            result = mid\n            left = mid + 1\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return result",
+    "pythonCode": "def searchRange(nums, target):\n    left = find_first(nums, target)\n    if left == -1:\n        return [-1, -1]\n    \n    right = find_last(nums, target)\n    return [left, right]\n\ndef find_first(nums, target):\n    left, right = 0, len(nums) - 1\n    result = -1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            result = mid\n            right = mid - 1\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return result\n\ndef find_last(nums, target):\n    left, right = 0, len(nums) - 1\n    result = -1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            result = mid\n            left = mid + 1\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1038,8 +1038,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Combination Sum"
       }
     ],
-    "pseudocode": "Algorithm for Combination Sum:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Combination Sum\ndef solve_39():\n    # Implementation here\n    pass",
+    "pseudocode": "function combinationSum(candidates, target):\n    result = []\n    backtrack(candidates, target, 0, [], result)\n    return result\n\nfunction backtrack(candidates, target, start, current, result):\n    if target < 0:\n        return\n    if target == 0:\n        result.add([...current])\n        return\n    \n    for i = start to candidates.length - 1:\n        current.add(candidates[i])\n        backtrack(candidates, target - candidates[i], i, current, result)\n        current.remove(current.length - 1)",
+    "pythonCode": "def combinationSum(candidates, target):\n    result = []\n    \n    def backtrack(start, current, target):\n        if target < 0:\n            return\n        if target == 0:\n            result.append(current[:])\n            return\n        \n        for i in range(start, len(candidates)):\n            current.append(candidates[i])\n            backtrack(i, current, target - candidates[i])\n            current.pop()\n    \n    backtrack(0, [], target)\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1120,8 +1120,8 @@ const topLeetCodeProblems = [
         "explanation": "Total trapped water is 6 units."
       }
     ],
-    "pseudocode": "Precompute left and right max heights\nCalculate trapped water for each position",
-    "pythonCode": "DP with precomputed arrays",
+    "pseudocode": "function trap(height):\n    if height.length < 3:\n        return 0\n    \n    left = 0\n    right = height.length - 1\n    leftMax = 0\n    rightMax = 0\n    water = 0\n    \n    while left < right:\n        if height[left] < height[right]:\n            if height[left] >= leftMax:\n                leftMax = height[left]\n            else:\n                water += leftMax - height[left]\n            left++\n        else:\n            if height[right] >= rightMax:\n                rightMax = height[right]\n            else:\n                water += rightMax - height[right]\n            right--\n    \n    return water",
+    "pythonCode": "def trap(height):\n    if len(height) < 3:\n        return 0\n    \n    left, right = 0, len(height) - 1\n    left_max = right_max = 0\n    water = 0\n    \n    while left < right:\n        if height[left] < height[right]:\n            if height[left] >= left_max:\n                left_max = height[left]\n            else:\n                water += left_max - height[left]\n            left += 1\n        else:\n            if height[right] >= right_max:\n                right_max = height[right]\n            else:\n                water += right_max - height[right]\n            right -= 1\n    \n    return water",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(n)",
     "keyInsights": [
@@ -1231,8 +1231,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Permutations"
       }
     ],
-    "pseudocode": "Algorithm for Permutations:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Permutations\ndef solve_46():\n    # Implementation here\n    pass",
+    "pseudocode": "function permute(nums):\n    result = []\n    backtrack(nums, [], result)\n    return result\n\nfunction backtrack(nums, current, result):\n    if current.length == nums.length:\n        result.add([...current])\n        return\n    \n    for i = 0 to nums.length - 1:\n        if nums[i] in current:\n            continue\n        current.add(nums[i])\n        backtrack(nums, current, result)\n        current.remove(current.length - 1)",
+    "pythonCode": "def permute(nums):\n    result = []\n    \n    def backtrack(current):\n        if len(current) == len(nums):\n            result.append(current[:])\n            return\n        \n        for num in nums:\n            if num in current:\n                continue\n            current.append(num)\n            backtrack(current)\n            current.pop()\n    \n    backtrack([])\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1285,8 +1285,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Rotate Image"
       }
     ],
-    "pseudocode": "Algorithm for Rotate Image:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Rotate Image\ndef solve_48():\n    # Implementation here\n    pass",
+    "pseudocode": "function rotate(matrix):\n    n = matrix.length\n    \n    // Transpose the matrix\n    for i = 0 to n - 1:\n        for j = i to n - 1:\n            swap(matrix[i][j], matrix[j][i])\n    \n    // Reverse each row\n    for i = 0 to n - 1:\n        reverse(matrix[i])",
+    "pythonCode": "def rotate(matrix):\n    n = len(matrix)\n    \n    # Transpose the matrix\n    for i in range(n):\n        for j in range(i, n):\n            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]\n    \n    # Reverse each row\n    for i in range(n):\n        matrix[i].reverse()",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1311,8 +1311,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Group Anagrams"
       }
     ],
-    "pseudocode": "Algorithm for Group Anagrams:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Group Anagrams\ndef solve_49():\n    # Implementation here\n    pass",
+    "pseudocode": "function groupAnagrams(strs):\n    groups = {}\n    \n    for str in strs:\n        sortedStr = sort(str)\n        if sortedStr not in groups:\n            groups[sortedStr] = []\n        groups[sortedStr].add(str)\n    \n    return groups.values()",
+    "pythonCode": "def groupAnagrams(strs):\n    groups = {}\n    \n    for s in strs:\n        sorted_s = ''.join(sorted(s))\n        if sorted_s not in groups:\n            groups[sorted_s] = []\n        groups[sorted_s].append(s)\n    \n    return list(groups.values())",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1418,8 +1418,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Maximum Subarray"
       }
     ],
-    "pseudocode": "Algorithm for Maximum Subarray:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Maximum Subarray\ndef solve_53():\n    # Implementation here\n    pass",
+    "pseudocode": "function maxSubArray(nums):\n    maxSoFar = nums[0]\n    maxEndingHere = nums[0]\n    \n    for i = 1 to nums.length - 1:\n        maxEndingHere = max(nums[i], maxEndingHere + nums[i])\n        maxSoFar = max(maxSoFar, maxEndingHere)\n    \n    return maxSoFar",
+    "pythonCode": "def maxSubArray(nums):\n    max_so_far = max_ending_here = nums[0]\n    \n    for i in range(1, len(nums)):\n        max_ending_here = max(nums[i], max_ending_here + nums[i])\n        max_so_far = max(max_so_far, max_ending_here)\n    \n    return max_so_far",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1878,8 +1878,8 @@ const topLeetCodeProblems = [
         "explanation": "Three ways: 1+1+1, 1+2, 2+1."
       }
     ],
-    "pseudocode": "Fibonacci sequence\nDP with previous two values",
-    "pythonCode": "DP with Fibonacci pattern",
+    "pseudocode": "function climbStairs(n):\n    if n <= 2:\n        return n\n    \n    oneStepBefore = 1\n    twoStepsBefore = 2\n    allWays = 0\n    \n    for i = 3 to n:\n        allWays = oneStepBefore + twoStepsBefore\n        twoStepsBefore = oneStepBefore\n        oneStepBefore = allWays\n    \n    return allWays",
+    "pythonCode": "def climbStairs(n):\n    if n <= 2:\n        return n\n    \n    one_step_before = 1\n    two_steps_before = 2\n    all_ways = 0\n    \n    for i in range(3, n + 1):\n        all_ways = one_step_before + two_steps_before\n        two_steps_before = one_step_before\n        one_step_before = all_ways\n    \n    return all_ways",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1932,8 +1932,8 @@ const topLeetCodeProblems = [
         "explanation": "horse \u2192 rorse \u2192 rose \u2192 ros"
       }
     ],
-    "pseudocode": "DP matrix for edit operations\nHandle insert, delete, replace",
-    "pythonCode": "DP table approach",
+    "pseudocode": "function minDistance(word1, word2):\n    m = word1.length\n    n = word2.length\n    \n    dp = new Array(m+1).fill().map(() => new Array(n+1).fill(0))\n    \n    // Fill first row and column\n    for i = 0 to m:\n        dp[i][0] = i\n    for j = 0 to n:\n        dp[0][j] = j\n    \n    // Fill dp table\n    for i = 1 to m:\n        for j = 1 to n:\n            if word1[i-1] == word2[j-1]:\n                dp[i][j] = dp[i-1][j-1]\n            else:\n                dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])\n    \n    return dp[m][n]",
+    "pythonCode": "def minDistance(word1, word2):\n    m, n = len(word1), len(word2)\n    \n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    \n    # Fill first row and column\n    for i in range(m + 1):\n        dp[i][0] = i\n    for j in range(n + 1):\n        dp[0][j] = j\n    \n    # Fill dp table\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if word1[i-1] == word2[j-1]:\n                dp[i][j] = dp[i-1][j-1]\n            else:\n                dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])\n    \n    return dp[m][n]",
     "timeComplexity": "O(mn)",
     "spaceComplexity": "O(mn)",
     "keyInsights": [
@@ -2039,8 +2039,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Minimum Window Substring"
       }
     ],
-    "pseudocode": "Algorithm for Minimum Window Substring:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Minimum Window Substring\ndef solve_76():\n    # Implementation here\n    pass",
+    "pseudocode": "function minWindow(s, t):\n    if t.length == 0:\n        return \"\"\n    \n    countT = {}\n    for char in t:\n        countT[char] = countT.get(char, 0) + 1\n    \n    have = 0\n    need = countT.size\n    result = [-1, -1]\n    resultLen = float('inf')\n    \n    window = {}\n    l = 0\n    \n    for r in range(s.length):\n        c = s[r]\n        window[c] = window.get(c, 0) + 1\n        \n        if c in countT and window[c] == countT[c]:\n            have += 1\n        \n        while have == need:\n            if (r - l + 1) < resultLen:\n                result = [l, r]\n                resultLen = r - l + 1\n            \n            window[s[l]] -= 1\n            if s[l] in countT and window[s[l]] < countT[s[l]]:\n                have -= 1\n            l += 1\n    \n    l, r = result\n    return s[l:r+1] if resultLen != float('inf') else ",
+    "pythonCode": "def minWindow(s, t):\n    if not t:\n        return \"\"\n    \n    count_t = {}\n    for char in t:\n        count_t[char] = count_t.get(char, 0) + 1\n    \n    have = 0\n    need = len(count_t)\n    result = [-1, -1]\n    result_len = float('inf')\n    \n    window = {}\n    l = 0\n    \n    for r in range(len(s)):\n        c = s[r]\n        window[c] = window.get(c, 0) + 1\n        \n        if c in count_t and window[c] == count_t[c]:\n            have += 1\n        \n        while have == need:\n            if (r - l + 1) < result_len:\n                result = [l, r]\n                result_len = r - l + 1\n            \n            window[s[l]] -= 1\n            if s[l] in count_t and window[s[l]] < count_t[s[l]]:\n                have -= 1\n            l += 1\n    \n    l, r = result\n    return s[l:r+1] if result_len != float('inf') else ",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -2254,8 +2254,8 @@ const topLeetCodeProblems = [
         "explanation": "Largest rectangle has area 10."
       }
     ],
-    "pseudocode": "Monotonic stack approach\nCalculate area for each bar",
-    "pythonCode": "Stack-based solution",
+    "pseudocode": "function largestRectangleArea(heights):\n    stack = []\n    maxArea = 0\n    \n    for i = 0 to heights.length:\n        h = heights[i] if i < heights.length else 0\n        \n        while stack and heights[stack[-1]] > h:\n            height = heights[stack.pop()]\n            width = i if not stack else i - stack[-1] - 1\n            maxArea = max(maxArea, height * width)\n        \n        stack.append(i)\n    \n    return maxArea",
+    "pythonCode": "def largestRectangleArea(heights):\n    stack = []\n    max_area = 0\n    \n    for i in range(len(heights) + 1):\n        h = heights[i] if i < len(heights) else 0\n        \n        while stack and heights[stack[-1]] > h:\n            height = heights[stack.pop()]\n            width = i if not stack else i - stack[-1] - 1\n            max_area = max(max_area, height * width)\n        \n        stack.append(i)\n    \n    return max_area",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(n)",
     "keyInsights": [
@@ -2582,8 +2582,8 @@ const topLeetCodeProblems = [
         "explanation": "5 unique BSTs exist."
       }
     ],
-    "pseudocode": "Catalan numbers\nDP with formula",
-    "pythonCode": "DP with Catalan numbers",
+    "pseudocode": "function numTrees(n):\n    dp = new Array(n + 1).fill(0)\n    dp[0] = 1\n    dp[1] = 1\n    \n    for i = 2 to n:\n        for j = 1 to i:\n            dp[i] += dp[j - 1] * dp[i - j]\n    \n    return dp[n]",
+    "pythonCode": "def numTrees(n):\n    dp = [0] * (n + 1)\n    dp[0] = dp[1] = 1\n    \n    for i in range(2, n + 1):\n        for j in range(1, i + 1):\n            dp[i] += dp[j - 1] * dp[i - j]\n    \n    return dp[n]",
     "timeComplexity": "O(n\u00b2)",
     "spaceComplexity": "O(n)",
     "keyInsights": [
@@ -3252,8 +3252,8 @@ const topLeetCodeProblems = [
         "explanation": "Buy at 1, sell at 6 for profit 5."
       }
     ],
-    "pseudocode": "Track minimum price\nCalculate max profit",
-    "pythonCode": "DP with min tracking",
+    "pseudocode": "function maxProfit(prices):\n    if prices.length < 2:\n        return 0\n    \n    minPrice = prices[0]\n    maxProfit = 0\n    \n    for i = 1 to prices.length - 1:\n        if prices[i] < minPrice:\n            minPrice = prices[i]\n        else:\n            maxProfit = max(maxProfit, prices[i] - minPrice)\n    \n    return maxProfit",
+    "pythonCode": "def maxProfit(prices):\n    if len(prices) < 2:\n        return 0\n    \n    min_price = prices[0]\n    max_profit = 0\n    \n    for i in range(1, len(prices)):\n        if prices[i] < min_price:\n            min_price = prices[i]\n        else:\n            max_profit = max(max_profit, prices[i] - min_price)\n    \n    return max_profit",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -5319,8 +5319,8 @@ const topLeetCodeProblems = [
         "explanation": "Rob house 1 and 3 for maximum 4."
       }
     ],
-    "pseudocode": "DP with skip/rob decision\nChoose maximum of skip or rob",
-    "pythonCode": "DP approach",
+    "pseudocode": "function rob(nums):\n    if nums.length == 0:\n        return 0\n    if nums.length == 1:\n        return nums[0]\n    \n    prev1 = nums[0]\n    prev2 = max(nums[0], nums[1])\n    \n    for i = 2 to nums.length - 1:\n        current = max(prev2, prev1 + nums[i])\n        prev1 = prev2\n        prev2 = current\n    \n    return prev2",
+    "pythonCode": "def rob(nums):\n    if not nums:\n        return 0\n    if len(nums) == 1:\n        return nums[0]\n    \n    prev1 = nums[0]\n    prev2 = max(nums[0], nums[1])\n    \n    for i in range(2, len(nums)):\n        current = max(prev2, prev1 + nums[i])\n        prev1 = prev2\n        prev2 = current\n    \n    return prev2",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -8054,8 +8054,8 @@ const topLeetCodeProblems = [
         "explanation": "LIS is [2,5,7,101] with length 4."
       }
     ],
-    "pseudocode": "DP array for LIS length\nBinary search optimization",
-    "pythonCode": "DP with binary search",
+    "pseudocode": "function lengthOfLIS(nums):\n    if nums.length == 0:\n        return 0\n    \n    dp = new Array(nums.length).fill(1)\n    \n    for i = 1 to nums.length - 1:\n        for j = 0 to i - 1:\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    \n    return max(dp)",
+    "pythonCode": "def lengthOfLIS(nums):\n    if not nums:\n        return 0\n    \n    dp = [1] * len(nums)\n    \n    for i in range(1, len(nums)):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    \n    return max(dp)",
     "timeComplexity": "O(n log n)",
     "spaceComplexity": "O(n)",
     "keyInsights": [
