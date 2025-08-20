@@ -225,26 +225,39 @@
                     </select>
                 </div>
                 <div class="col-md-2 mb-3">
+                    <label class="form-label">&nbsp;</label>
+                    <div class="d-grid">
+                        <button class="btn btn-primary" id="apply-filters">
+                            <i class="fas fa-filter me-1"></i>Apply
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4 mb-3">
                     <label for="status-filter" class="form-label">Status</label>
                     <select class="form-select" id="status-filter">
-                        <option value="">All Status</option>
+                        <option value="">All Statuses</option>
                         <option value="Solved">Solved</option>
                         <option value="Attempted">Attempted</option>
                         <option value="Not Started">Not Started</option>
                     </select>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12">
-                    <button class="btn btn-primary me-2" id="apply-filters">
-                        <i class="fas fa-filter me-1"></i>Apply Filters
-                    </button>
-                    <button class="btn btn-outline-secondary" id="reset-filters">
-                        <i class="fas fa-undo me-1"></i>Reset
-                    </button>
-                    <button class="btn btn-outline-info float-end" id="generate-cards">
-                        <i class="fas fa-magic me-1"></i>Generate Cards
-                    </button>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">&nbsp;</label>
+                    <div class="d-grid">
+                        <button class="btn btn-outline-secondary" id="reset-filters">
+                            <i class="fas fa-undo me-1"></i>Reset Filters
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">&nbsp;</label>
+                    <div class="d-grid">
+                        <button class="btn btn-success" id="generate-cards">
+                            <i class="fas fa-cards-blank me-1"></i>Generate Cards
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -262,252 +275,29 @@
         </nav>
     </div>
 
-    <!-- Problem Detail Modal -->
-    <div class="modal fade" id="problemModal" tabindex="-1">
+    <!-- Problem Details Modal -->
+    <div class="modal fade" id="problemModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Problem Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="modalBody">
-                    <!-- Problem details will be populated here -->
+                    <!-- Modal content will be populated by JavaScript -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="generateCardsBtn">
-                        <i class="fas fa-magic me-1"></i>Generate Anki Cards
-                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="problems-data.js"></script>
     <script>
-        // Sample problems data with comprehensive information
-        const sampleProblems = [
-            {
-                id: 1,
-                title: "Two Sum",
-                difficulty: "Easy",
-                tags: ["Array", "Hash Table"],
-                acceptance: 49.5,
-                status: "Solved",
-                description: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
-                fullDescription: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.",
-                testCases: [
-                    { input: "nums = [2,7,11,15], target = 9", output: "[0,1]", explanation: "Because nums[0] + nums[1] == 9, we return [0, 1]." },
-                    { input: "nums = [3,2,4], target = 6", output: "[1,2]", explanation: "Because nums[1] + nums[2] == 6, we return [1, 2]." },
-                    { input: "nums = [3,3], target = 6", output: "[0,1]", explanation: "Because nums[0] + nums[1] == 6, we return [0, 1]." }
-                ],
-                pseudocode: `function twoSum(nums, target):
-    hashMap = {}
-    for i = 0 to nums.length - 1:
-        complement = target - nums[i]
-        if complement in hashMap:
-            return [hashMap[complement], i]
-        hashMap[nums[i]] = i
-    return []`,
-                pythonCode: `def twoSum(nums, target):
-    hash_map = {}
-    for i, num in enumerate(nums):
-        complement = target - num
-        if complement in hash_map:
-            return [hash_map[complement], i]
-        hash_map[num] = i
-    return []`,
-                timeComplexity: "O(n) - We traverse the array once",
-                spaceComplexity: "O(n) - We store at most n elements in the hash map",
-                keyInsights: [
-                    "Use a hash table to store previously seen numbers",
-                    "For each number, check if its complement exists in the hash table",
-                    "This approach trades space for time complexity"
-                ]
-            },
-            {
-                id: 2,
-                title: "Add Two Numbers",
-                difficulty: "Medium",
-                tags: ["Linked List", "Math", "Recursion"],
-                acceptance: 38.9,
-                status: "Attempted",
-                description: "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit.",
-                fullDescription: "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list. You may assume the two numbers do not contain any leading zero, except the number 0 itself.",
-                testCases: [
-                    { input: "l1 = [2,4,3], l2 = [5,6,4]", output: "[7,0,8]", explanation: "342 + 465 = 807" },
-                    { input: "l1 = [0], l2 = [0]", output: "[0]", explanation: "0 + 0 = 0" },
-                    { input: "l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]", output: "[8,9,9,9,0,0,0,1]", explanation: "9999999 + 9999 = 10009998" }
-                ],
-                pseudocode: `function addTwoNumbers(l1, l2):
-    dummy = new ListNode(0)
-    current = dummy
-    carry = 0
-    
-    while l1 != null OR l2 != null OR carry > 0:
-        x = l1.val if l1 != null else 0
-        y = l2.val if l2 != null else 0
-        sum = x + y + carry
-        
-        carry = sum / 10
-        current.next = new ListNode(sum % 10)
-        current = current.next
-        
-        if l1 != null: l1 = l1.next
-        if l2 != null: l2 = l2.next
-    
-    return dummy.next`,
-                pythonCode: `def addTwoNumbers(l1, l2):
-    dummy = ListNode(0)
-    current = dummy
-    carry = 0
-    
-    while l1 or l2 or carry:
-        x = l1.val if l1 else 0
-        y = l2.val if l2 else 0
-        total = x + y + carry
-        
-        carry = total // 10
-        current.next = ListNode(total % 10)
-        current = current.next
-        
-        if l1: l1 = l1.next
-        if l2: l2 = l2.next
-    
-    return dummy.next`,
-                timeComplexity: "O(max(m,n)) - We traverse both lists once",
-                spaceComplexity: "O(max(m,n)) - We create a new list for the result",
-                keyInsights: [
-                    "Process digits from least significant to most significant",
-                    "Handle carry-over between digits",
-                    "Create new nodes for the result",
-                    "Handle cases where lists have different lengths"
-                ]
-            },
-            {
-                id: 3,
-                title: "Longest Substring Without Repeating Characters",
-                difficulty: "Medium",
-                tags: ["Hash Table", "String", "Sliding Window"],
-                acceptance: 33.8,
-                status: "Not Started",
-                description: "Given a string s, find the length of the longest substring without repeating characters.",
-                fullDescription: "Given a string s, find the length of the longest substring without repeating characters. A substring is a contiguous non-empty sequence of characters within a string.",
-                testCases: [
-                    { input: 's = "abcabcbb"', output: "3", explanation: "The answer is 'abc', with the length of 3." },
-                    { input: 's = "bbbbb"', output: "1", explanation: "The answer is 'b', with the length of 1." },
-                    { input: 's = "pwwkew"', output: "3", explanation: "The answer is 'wke', with the length of 3." }
-                ],
-                pseudocode: `function lengthOfLongestSubstring(s):
-    charSet = set()
-    left = 0
-    maxLength = 0
-    
-    for right = 0 to s.length - 1:
-        while s[right] in charSet:
-            charSet.remove(s[left])
-            left += 1
-        charSet.add(s[right])
-        maxLength = max(maxLength, right - left + 1)
-    
-    return maxLength`,
-                pythonCode: `def lengthOfLongestSubstring(s):
-    char_set = set()
-    left = 0
-    max_length = 0
-    
-    for right in range(len(s)):
-        while s[right] in char_set:
-            char_set.remove(s[left])
-            left += 1
-        char_set.add(s[right])
-        max_length = max(max_length, right - left + 1)
-    
-    return max_length`,
-                timeComplexity: "O(n) - Each character is visited at most twice",
-                spaceComplexity: "O(min(m,n)) - Where m is the size of the charset",
-                keyInsights: [
-                    "Use sliding window technique with two pointers",
-                    "Maintain a set of characters in current window",
-                    "Expand right pointer and contract left pointer when duplicates found",
-                    "Track maximum length seen so far"
-                ]
-            },
-            {
-                id: 4,
-                title: "Median of Two Sorted Arrays",
-                difficulty: "Hard",
-                tags: ["Array", "Binary Search", "Divide and Conquer"],
-                acceptance: 35.2,
-                status: "Not Started",
-                description: "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.",
-                fullDescription: "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log(m+n)).",
-                testCases: [
-                    { input: "nums1 = [1,3], nums2 = [2]", output: "2.00000", explanation: "merged array = [1,2,3] and median is 2." },
-                    { input: "nums1 = [1,2], nums2 = [3,4]", output: "2.50000", explanation: "merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5." }
-                ],
-                pseudocode: `function findMedianSortedArrays(nums1, nums2):
-    if nums1.length > nums2.length:
-        swap(nums1, nums2)
-    
-    x = nums1.length
-    y = nums2.length
-    low = 0
-    high = x
-    
-    while low <= high:
-        partitionX = (low + high) / 2
-        partitionY = (x + y + 1) / 2 - partitionX
-        
-        maxLeftX = partitionX == 0 ? -∞ : nums1[partitionX - 1]
-        minRightX = partitionX == x ? ∞ : nums1[partitionX]
-        maxLeftY = partitionY == 0 ? -∞ : nums2[partitionY - 1]
-        minRightY = partitionY == y ? ∞ : nums2[partitionY]
-        
-        if maxLeftX <= minRightY AND maxLeftY <= minRightX:
-            if (x + y) % 2 == 0:
-                return (max(maxLeftX, maxLeftY) + min(minRightX, minRightY)) / 2
-            else:
-                return max(maxLeftX, maxLeftY)
-        else if maxLeftX > minRightY:
-            high = partitionX - 1
-        else:
-            low = partitionX + 1`,
-                pythonCode: `def findMedianSortedArrays(nums1, nums2):
-    if len(nums1) > len(nums2):
-        nums1, nums2 = nums2, nums1
-    
-    x, y = len(nums1), len(nums2)
-    low, high = 0, x
-    
-    while low <= high:
-        partition_x = (low + high) // 2
-        partition_y = (x + y + 1) // 2 - partition_x
-        
-        max_left_x = float('-inf') if partition_x == 0 else nums1[partition_x - 1]
-        min_right_x = float('inf') if partition_x == x else nums1[partition_x]
-        max_left_y = float('-inf') if partition_y == 0 else nums2[partition_y - 1]
-        min_right_y = float('inf') if partition_y == y else nums2[partition_y]
-        
-        if max_left_x <= min_right_y and max_left_y <= min_right_x:
-            if (x + y) % 2 == 0:
-                return (max(max_left_x, max_left_y) + min(min_right_x, min_right_y)) / 2
-            else:
-                return max(max_left_x, max_left_y)
-        elif max_left_x > min_right_y:
-            high = partition_x - 1
-        else:
-            low = partition_x + 1`,
-                timeComplexity: "O(log(min(m,n))) - Binary search on smaller array",
-                spaceComplexity: "O(1) - Constant extra space",
-                keyInsights: [
-                    "Use binary search to find correct partition",
-                    "Ensure left partition has correct number of elements",
-                    "Check if partition is valid by comparing boundary elements",
-                    "Handle edge cases for even/odd total length"
-                ]
-            }
-        ];
+        // Use imported problems data
+        const sampleProblems = topLeetCodeProblems || [];
 
         let currentProblems = [...sampleProblems];
         let currentPage = 1;
@@ -600,7 +390,7 @@
                                 </a>
                             </h6>
                             <p class="card-text text-muted small mb-3">
-                                ${problem.description.substring(0, 80)}...
+                                ${problem.description ? problem.description.substring(0, 80) + '...' : problem.fullDescription.substring(0, 80) + '...'}
                             </p>
                             <div class="mb-3">
                                 ${problem.tags.map(tag => 
@@ -611,8 +401,8 @@
                                 <span class="acceptance-rate">
                                     <i class="fas fa-chart-line me-1"></i>${problem.acceptance}%
                                 </span>
-                                <span class="badge bg-${getStatusColor(problem.status)}">
-                                    ${problem.status}
+                                <span class="badge bg-secondary">
+                                    Not Started
                                 </span>
                             </div>
                         </div>
@@ -670,7 +460,7 @@
                                     problem.id.toString().includes(searchQuery);
                 const matchesDifficulty = !difficulty || problem.difficulty === difficulty;
                 const matchesTag = !tag || problem.tags.includes(tag);
-                const matchesStatus = !status || problem.status === status;
+                const matchesStatus = !status || true; // Always true since we don't have status in imported data
 
                 return matchesSearch && matchesDifficulty && matchesTag && matchesStatus;
             });
