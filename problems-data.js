@@ -931,8 +931,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Search Insert Position"
       }
     ],
-    "pseudocode": "Algorithm for Search Insert Position:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Search Insert Position\ndef solve_35():\n    # Implementation here\n    pass",
+    "pseudocode": "function searchInsert(nums, target):\n    left = 0\n    right = nums.length - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return left",
+    "pythonCode": "def searchInsert(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return left",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -958,8 +958,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Valid Sudoku"
       }
     ],
-    "pseudocode": "Algorithm for Valid Sudoku:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Valid Sudoku\ndef solve_36():\n    # Implementation here\n    pass",
+    "pseudocode": "function isValidSudoku(board):\n    rows = new Array(9).fill().map(() => new Set())\n    cols = new Array(9).fill().map(() => new Set())\n    boxes = new Array(9).fill().map(() => new Set())\n    \n    for i = 0 to 8:\n        for j = 0 to 8:\n            if board[i][j] != '.':\n                num = parseInt(board[i][j])\n                boxIndex = Math.floor(i/3) * 3 + Math.floor(j/3)\n                \n                if rows[i].has(num) or cols[j].has(num) or boxes[boxIndex].has(num):\n                    return false\n                \n                rows[i].add(num)\n                cols[j].add(num)\n                boxes[boxIndex].add(num)\n    \n    return true",
+    "pythonCode": "def isValidSudoku(board):\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [set() for _ in range(9)]\n    \n    for i in range(9):\n        for j in range(9):\n            if board[i][j] != '.':\n                num = int(board[i][j])\n                box_index = (i // 3) * 3 + (j // 3)\n                \n                if num in rows[i] or num in cols[j] or num in boxes[box_index]:\n                    return False\n                \n                rows[i].add(num)\n                cols[j].add(num)\n                boxes[box_index].add(num)\n    \n    return True",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -984,8 +984,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Sudoku Solver"
       }
     ],
-    "pseudocode": "Algorithm for Sudoku Solver:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Sudoku Solver\ndef solve_37():\n    # Implementation here\n    pass",
+    "pseudocode": "function solveSudoku(board):\n    solve(board)\n\nfunction solve(board):\n    for i = 0 to 8:\n        for j = 0 to 8:\n            if board[i][j] == '.':\n                for num = 1 to 9:\n                    if isValid(board, i, j, num):\n                        board[i][j] = num.toString()\n                        if solve(board):\n                            return true\n                        board[i][j] = '.'\n                return false\n    return true\n\nfunction isValid(board, row, col, num):\n    // Check row\n    for j = 0 to 8:\n        if board[row][j] == num.toString():\n            return false\n    \n    // Check column\n    for i = 0 to 8:\n        if board[i][col] == num.toString():\n            return false\n    \n    // Check 3x3 box\n    boxRow = Math.floor(row/3) * 3\n    boxCol = Math.floor(col/3) * 3\n    for i = boxRow to boxRow + 2:\n        for j = boxCol to boxCol + 2:\n            if board[i][j] == num.toString():\n                return false\n    \n    return true",
+    "pythonCode": "def solveSudoku(board):\n    solve(board)\n\ndef solve(board):\n    for i in range(9):\n        for j in range(9):\n            if board[i][j] == '.':\n                for num in range(1, 10):\n                    if is_valid(board, i, j, str(num)):\n                        board[i][j] = str(num)\n                        if solve(board):\n                            return True\n                        board[i][j] = '.'\n                return False\n    return True\n\ndef is_valid(board, row, col, num):\n    # Check row\n    for j in range(9):\n        if board[row][j] == num:\n            return False\n    \n    # Check column\n    for i in range(9):\n        if board[i][col] == num:\n            return False\n    \n    # Check 3x3 box\n    box_row = (row // 3) * 3\n    box_col = (col // 3) * 3\n    for i in range(box_row, box_row + 3):\n        for j in range(box_col, box_col + 3):\n            if board[i][j] == num:\n                return False\n    \n    return True",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1011,8 +1011,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Count and Say"
       }
     ],
-    "pseudocode": "Algorithm for Count and Say:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Count and Say\ndef solve_38():\n    # Implementation here\n    pass",
+    "pseudocode": "function countAndSay(n):\n    if n == 1:\n        return \"1\"\n    \n    prev = countAndSay(n - 1)\n    result = \"\"\n    count = 1\n    current = prev[0]\n    \n    for i = 1 to prev.length - 1:\n        if prev[i] == current:\n            count++\n        else:\n            result += count.toString() + current\n            current = prev[i]\n            count = 1\n    \n    result += count.toString() + current\n    return result",
+    "pythonCode": "def countAndSay(n):\n    if n == 1:\n        return \"1\"\n    \n    prev = countAndSay(n - 1)\n    result = \"\"\n    count = 1\n    current = prev[0]\n    \n    for i in range(1, len(prev)):\n        if prev[i] == current:\n            count += 1\n        else:\n            result += str(count) + current\n            current = prev[i]\n            count = 1\n    \n    result += str(count) + current\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1065,8 +1065,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Combination Sum II"
       }
     ],
-    "pseudocode": "Algorithm for Combination Sum II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Combination Sum II\ndef solve_40():\n    # Implementation here\n    pass",
+    "pseudocode": "function combinationSum2(candidates, target):\n    candidates.sort()\n    result = []\n    backtrack(candidates, target, 0, [], result)\n    return result\n\nfunction backtrack(candidates, target, start, current, result):\n    if target < 0:\n        return\n    if target == 0:\n        result.add([...current])\n        return\n    \n    for i = start to candidates.length - 1:\n        if i > start and candidates[i] == candidates[i-1]:\n            continue\n        \n        current.add(candidates[i])\n        backtrack(candidates, target - candidates[i], i + 1, current, result)\n        current.remove(current.length - 1)",
+    "pythonCode": "def combinationSum2(candidates, target):\n    candidates.sort()\n    result = []\n    \n    def backtrack(start, current, target):\n        if target < 0:\n            return\n        if target == 0:\n            result.append(current[:])\n            return\n        \n        for i in range(start, len(candidates)):\n            if i > start and candidates[i] == candidates[i-1]:\n                continue\n            \n            current.append(candidates[i])\n            backtrack(i + 1, current, target - candidates[i])\n            current.pop()\n    \n    backtrack(0, [], target)\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1091,8 +1091,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve First Missing Positive"
       }
     ],
-    "pseudocode": "Algorithm for First Missing Positive:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for First Missing Positive\ndef solve_41():\n    # Implementation here\n    pass",
+    "pseudocode": "function firstMissingPositive(nums):\n    n = nums.length\n    \n    // Move positive numbers to their correct positions\n    for i = 0 to n - 1:\n        while nums[i] > 0 and nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            swap(nums, i, nums[i] - 1)\n    \n    // Find first missing positive\n    for i = 0 to n - 1:\n        if nums[i] != i + 1:\n            return i + 1\n    \n    return n + 1",
+    "pythonCode": "def firstMissingPositive(nums):\n    n = len(nums)\n    \n    # Move positive numbers to their correct positions\n    for i in range(n):\n        while 0 < nums[i] <= n and nums[nums[i] - 1] != nums[i]:\n            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]\n    \n    # Find first missing positive\n    for i in range(n):\n        if nums[i] != i + 1:\n            return i + 1\n    \n    return n + 1",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1147,8 +1147,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Multiply Strings"
       }
     ],
-    "pseudocode": "Algorithm for Multiply Strings:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Multiply Strings\ndef solve_43():\n    # Implementation here\n    pass",
+    "pseudocode": "function multiply(num1, num2):\n    if num1 == \"0\" or num2 == \"0\":\n        return \"0\"\n    \n    m = num1.length\n    n = num2.length\n    result = new Array(m + n).fill(0)\n    \n    for i = m - 1 to 0:\n        for j = n - 1 to 0:\n            product = (num1[i] - '0') * (num2[j] - '0')\n            sum = result[i + j + 1] + product\n            \n            result[i + j + 1] = sum % 10\n            result[i + j] += Math.floor(sum / 10)\n    \n    // Convert result array to string\n    start = 0\n    while start < result.length and result[start] == 0:\n        start++\n    \n    if start == result.length:\n        return \"0\"\n    \n    return result.slice(start).join(\"\")",
+    "pythonCode": "def multiply(num1, num2):\n    if num1 == \"0\" or num2 == \"0\":\n        return \"0\"\n    \n    m, n = len(num1), len(num2)\n    result = [0] * (m + n)\n    \n    for i in range(m - 1, -1, -1):\n        for j in range(n - 1, -1, -1):\n            product = int(num1[i]) * int(num2[j])\n            total = result[i + j + 1] + product\n            \n            result[i + j + 1] = total % 10\n            result[i + j] += total // 10\n    \n    # Convert result array to string\n    start = 0\n    while start < len(result) and result[start] == 0:\n        start += 1\n    \n    if start == len(result):\n        return \"0\"\n    \n    return ''.join(map(str, result[start:]))",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1258,8 +1258,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Permutations II"
       }
     ],
-    "pseudocode": "Algorithm for Permutations II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Permutations II\ndef solve_47():\n    # Implementation here\n    pass",
+    "pseudocode": "function permuteUnique(nums):\n    nums.sort()\n    result = []\n    used = new Array(nums.length).fill(false)\n    backtrack(nums, [], used, result)\n    return result\n\nfunction backtrack(nums, current, used, result):\n    if current.length == nums.length:\n        result.add([...current])\n        return\n    \n    for i = 0 to nums.length - 1:\n        if used[i] or (i > 0 and nums[i] == nums[i-1] and !used[i-1]):\n            continue\n        \n        used[i] = true\n        current.add(nums[i])\n        backtrack(nums, current, used, result)\n        used[i] = false\n        current.remove(current.length - 1)",
+    "pythonCode": "def permuteUnique(nums):\n    nums.sort()\n    result = []\n    used = [False] * len(nums)\n    \n    def backtrack(current):\n        if len(current) == len(nums):\n            result.append(current[:])\n            return\n        \n        for i in range(len(nums)):\n            if used[i] or (i > 0 and nums[i] == nums[i-1] and not used[i-1]):\n                continue\n            \n            used[i] = True\n            current.append(nums[i])\n            backtrack(current)\n            used[i] = False\n            current.pop()\n    \n    backtrack([])\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1338,8 +1338,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Pow(x, n)"
       }
     ],
-    "pseudocode": "Algorithm for Pow(x, n):\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Pow(x, n)\ndef solve_50():\n    # Implementation here\n    pass",
+    "pseudocode": "function myPow(x, n):\n    if n == 0:\n        return 1\n    if n < 0:\n        x = 1 / x\n        n = -n\n    \n    result = 1\n    current = x\n    \n    while n > 0:\n        if n % 2 == 1:\n            result *= current\n        current *= current\n        n = Math.floor(n / 2)\n    \n    return result",
+    "pythonCode": "def myPow(x, n):\n    if n == 0:\n        return 1\n    if n < 0:\n        x = 1 / x\n        n = -n\n    \n    result = 1\n    current = x\n    \n    while n > 0:\n        if n % 2 == 1:\n            result *= current\n        current *= current\n        n //= 2\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1365,8 +1365,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve N-Queens"
       }
     ],
-    "pseudocode": "Algorithm for N-Queens:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for N-Queens\ndef solve_51():\n    # Implementation here\n    pass",
+    "pseudocode": "function solveNQueens(n):\n    result = []\n    board = new Array(n).fill().map(() => new Array(n).fill('.'))\n    backtrack(board, 0, result)\n    return result\n\nfunction backtrack(board, row, result):\n    if row == board.length:\n        result.add(formatBoard(board))\n        return\n    \n    for col = 0 to board.length - 1:\n        if isValid(board, row, col):\n            board[row][col] = 'Q'\n            backtrack(board, row + 1, result)\n            board[row][col] = '.'\n\nfunction isValid(board, row, col):\n    // Check column\n    for i = 0 to row - 1:\n        if board[i][col] == 'Q':\n            return false\n    \n    // Check diagonal\n    for i = 1 to row:\n        if row - i >= 0 and col - i >= 0 and board[row-i][col-i] == 'Q':\n            return false\n        if row - i >= 0 and col + i < board.length and board[row-i][col+i] == 'Q':\n            return false\n    \n    return true",
+    "pythonCode": "def solveNQueens(n):\n    result = []\n    board = [['.'] * n for _ in range(n)]\n    \n    def backtrack(row):\n        if row == n:\n            result.append(format_board(board))\n            return\n        \n        for col in range(n):\n            if is_valid(board, row, col):\n                board[row][col] = 'Q'\n                backtrack(row + 1)\n                board[row][col] = '.'\n    \n    def is_valid(board, row, col):\n        # Check column\n        for i in range(row):\n            if board[i][col] == 'Q':\n                return False\n        \n        # Check diagonal\n        for i in range(1, row + 1):\n            if row - i >= 0 and col - i >= 0 and board[row-i][col-i] == 'Q':\n                return False\n            if row - i >= 0 and col + i < n and board[row-i][col+i] == 'Q':\n                return False\n        \n        return True\n    \n    def format_board(board):\n        return [''.join(row) for row in board]\n    \n    backtrack(0)\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1387,19 +1387,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 52: N-Queens II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for N-Queens II",
+        "input": "Input for N-Queens II",
         "output": "Expected output for N-Queens II",
         "explanation": "Explanation of how to solve N-Queens II"
       }
     ],
-    "pseudocode": "Algorithm for N-Queens II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for N-Queens II\ndef solve_52():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve52():\n    // Algorithm approach for N-Queens II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_52():\n    # Algorithm approach for N-Queens II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for N-Queens II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for N-Queens II",
+      "Key insight 3: Understand the problem constraints for N-Queens II"
     ]
   },
   {
@@ -1445,8 +1445,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Spiral Matrix"
       }
     ],
-    "pseudocode": "Algorithm for Spiral Matrix:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Spiral Matrix\ndef solve_54():\n    # Implementation here\n    pass",
+    "pseudocode": "function spiralOrder(matrix):\n    if matrix.length == 0:\n        return []\n    \n    result = []\n    top = 0, bottom = matrix.length - 1\n    left = 0, right = matrix[0].length - 1\n    \n    while top <= bottom and left <= right:\n        // Traverse right\n        for j = left to right:\n            result.add(matrix[top][j])\n        top++\n        \n        // Traverse down\n        for i = top to bottom:\n            result.add(matrix[i][right])\n        right--\n        \n        if top <= bottom:\n            // Traverse left\n            for j = right to left:\n                result.add(matrix[bottom][j])\n            bottom--\n        \n        if left <= right:\n            // Traverse up\n            for i = bottom to top:\n                result.add(matrix[i][left])\n            left++\n    \n    return result",
+    "pythonCode": "def spiralOrder(matrix):\n    if not matrix:\n        return []\n    \n    result = []\n    top, bottom = 0, len(matrix) - 1\n    left, right = 0, len(matrix[0]) - 1\n    \n    while top <= bottom and left <= right:\n        # Traverse right\n        for j in range(left, right + 1):\n            result.append(matrix[top][j])\n        top += 1\n        \n        # Traverse down\n        for i in range(top, bottom + 1):\n            result.append(matrix[i][right])\n        right -= 1\n        \n        if top <= bottom:\n            # Traverse left\n            for j in range(right, left - 1, -1):\n                result.append(matrix[bottom][j])\n            bottom -= 1\n        \n        if left <= right:\n            # Traverse up\n            for i in range(bottom, top - 1, -1):\n                result.append(matrix[i][left])\n            left += 1\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1500,8 +1500,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Merge Intervals"
       }
     ],
-    "pseudocode": "Algorithm for Merge Intervals:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Merge Intervals\ndef solve_56():\n    # Implementation here\n    pass",
+    "pseudocode": "function merge(intervals):\n    if intervals.length == 0:\n        return []\n    \n    intervals.sort((a, b) => a[0] - b[0])\n    result = [intervals[0]]\n    \n    for i = 1 to intervals.length - 1:\n        current = intervals[i]\n        last = result[result.length - 1]\n        \n        if current[0] <= last[1]:\n            last[1] = Math.max(last[1], current[1])\n        else:\n            result.add(current)\n    \n    return result",
+    "pythonCode": "def merge(intervals):\n    if not intervals:\n        return []\n    \n    intervals.sort(key=lambda x: x[0])\n    result = [intervals[0]]\n    \n    for i in range(1, len(intervals)):\n        current = intervals[i]\n        last = result[-1]\n        \n        if current[0] <= last[1]:\n            last[1] = max(last[1], current[1])\n        else:\n            result.append(current)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1526,8 +1526,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Insert Interval"
       }
     ],
-    "pseudocode": "Algorithm for Insert Interval:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Insert Interval\ndef solve_57():\n    # Implementation here\n    pass",
+    "pseudocode": "function insert(intervals, newInterval):\n    result = []\n    i = 0\n    \n    // Add all intervals that come before newInterval\n    while i < intervals.length and intervals[i][1] < newInterval[0]:\n        result.add(intervals[i])\n        i++\n    \n    // Merge overlapping intervals\n    while i < intervals.length and intervals[i][0] <= newInterval[1]:\n        newInterval[0] = Math.min(newInterval[0], intervals[i][0])\n        newInterval[1] = Math.max(newInterval[1], intervals[i][1])\n        i++\n    \n    result.add(newInterval)\n    \n    // Add remaining intervals\n    while i < intervals.length:\n        result.add(intervals[i])\n        i++\n    \n    return result",
+    "pythonCode": "def insert(intervals, newInterval):\n    result = []\n    i = 0\n    \n    # Add all intervals that come before newInterval\n    while i < len(intervals) and intervals[i][1] < newInterval[0]:\n        result.append(intervals[i])\n        i += 1\n    \n    # Merge overlapping intervals\n    while i < len(intervals) and intervals[i][0] <= newInterval[1]:\n        newInterval[0] = min(newInterval[0], intervals[i][0])\n        newInterval[1] = max(newInterval[1], intervals[i][1])\n        i += 1\n    \n    result.append(newInterval)\n    \n    # Add remaining intervals\n    while i < len(intervals):\n        result.append(intervals[i])\n        i += 1\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1553,8 +1553,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Length of Last Word"
       }
     ],
-    "pseudocode": "Algorithm for Length of Last Word:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Length of Last Word\ndef solve_58():\n    # Implementation here\n    pass",
+    "pseudocode": "function lengthOfLastWord(s):\n    // Trim trailing spaces\n    end = s.length - 1\n    while end >= 0 and s[end] == ' ':\n        end--\n    \n    // Find start of last word\n    start = end\n    while start >= 0 and s[start] != ' ':\n        start--\n    \n    return end - start",
+    "pythonCode": "def lengthOfLastWord(s):\n    # Trim trailing spaces\n    end = len(s) - 1\n    while end >= 0 and s[end] == ' ':\n        end -= 1\n    \n    # Find start of last word\n    start = end\n    while start >= 0 and s[start] != ' ':\n        start -= 1\n    \n    return end - start",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1580,8 +1580,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Spiral Matrix II"
       }
     ],
-    "pseudocode": "Algorithm for Spiral Matrix II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Spiral Matrix II\ndef solve_59():\n    # Implementation here\n    pass",
+    "pseudocode": "function generateMatrix(n):\n    matrix = new Array(n).fill().map(() => new Array(n).fill(0))\n    top = 0, bottom = n - 1\n    left = 0, right = n - 1\n    num = 1\n    \n    while top <= bottom and left <= right:\n        // Fill top row\n        for j = left to right:\n            matrix[top][j] = num++\n        top++\n        \n        // Fill right column\n        for i = top to bottom:\n            matrix[i][right] = num++\n        right--\n        \n        if top <= bottom:\n            // Fill bottom row\n            for j = right to left:\n                matrix[bottom][j] = num++\n            bottom--\n        \n        if left <= right:\n            // Fill left column\n            for i = bottom to top:\n                matrix[i][left] = num++\n            left++\n    \n    return matrix",
+    "pythonCode": "def generateMatrix(n):\n    matrix = [[0] * n for _ in range(n)]\n    top, bottom = 0, n - 1\n    left, right = 0, n - 1\n    num = 1\n    \n    while top <= bottom and left <= right:\n        # Fill top row\n        for j in range(left, right + 1):\n            matrix[top][j] = num\n            num += 1\n        top += 1\n        \n        # Fill right column\n        for i in range(top, bottom + 1):\n            matrix[i][right] = num\n            num += 1\n        right -= 1\n        \n        if top <= bottom:\n            # Fill bottom row\n            for j in range(right, left - 1, -1):\n                matrix[bottom][j] = num\n                num += 1\n            bottom -= 1\n        \n        if left <= right:\n            # Fill left column\n            for i in range(bottom, top - 1, -1):\n                matrix[i][left] = num\n                num += 1\n            left += 1\n    \n    return matrix",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1607,8 +1607,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Permutation Sequence"
       }
     ],
-    "pseudocode": "Algorithm for Permutation Sequence:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Permutation Sequence\ndef solve_60():\n    # Implementation here\n    pass",
+    "pseudocode": "function getPermutation(n, k):\n    numbers = [1, 2, ..., n]\n    factorial = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]\n    result = \"\"\n    k--\n    \n    for i = n to 1:\n        index = Math.floor(k / factorial[i-1])\n        result += numbers[index].toString()\n        numbers.splice(index, 1)\n        k %= factorial[i-1]\n    \n    return result",
+    "pythonCode": "def getPermutation(n, k):\n    numbers = list(range(1, n + 1))\n    factorial = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]\n    result = \"\"\n    k -= 1\n    \n    for i in range(n, 0, -1):\n        index = k // factorial[i-1]\n        result += str(numbers[index])\n        numbers.pop(index)\n        k %= factorial[i-1]\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1633,8 +1633,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Rotate List"
       }
     ],
-    "pseudocode": "Algorithm for Rotate List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Rotate List\ndef solve_61():\n    # Implementation here\n    pass",
+    "pseudocode": "function rotateRight(head, k):\n    if head == null or head.next == null or k == 0:\n        return head\n    \n    // Count nodes\n    count = 1\n    current = head\n    while current.next != null:\n        current = current.next\n        count++\n    \n    // Calculate actual rotation\n    k = k % count\n    if k == 0:\n        return head\n    \n    // Find new head position\n    newHeadPos = count - k\n    current = head\n    for i = 1 to newHeadPos - 1:\n        current = current.next\n    \n    newHead = current.next\n    current.next = null\n    \n    // Connect end to original head\n    current = newHead\n    while current.next != null:\n        current = current.next\n    current.next = head\n    \n    return newHead",
+    "pythonCode": "def rotateRight(head, k):\n    if not head or not head.next or k == 0:\n        return head\n    \n    # Count nodes\n    count = 1\n    current = head\n    while current.next:\n        current = current.next\n        count += 1\n    \n    # Calculate actual rotation\n    k = k % count\n    if k == 0:\n        return head\n    \n    # Find new head position\n    new_head_pos = count - k\n    current = head\n    for i in range(1, new_head_pos):\n        current = current.next\n    \n    new_head = current.next\n    current.next = None\n    \n    # Connect end to original head\n    current = new_head\n    while current.next:\n        current = current.next\n    current.next = head\n    \n    return new_head",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1743,8 +1743,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Valid Number"
       }
     ],
-    "pseudocode": "Algorithm for Valid Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Valid Number\ndef solve_65():\n    # Implementation here\n    pass",
+    "pseudocode": "function isNumber(s):\n    seenDigit = false\n    seenExponent = false\n    seenDot = false\n    \n    for i = 0 to s.length - 1:\n        char = s[i]\n        \n        if char.isDigit():\n            seenDigit = true\n        elif char in ['+', '-']:\n            if i > 0 and s[i-1] not in ['e', 'E']:\n                return false\n        elif char in ['e', 'E']:\n            if seenExponent or not seenDigit:\n                return false\n            seenExponent = true\n            seenDigit = false\n        elif char == '.':\n            if seenDot or seenExponent:\n                return false\n            seenDot = true\n        else:\n            return false\n    \n    return seenDigit",
+    "pythonCode": "def isNumber(s):\n    seen_digit = False\n    seen_exponent = False\n    seen_dot = False\n    \n    for i, char in enumerate(s):\n        if char.isdigit():\n            seen_digit = True\n        elif char in ['+', '-']:\n            if i > 0 and s[i-1] not in ['e', 'E']:\n                return False\n        elif char in ['e', 'E']:\n            if seen_exponent or not seen_digit:\n                return False\n            seen_exponent = True\n            seen_digit = False\n        elif char == '.':\n            if seen_dot or seen_exponent:\n                return False\n            seen_dot = True\n        else:\n            return False\n    \n    return seen_digit",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1770,8 +1770,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Plus One"
       }
     ],
-    "pseudocode": "Algorithm for Plus One:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Plus One\ndef solve_66():\n    # Implementation here\n    pass",
+    "pseudocode": "function plusOne(digits):\n    n = digits.length\n    \n    for i = n - 1 to 0:\n        if digits[i] < 9:\n            digits[i]++\n            return digits\n        digits[i] = 0\n    \n    // If we reach here, all digits were 9\n    result = new Array(n + 1).fill(0)\n    result[0] = 1\n    return result",
+    "pythonCode": "def plusOne(digits):\n    n = len(digits)\n    \n    for i in range(n - 1, -1, -1):\n        if digits[i] < 9:\n            digits[i] += 1\n            return digits\n        digits[i] = 0\n    \n    # If we reach here, all digits were 9\n    result = [0] * (n + 1)\n    result[0] = 1\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1797,8 +1797,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Add Binary"
       }
     ],
-    "pseudocode": "Algorithm for Add Binary:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Add Binary\ndef solve_67():\n    # Implementation here\n    pass",
+    "pseudocode": "function addBinary(a, b):\n    result = \"\"\n    carry = 0\n    i = a.length - 1\n    j = b.length - 1\n    \n    while i >= 0 or j >= 0 or carry > 0:\n        sum = carry\n        if i >= 0:\n            sum += int(a[i])\n            i--\n        if j >= 0:\n            sum += int(b[j])\n            j--\n        \n        result = (sum % 2).toString() + result\n        carry = Math.floor(sum / 2)\n    \n    return result",
+    "pythonCode": "def addBinary(a, b):\n    result = \"\"\n    carry = 0\n    i, j = len(a) - 1, len(b) - 1\n    \n    while i >= 0 or j >= 0 or carry:\n        total = carry\n        if i >= 0:\n            total += int(a[i])\n            i -= 1\n        if j >= 0:\n            total += int(b[j])\n            j -= 1\n        \n        result = str(total % 2) + result\n        carry = total // 2\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1824,8 +1824,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Text Justification"
       }
     ],
-    "pseudocode": "Algorithm for Text Justification:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Text Justification\ndef solve_68():\n    # Implementation here\n    pass",
+    "pseudocode": "function fullJustify(words, maxWidth):\n    result = []\n    current = []\n    currentLength = 0\n    \n    for word in words:\n        if currentLength + word.length + len(current) <= maxWidth:\n            current.add(word)\n            currentLength += word.length\n        else:\n            result.add(justifyLine(current, maxWidth, false))\n            current = [word]\n            currentLength = word.length\n    \n    // Handle last line\n    if current:\n        result.add(justifyLine(current, maxWidth, true))\n    \n    return result\n\nfunction justifyLine(words, maxWidth, isLast):\n    if len(words) == 1 or isLast:\n        return words.join(\" \").padEnd(maxWidth)\n    \n    totalSpaces = maxWidth - words.reduce((sum, word) => sum + word.length, 0)\n    gaps = len(words) - 1\n    spacesPerGap = Math.floor(totalSpaces / gaps)\n    extraSpaces = totalSpaces % gaps\n    \n    result = words[0]\n    for i = 1 to len(words):\n        spaces = spacesPerGap + (i <= extraSpaces ? 1 : 0)\n        result += \" \".repeat(spaces) + words[i]\n    \n    return result",
+    "pythonCode": "def fullJustify(words, maxWidth):\n    result = []\n    current = []\n    current_length = 0\n    \n    for word in words:\n        if current_length + len(word) + len(current) <= maxWidth:\n            current.append(word)\n            current_length += len(word)\n        else:\n            result.append(justify_line(current, maxWidth, False))\n            current = [word]\n            current_length = len(word)\n    \n    # Handle last line\n    if current:\n        result.append(justify_line(current, maxWidth, True))\n    \n    return result\n\ndef justify_line(words, max_width, is_last):\n    if len(words) == 1 or is_last:\n        return ' '.join(words).ljust(max_width)\n    \n    total_spaces = max_width - sum(len(word) for word in words)\n    gaps = len(words) - 1\n    spaces_per_gap = total_spaces // gaps\n    extra_spaces = total_spaces % gaps\n    \n    result = words[0]\n    for i in range(1, len(words)):\n        spaces = spaces_per_gap + (1 if i <= extra_spaces else 0)\n        result += ' ' * spaces + words[i]\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1850,8 +1850,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Sqrt(x)"
       }
     ],
-    "pseudocode": "Algorithm for Sqrt(x):\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Sqrt(x)\ndef solve_69():\n    # Implementation here\n    pass",
+    "pseudocode": "function mySqrt(x):\n    if x < 2:\n        return x\n    \n    left = 2\n    right = x // 2\n    \n    while left <= right:\n        mid = (left + right) // 2\n        square = mid * mid\n        \n        if square == x:\n            return mid\n        elif square < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return right",
+    "pythonCode": "def mySqrt(x):\n    if x < 2:\n        return x\n    \n    left, right = 2, x // 2\n    \n    while left <= right:\n        mid = (left + right) // 2\n        square = mid * mid\n        \n        if square == x:\n            return mid\n        elif square < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return right",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1905,8 +1905,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Simplify Path"
       }
     ],
-    "pseudocode": "Algorithm for Simplify Path:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Simplify Path\ndef solve_71():\n    # Implementation here\n    pass",
+    "pseudocode": "function simplifyPath(path):\n    stack = []\n    components = path.split(\"/\")\n    \n    for component in components:\n        if component == \"\" or component == \".\":\n            continue\n        elif component == \"..\":\n            if stack:\n                stack.pop()\n        else:\n            stack.add(component)\n    \n    return \"/\" + stack.join(\"/\")",
+    "pythonCode": "def simplifyPath(path):\n    stack = []\n    components = path.split(\"/\")\n    \n    for component in components:\n        if component == \"\" or component == \".\":\n            continue\n        elif component == \"..\":\n            if stack:\n                stack.pop()\n        else:\n            stack.append(component)\n    \n    return \"/\" + \"/\".join(stack)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1958,8 +1958,8 @@ const topLeetCodeProblems = [
         "explanation": "Explanation of how to solve Set Matrix Zeroes"
       }
     ],
-    "pseudocode": "Algorithm for Set Matrix Zeroes:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Set Matrix Zeroes\ndef solve_73():\n    # Implementation here\n    pass",
+    "pseudocode": "function setZeroes(matrix):\n    m = matrix.length\n    n = matrix[0].length\n    firstRowHasZero = false\n    firstColHasZero = false\n    \n    // Check if first row has zero\n    for j = 0 to n - 1:\n        if matrix[0][j] == 0:\n            firstRowHasZero = true\n            break\n    \n    // Check if first column has zero\n    for i = 0 to m - 1:\n        if matrix[i][0] == 0:\n            firstColHasZero = true\n            break\n    \n    // Use first row and column as markers\n    for i = 1 to m - 1:\n        for j = 1 to n - 1:\n            if matrix[i][j] == 0:\n                matrix[i][0] = 0\n                matrix[0][j] = 0\n    \n    // Set zeros based on markers\n    for i = 1 to m - 1:\n        for j = 1 to n - 1:\n            if matrix[i][0] == 0 or matrix[0][j] == 0:\n                matrix[i][j] = 0\n    \n    // Set first row to zero if needed\n    if firstRowHasZero:\n        for j = 0 to n - 1:\n            matrix[0][j] = 0\n    \n    // Set first column to zero if needed\n    if firstColHasZero:\n        for i = 0 to m - 1:\n            matrix[i][0] = 0",
+    "pythonCode": "def setZeroes(matrix):\n    m, n = len(matrix), len(matrix[0])\n    first_row_has_zero = False\n    first_col_has_zero = False\n    \n    # Check if first row has zero\n    for j in range(n):\n        if matrix[0][j] == 0:\n            first_row_has_zero = True\n            break\n    \n    # Check if first column has zero\n    for i in range(m):\n        if matrix[i][0] == 0:\n            first_col_has_zero = True\n            break\n    \n    # Use first row and column as markers\n    for i in range(1, m):\n        for j in range(1, n):\n            if matrix[i][j] == 0:\n                matrix[i][0] = 0\n                matrix[0][j] = 0\n    \n    # Set zeros based on markers\n    for i in range(1, m):\n        for j in range(1, n):\n            if matrix[i][0] == 0 or matrix[0][j] == 0:\n                matrix[i][j] = 0\n    \n    # Set first row to zero if needed\n    if first_row_has_zero:\n        for j in range(n):\n            matrix[0][j] = 0\n    \n    # Set first column to zero if needed\n    if first_col_has_zero:\n        for i in range(m):\n            matrix[i][0] = 0",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
@@ -1980,19 +1980,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 74: Search a 2D Matrix - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Search a 2D Matrix",
+        "input": "Input for Search a 2D Matrix",
         "output": "Expected output for Search a 2D Matrix",
         "explanation": "Explanation of how to solve Search a 2D Matrix"
       }
     ],
-    "pseudocode": "Algorithm for Search a 2D Matrix:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Search a 2D Matrix\ndef solve_74():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve74():\n    // Matrix traversal approach\n    if matrix.length == 0:\n        return []\n    \n    m = matrix.length\n    n = matrix[0].length\n    result = []\n    \n    for i = 0 to m - 1:\n        for j = 0 to n - 1:\n            // Your logic here\n            pass\n    \n    return result",
+    "pythonCode": "def solve_74():\n    # Matrix traversal approach\n    if not matrix:\n        return []\n    \n    m, n = len(matrix), len(matrix[0])\n    result = []\n    \n    for i in range(m):\n        for j in range(n):\n            # Your logic here\n            pass\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Search a 2D Matrix",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Search a 2D Matrix",
+      "Key insight 3: Understand the problem constraints for Search a 2D Matrix"
     ]
   },
   {
@@ -2007,19 +2007,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 75: Sort Colors - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Sort Colors",
+        "input": "Input for Sort Colors",
         "output": "Expected output for Sort Colors",
         "explanation": "Explanation of how to solve Sort Colors"
       }
     ],
-    "pseudocode": "Algorithm for Sort Colors:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Sort Colors\ndef solve_75():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve75():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_75():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Sort Colors",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Sort Colors",
+      "Key insight 3: Understand the problem constraints for Sort Colors"
     ]
   },
   {
@@ -2060,19 +2060,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 77: Combinations - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Combinations",
+        "input": "Input for Combinations",
         "output": "Expected output for Combinations",
         "explanation": "Explanation of how to solve Combinations"
       }
     ],
-    "pseudocode": "Algorithm for Combinations:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Combinations\ndef solve_77():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve77():\n    // Algorithm approach for Combinations\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_77():\n    # Algorithm approach for Combinations\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Combinations",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Combinations",
+      "Key insight 3: Understand the problem constraints for Combinations"
     ]
   },
   {
@@ -2087,19 +2087,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 78: Subsets - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Subsets",
+        "input": "Input for Subsets",
         "output": "Expected output for Subsets",
         "explanation": "Explanation of how to solve Subsets"
       }
     ],
-    "pseudocode": "Algorithm for Subsets:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Subsets\ndef solve_78():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve78():\n    // Algorithm approach for Subsets\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_78():\n    # Algorithm approach for Subsets\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Subsets",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Subsets",
+      "Key insight 3: Understand the problem constraints for Subsets"
     ]
   },
   {
@@ -2114,19 +2114,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 79: Word Search - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Word Search",
+        "input": "Input for Word Search",
         "output": "Expected output for Word Search",
         "explanation": "Explanation of how to solve Word Search"
       }
     ],
-    "pseudocode": "Algorithm for Word Search:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Word Search\ndef solve_79():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve79():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_79():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Word Search",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Word Search",
+      "Key insight 3: Understand the problem constraints for Word Search"
     ]
   },
   {
@@ -2141,19 +2141,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 80: Remove Duplicates from Sorted Array II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Remove Duplicates from Sorted Array II",
+        "input": "Input for Remove Duplicates from Sorted Array II",
         "output": "Expected output for Remove Duplicates from Sorted Array II",
         "explanation": "Explanation of how to solve Remove Duplicates from Sorted Array II"
       }
     ],
-    "pseudocode": "Algorithm for Remove Duplicates from Sorted Array II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Remove Duplicates from Sorted Array II\ndef solve_80():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve80():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_80():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Remove Duplicates from Sorted Array II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Remove Duplicates from Sorted Array II",
+      "Key insight 3: Understand the problem constraints for Remove Duplicates from Sorted Array II"
     ]
   },
   {
@@ -2167,19 +2167,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 81: Search in Rotated Sorted Array II - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Search in Rotated Sorted Array II",
+        "input": "Input for Search in Rotated Sorted Array II",
         "output": "Expected output for Search in Rotated Sorted Array II",
         "explanation": "Explanation of how to solve Search in Rotated Sorted Array II"
       }
     ],
-    "pseudocode": "Algorithm for Search in Rotated Sorted Array II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Search in Rotated Sorted Array II\ndef solve_81():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve81():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_81():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Search in Rotated Sorted Array II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Search in Rotated Sorted Array II",
+      "Key insight 3: Understand the problem constraints for Search in Rotated Sorted Array II"
     ]
   },
   {
@@ -2194,19 +2194,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 82: Remove Duplicates from Sorted List II - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Remove Duplicates from Sorted List II",
+        "input": "Input for Remove Duplicates from Sorted List II",
         "output": "Expected output for Remove Duplicates from Sorted List II",
         "explanation": "Explanation of how to solve Remove Duplicates from Sorted List II"
       }
     ],
-    "pseudocode": "Algorithm for Remove Duplicates from Sorted List II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Remove Duplicates from Sorted List II\ndef solve_82():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve82():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_82():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Remove Duplicates from Sorted List II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Remove Duplicates from Sorted List II",
+      "Key insight 3: Understand the problem constraints for Remove Duplicates from Sorted List II"
     ]
   },
   {
@@ -2221,19 +2221,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 83: Remove Duplicates from Sorted List - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Remove Duplicates from Sorted List",
+        "input": "Input for Remove Duplicates from Sorted List",
         "output": "Expected output for Remove Duplicates from Sorted List",
         "explanation": "Explanation of how to solve Remove Duplicates from Sorted List"
       }
     ],
-    "pseudocode": "Algorithm for Remove Duplicates from Sorted List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Remove Duplicates from Sorted List\ndef solve_83():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve83():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_83():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Remove Duplicates from Sorted List",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Remove Duplicates from Sorted List",
+      "Key insight 3: Understand the problem constraints for Remove Duplicates from Sorted List"
     ]
   },
   {
@@ -2305,19 +2305,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 86: Partition List - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Partition List",
+        "input": "Input for Partition List",
         "output": "Expected output for Partition List",
         "explanation": "Explanation of how to solve Partition List"
       }
     ],
-    "pseudocode": "Algorithm for Partition List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Partition List\ndef solve_86():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve86():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_86():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Partition List",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Partition List",
+      "Key insight 3: Understand the problem constraints for Partition List"
     ]
   },
   {
@@ -2359,19 +2359,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 88: Merge Sorted Array - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Merge Sorted Array",
+        "input": "Input for Merge Sorted Array",
         "output": "Expected output for Merge Sorted Array",
         "explanation": "Explanation of how to solve Merge Sorted Array"
       }
     ],
-    "pseudocode": "Algorithm for Merge Sorted Array:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Merge Sorted Array\ndef solve_88():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve88():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_88():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Merge Sorted Array",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Merge Sorted Array",
+      "Key insight 3: Understand the problem constraints for Merge Sorted Array"
     ]
   },
   {
@@ -2385,19 +2385,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 89: Gray Code - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Gray Code",
+        "input": "Input for Gray Code",
         "output": "Expected output for Gray Code",
         "explanation": "Explanation of how to solve Gray Code"
       }
     ],
-    "pseudocode": "Algorithm for Gray Code:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Gray Code\ndef solve_89():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve89():\n    // Algorithm approach for Gray Code\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_89():\n    # Algorithm approach for Gray Code\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Gray Code",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Gray Code",
+      "Key insight 3: Understand the problem constraints for Gray Code"
     ]
   },
   {
@@ -2412,19 +2412,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 90: Subsets II - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Subsets II",
+        "input": "Input for Subsets II",
         "output": "Expected output for Subsets II",
         "explanation": "Explanation of how to solve Subsets II"
       }
     ],
-    "pseudocode": "Algorithm for Subsets II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Subsets II\ndef solve_90():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve90():\n    // Algorithm approach for Subsets II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_90():\n    # Algorithm approach for Subsets II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Subsets II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Subsets II",
+      "Key insight 3: Understand the problem constraints for Subsets II"
     ]
   },
   {
@@ -2466,19 +2466,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 92: Reverse Linked List II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Reverse Linked List II",
+        "input": "Input for Reverse Linked List II",
         "output": "Expected output for Reverse Linked List II",
         "explanation": "Explanation of how to solve Reverse Linked List II"
       }
     ],
-    "pseudocode": "Algorithm for Reverse Linked List II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Reverse Linked List II\ndef solve_92():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve92():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_92():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Reverse Linked List II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Reverse Linked List II",
+      "Key insight 3: Understand the problem constraints for Reverse Linked List II"
     ]
   },
   {
@@ -2492,19 +2492,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 93: Restore IP Addresses - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Restore IP Addresses",
+        "input": "Input for Restore IP Addresses",
         "output": "Expected output for Restore IP Addresses",
         "explanation": "Explanation of how to solve Restore IP Addresses"
       }
     ],
-    "pseudocode": "Algorithm for Restore IP Addresses:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Restore IP Addresses\ndef solve_93():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve93():\n    // Algorithm approach for Restore IP Addresses\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_93():\n    # Algorithm approach for Restore IP Addresses\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Restore IP Addresses",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Restore IP Addresses",
+      "Key insight 3: Understand the problem constraints for Restore IP Addresses"
     ]
   },
   {
@@ -2519,19 +2519,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 94: Binary Tree Inorder Traversal - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Inorder Traversal",
+        "input": "Input for Binary Tree Inorder Traversal",
         "output": "Expected output for Binary Tree Inorder Traversal",
         "explanation": "Explanation of how to solve Binary Tree Inorder Traversal"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Inorder Traversal:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Inorder Traversal\ndef solve_94():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve94():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_94():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Inorder Traversal",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Inorder Traversal",
+      "Key insight 3: Understand the problem constraints for Binary Tree Inorder Traversal"
     ]
   },
   {
@@ -2631,19 +2631,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 98: Validate Binary Search Tree - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Validate Binary Search Tree",
+        "input": "Input for Validate Binary Search Tree",
         "output": "Expected output for Validate Binary Search Tree",
         "explanation": "Explanation of how to solve Validate Binary Search Tree"
       }
     ],
-    "pseudocode": "Algorithm for Validate Binary Search Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Validate Binary Search Tree\ndef solve_98():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve98():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_98():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Validate Binary Search Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Validate Binary Search Tree",
+      "Key insight 3: Understand the problem constraints for Validate Binary Search Tree"
     ]
   },
   {
@@ -2658,19 +2658,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 99: Recover Binary Search Tree - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Recover Binary Search Tree",
+        "input": "Input for Recover Binary Search Tree",
         "output": "Expected output for Recover Binary Search Tree",
         "explanation": "Explanation of how to solve Recover Binary Search Tree"
       }
     ],
-    "pseudocode": "Algorithm for Recover Binary Search Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Recover Binary Search Tree\ndef solve_99():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve99():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_99():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Recover Binary Search Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Recover Binary Search Tree",
+      "Key insight 3: Understand the problem constraints for Recover Binary Search Tree"
     ]
   },
   {
@@ -2685,19 +2685,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 100: Same Tree - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Same Tree",
+        "input": "Input for Same Tree",
         "output": "Expected output for Same Tree",
         "explanation": "Explanation of how to solve Same Tree"
       }
     ],
-    "pseudocode": "Algorithm for Same Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Same Tree\ndef solve_100():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve100():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_100():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Same Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Same Tree",
+      "Key insight 3: Understand the problem constraints for Same Tree"
     ]
   },
   {
@@ -2711,19 +2711,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 101: Symmetric Tree - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Symmetric Tree",
+        "input": "Input for Symmetric Tree",
         "output": "Expected output for Symmetric Tree",
         "explanation": "Explanation of how to solve Symmetric Tree"
       }
     ],
-    "pseudocode": "Algorithm for Symmetric Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Symmetric Tree\ndef solve_101():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve101():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_101():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Symmetric Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Symmetric Tree",
+      "Key insight 3: Understand the problem constraints for Symmetric Tree"
     ]
   },
   {
@@ -2738,19 +2738,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 102: Binary Tree Level Order Traversal - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Level Order Traversal",
+        "input": "Input for Binary Tree Level Order Traversal",
         "output": "Expected output for Binary Tree Level Order Traversal",
         "explanation": "Explanation of how to solve Binary Tree Level Order Traversal"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Level Order Traversal:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Level Order Traversal\ndef solve_102():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve102():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_102():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Level Order Traversal",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Level Order Traversal",
+      "Key insight 3: Understand the problem constraints for Binary Tree Level Order Traversal"
     ]
   },
   {
@@ -2765,19 +2765,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 103: Binary Tree Zigzag Level Order Traversal - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Zigzag Level Order Traversal",
+        "input": "Input for Binary Tree Zigzag Level Order Traversal",
         "output": "Expected output for Binary Tree Zigzag Level Order Traversal",
         "explanation": "Explanation of how to solve Binary Tree Zigzag Level Order Traversal"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Zigzag Level Order Traversal:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Zigzag Level Order Traversal\ndef solve_103():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve103():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_103():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Zigzag Level Order Traversal",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Zigzag Level Order Traversal",
+      "Key insight 3: Understand the problem constraints for Binary Tree Zigzag Level Order Traversal"
     ]
   },
   {
@@ -2792,19 +2792,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 104: Maximum Depth of Binary Tree - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Maximum Depth of Binary Tree",
+        "input": "Input for Maximum Depth of Binary Tree",
         "output": "Expected output for Maximum Depth of Binary Tree",
         "explanation": "Explanation of how to solve Maximum Depth of Binary Tree"
       }
     ],
-    "pseudocode": "Algorithm for Maximum Depth of Binary Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Maximum Depth of Binary Tree\ndef solve_104():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve104():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_104():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Maximum Depth of Binary Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Maximum Depth of Binary Tree",
+      "Key insight 3: Understand the problem constraints for Maximum Depth of Binary Tree"
     ]
   },
   {
@@ -2818,19 +2818,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 105: Construct Binary Tree from Preorder and Inorder Traversal - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Construct Binary Tree from Preorder and Inorder Traversal",
+        "input": "Input for Construct Binary Tree from Preorder and Inorder Traversal",
         "output": "Expected output for Construct Binary Tree from Preorder and Inorder Traversal",
         "explanation": "Explanation of how to solve Construct Binary Tree from Preorder and Inorder Traversal"
       }
     ],
-    "pseudocode": "Algorithm for Construct Binary Tree from Preorder and Inorder Traversal:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Construct Binary Tree from Preorder and Inorder Traversal\ndef solve_105():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve105():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_105():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Construct Binary Tree from Preorder and Inorder Traversal",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Construct Binary Tree from Preorder and Inorder Traversal",
+      "Key insight 3: Understand the problem constraints for Construct Binary Tree from Preorder and Inorder Traversal"
     ]
   },
   {
@@ -2845,19 +2845,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 106: Construct Binary Tree from Inorder and Postorder Traversal - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Construct Binary Tree from Inorder and Postorder Traversal",
+        "input": "Input for Construct Binary Tree from Inorder and Postorder Traversal",
         "output": "Expected output for Construct Binary Tree from Inorder and Postorder Traversal",
         "explanation": "Explanation of how to solve Construct Binary Tree from Inorder and Postorder Traversal"
       }
     ],
-    "pseudocode": "Algorithm for Construct Binary Tree from Inorder and Postorder Traversal:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Construct Binary Tree from Inorder and Postorder Traversal\ndef solve_106():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve106():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_106():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Construct Binary Tree from Inorder and Postorder Traversal",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Construct Binary Tree from Inorder and Postorder Traversal",
+      "Key insight 3: Understand the problem constraints for Construct Binary Tree from Inorder and Postorder Traversal"
     ]
   },
   {
@@ -2872,19 +2872,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 107: Binary Tree Level Order Traversal II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Level Order Traversal II",
+        "input": "Input for Binary Tree Level Order Traversal II",
         "output": "Expected output for Binary Tree Level Order Traversal II",
         "explanation": "Explanation of how to solve Binary Tree Level Order Traversal II"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Level Order Traversal II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Level Order Traversal II\ndef solve_107():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve107():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_107():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Level Order Traversal II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Level Order Traversal II",
+      "Key insight 3: Understand the problem constraints for Binary Tree Level Order Traversal II"
     ]
   },
   {
@@ -2899,19 +2899,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 108: Convert Sorted Array to Binary Search Tree - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Convert Sorted Array to Binary Search Tree",
+        "input": "Input for Convert Sorted Array to Binary Search Tree",
         "output": "Expected output for Convert Sorted Array to Binary Search Tree",
         "explanation": "Explanation of how to solve Convert Sorted Array to Binary Search Tree"
       }
     ],
-    "pseudocode": "Algorithm for Convert Sorted Array to Binary Search Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Convert Sorted Array to Binary Search Tree\ndef solve_108():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve108():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_108():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Convert Sorted Array to Binary Search Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Convert Sorted Array to Binary Search Tree",
+      "Key insight 3: Understand the problem constraints for Convert Sorted Array to Binary Search Tree"
     ]
   },
   {
@@ -2925,19 +2925,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 109: Convert Sorted List to Binary Search Tree - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Convert Sorted List to Binary Search Tree",
+        "input": "Input for Convert Sorted List to Binary Search Tree",
         "output": "Expected output for Convert Sorted List to Binary Search Tree",
         "explanation": "Explanation of how to solve Convert Sorted List to Binary Search Tree"
       }
     ],
-    "pseudocode": "Algorithm for Convert Sorted List to Binary Search Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Convert Sorted List to Binary Search Tree\ndef solve_109():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve109():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_109():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Convert Sorted List to Binary Search Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Convert Sorted List to Binary Search Tree",
+      "Key insight 3: Understand the problem constraints for Convert Sorted List to Binary Search Tree"
     ]
   },
   {
@@ -2952,19 +2952,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 110: Balanced Binary Tree - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Balanced Binary Tree",
+        "input": "Input for Balanced Binary Tree",
         "output": "Expected output for Balanced Binary Tree",
         "explanation": "Explanation of how to solve Balanced Binary Tree"
       }
     ],
-    "pseudocode": "Algorithm for Balanced Binary Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Balanced Binary Tree\ndef solve_110():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve110():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_110():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Balanced Binary Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Balanced Binary Tree",
+      "Key insight 3: Understand the problem constraints for Balanced Binary Tree"
     ]
   },
   {
@@ -2979,19 +2979,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 111: Minimum Depth of Binary Tree - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Minimum Depth of Binary Tree",
+        "input": "Input for Minimum Depth of Binary Tree",
         "output": "Expected output for Minimum Depth of Binary Tree",
         "explanation": "Explanation of how to solve Minimum Depth of Binary Tree"
       }
     ],
-    "pseudocode": "Algorithm for Minimum Depth of Binary Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Minimum Depth of Binary Tree\ndef solve_111():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve111():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_111():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Minimum Depth of Binary Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Minimum Depth of Binary Tree",
+      "Key insight 3: Understand the problem constraints for Minimum Depth of Binary Tree"
     ]
   },
   {
@@ -3006,19 +3006,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 112: Path Sum - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Path Sum",
+        "input": "Input for Path Sum",
         "output": "Expected output for Path Sum",
         "explanation": "Explanation of how to solve Path Sum"
       }
     ],
-    "pseudocode": "Algorithm for Path Sum:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Path Sum\ndef solve_112():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve112():\n    // Algorithm approach for Path Sum\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_112():\n    # Algorithm approach for Path Sum\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Path Sum",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Path Sum",
+      "Key insight 3: Understand the problem constraints for Path Sum"
     ]
   },
   {
@@ -3032,19 +3032,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 113: Path Sum II - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Path Sum II",
+        "input": "Input for Path Sum II",
         "output": "Expected output for Path Sum II",
         "explanation": "Explanation of how to solve Path Sum II"
       }
     ],
-    "pseudocode": "Algorithm for Path Sum II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Path Sum II\ndef solve_113():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve113():\n    // Algorithm approach for Path Sum II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_113():\n    # Algorithm approach for Path Sum II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Path Sum II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Path Sum II",
+      "Key insight 3: Understand the problem constraints for Path Sum II"
     ]
   },
   {
@@ -3059,19 +3059,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 114: Flatten Binary Tree to Linked List - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Flatten Binary Tree to Linked List",
+        "input": "Input for Flatten Binary Tree to Linked List",
         "output": "Expected output for Flatten Binary Tree to Linked List",
         "explanation": "Explanation of how to solve Flatten Binary Tree to Linked List"
       }
     ],
-    "pseudocode": "Algorithm for Flatten Binary Tree to Linked List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Flatten Binary Tree to Linked List\ndef solve_114():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve114():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_114():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Flatten Binary Tree to Linked List",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Flatten Binary Tree to Linked List",
+      "Key insight 3: Understand the problem constraints for Flatten Binary Tree to Linked List"
     ]
   },
   {
@@ -3113,19 +3113,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 116: Populating Next Right Pointers in Each Node - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Populating Next Right Pointers in Each Node",
+        "input": "Input for Populating Next Right Pointers in Each Node",
         "output": "Expected output for Populating Next Right Pointers in Each Node",
         "explanation": "Explanation of how to solve Populating Next Right Pointers in Each Node"
       }
     ],
-    "pseudocode": "Algorithm for Populating Next Right Pointers in Each Node:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Populating Next Right Pointers in Each Node\ndef solve_116():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve116():\n    // Algorithm approach for Populating Next Right Pointers in Each Node\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_116():\n    # Algorithm approach for Populating Next Right Pointers in Each Node\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Populating Next Right Pointers in Each Node",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Populating Next Right Pointers in Each Node",
+      "Key insight 3: Understand the problem constraints for Populating Next Right Pointers in Each Node"
     ]
   },
   {
@@ -3139,19 +3139,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 117: Populating Next Right Pointers in Each Node II - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Populating Next Right Pointers in Each Node II",
+        "input": "Input for Populating Next Right Pointers in Each Node II",
         "output": "Expected output for Populating Next Right Pointers in Each Node II",
         "explanation": "Explanation of how to solve Populating Next Right Pointers in Each Node II"
       }
     ],
-    "pseudocode": "Algorithm for Populating Next Right Pointers in Each Node II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Populating Next Right Pointers in Each Node II\ndef solve_117():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve117():\n    // Algorithm approach for Populating Next Right Pointers in Each Node II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_117():\n    # Algorithm approach for Populating Next Right Pointers in Each Node II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Populating Next Right Pointers in Each Node II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Populating Next Right Pointers in Each Node II",
+      "Key insight 3: Understand the problem constraints for Populating Next Right Pointers in Each Node II"
     ]
   },
   {
@@ -3166,19 +3166,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 118: Pascal's Triangle - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Pascal's Triangle",
+        "input": "Input for Pascal's Triangle",
         "output": "Expected output for Pascal's Triangle",
         "explanation": "Explanation of how to solve Pascal's Triangle"
       }
     ],
-    "pseudocode": "Algorithm for Pascal's Triangle:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Pascal's Triangle\ndef solve_118():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve118():\n    // Algorithm approach for Pascal's Triangle\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_118():\n    # Algorithm approach for Pascal's Triangle\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Pascal's Triangle",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Pascal's Triangle",
+      "Key insight 3: Understand the problem constraints for Pascal's Triangle"
     ]
   },
   {
@@ -3193,19 +3193,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 119: Pascal's Triangle II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Pascal's Triangle II",
+        "input": "Input for Pascal's Triangle II",
         "output": "Expected output for Pascal's Triangle II",
         "explanation": "Explanation of how to solve Pascal's Triangle II"
       }
     ],
-    "pseudocode": "Algorithm for Pascal's Triangle II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Pascal's Triangle II\ndef solve_119():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve119():\n    // Algorithm approach for Pascal's Triangle II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_119():\n    # Algorithm approach for Pascal's Triangle II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Pascal's Triangle II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Pascal's Triangle II",
+      "Key insight 3: Understand the problem constraints for Pascal's Triangle II"
     ]
   },
   {
@@ -3356,19 +3356,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 125: Valid Palindrome - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Valid Palindrome",
+        "input": "Input for Valid Palindrome",
         "output": "Expected output for Valid Palindrome",
         "explanation": "Explanation of how to solve Valid Palindrome"
       }
     ],
-    "pseudocode": "Algorithm for Valid Palindrome:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Valid Palindrome\ndef solve_125():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve125():\n    // Algorithm approach for Valid Palindrome\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_125():\n    # Algorithm approach for Valid Palindrome\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Valid Palindrome",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Valid Palindrome",
+      "Key insight 3: Understand the problem constraints for Valid Palindrome"
     ]
   },
   {
@@ -3383,19 +3383,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 126: Word Ladder II - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Word Ladder II",
+        "input": "Input for Word Ladder II",
         "output": "Expected output for Word Ladder II",
         "explanation": "Explanation of how to solve Word Ladder II"
       }
     ],
-    "pseudocode": "Algorithm for Word Ladder II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Word Ladder II\ndef solve_126():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve126():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_126():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Word Ladder II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Word Ladder II",
+      "Key insight 3: Understand the problem constraints for Word Ladder II"
     ]
   },
   {
@@ -3410,19 +3410,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 127: Word Ladder - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Word Ladder",
+        "input": "Input for Word Ladder",
         "output": "Expected output for Word Ladder",
         "explanation": "Explanation of how to solve Word Ladder"
       }
     ],
-    "pseudocode": "Algorithm for Word Ladder:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Word Ladder\ndef solve_127():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve127():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_127():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Word Ladder",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Word Ladder",
+      "Key insight 3: Understand the problem constraints for Word Ladder"
     ]
   },
   {
@@ -3437,19 +3437,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 128: Longest Consecutive Sequence - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Longest Consecutive Sequence",
+        "input": "Input for Longest Consecutive Sequence",
         "output": "Expected output for Longest Consecutive Sequence",
         "explanation": "Explanation of how to solve Longest Consecutive Sequence"
       }
     ],
-    "pseudocode": "Algorithm for Longest Consecutive Sequence:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Longest Consecutive Sequence\ndef solve_128():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve128():\n    // Algorithm approach for Longest Consecutive Sequence\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_128():\n    # Algorithm approach for Longest Consecutive Sequence\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Longest Consecutive Sequence",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Longest Consecutive Sequence",
+      "Key insight 3: Understand the problem constraints for Longest Consecutive Sequence"
     ]
   },
   {
@@ -3463,19 +3463,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 129: Sum Root to Leaf Numbers - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Sum Root to Leaf Numbers",
+        "input": "Input for Sum Root to Leaf Numbers",
         "output": "Expected output for Sum Root to Leaf Numbers",
         "explanation": "Explanation of how to solve Sum Root to Leaf Numbers"
       }
     ],
-    "pseudocode": "Algorithm for Sum Root to Leaf Numbers:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Sum Root to Leaf Numbers\ndef solve_129():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve129():\n    // Algorithm approach for Sum Root to Leaf Numbers\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_129():\n    # Algorithm approach for Sum Root to Leaf Numbers\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Sum Root to Leaf Numbers",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Sum Root to Leaf Numbers",
+      "Key insight 3: Understand the problem constraints for Sum Root to Leaf Numbers"
     ]
   },
   {
@@ -3490,19 +3490,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 130: Surrounded Regions - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Surrounded Regions",
+        "input": "Input for Surrounded Regions",
         "output": "Expected output for Surrounded Regions",
         "explanation": "Explanation of how to solve Surrounded Regions"
       }
     ],
-    "pseudocode": "Algorithm for Surrounded Regions:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Surrounded Regions\ndef solve_130():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve130():\n    // Algorithm approach for Surrounded Regions\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_130():\n    # Algorithm approach for Surrounded Regions\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Surrounded Regions",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Surrounded Regions",
+      "Key insight 3: Understand the problem constraints for Surrounded Regions"
     ]
   },
   {
@@ -3571,19 +3571,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 133: Clone Graph - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Clone Graph",
+        "input": "Input for Clone Graph",
         "output": "Expected output for Clone Graph",
         "explanation": "Explanation of how to solve Clone Graph"
       }
     ],
-    "pseudocode": "Algorithm for Clone Graph:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Clone Graph\ndef solve_133():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve133():\n    // Algorithm approach for Clone Graph\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_133():\n    # Algorithm approach for Clone Graph\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Clone Graph",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Clone Graph",
+      "Key insight 3: Understand the problem constraints for Clone Graph"
     ]
   },
   {
@@ -3598,19 +3598,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 134: Gas Station - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Gas Station",
+        "input": "Input for Gas Station",
         "output": "Expected output for Gas Station",
         "explanation": "Explanation of how to solve Gas Station"
       }
     ],
-    "pseudocode": "Algorithm for Gas Station:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Gas Station\ndef solve_134():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve134():\n    // Algorithm approach for Gas Station\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_134():\n    # Algorithm approach for Gas Station\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Gas Station",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Gas Station",
+      "Key insight 3: Understand the problem constraints for Gas Station"
     ]
   },
   {
@@ -3625,19 +3625,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 135: Candy - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Candy",
+        "input": "Input for Candy",
         "output": "Expected output for Candy",
         "explanation": "Explanation of how to solve Candy"
       }
     ],
-    "pseudocode": "Algorithm for Candy:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Candy\ndef solve_135():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve135():\n    // Algorithm approach for Candy\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_135():\n    # Algorithm approach for Candy\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Candy",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Candy",
+      "Key insight 3: Understand the problem constraints for Candy"
     ]
   },
   {
@@ -3652,19 +3652,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 136: Single Number - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Single Number",
+        "input": "Input for Single Number",
         "output": "Expected output for Single Number",
         "explanation": "Explanation of how to solve Single Number"
       }
     ],
-    "pseudocode": "Algorithm for Single Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Single Number\ndef solve_136():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve136():\n    // Algorithm approach for Single Number\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_136():\n    # Algorithm approach for Single Number\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Single Number",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Single Number",
+      "Key insight 3: Understand the problem constraints for Single Number"
     ]
   },
   {
@@ -3678,19 +3678,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 137: Single Number II - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Single Number II",
+        "input": "Input for Single Number II",
         "output": "Expected output for Single Number II",
         "explanation": "Explanation of how to solve Single Number II"
       }
     ],
-    "pseudocode": "Algorithm for Single Number II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Single Number II\ndef solve_137():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve137():\n    // Algorithm approach for Single Number II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_137():\n    # Algorithm approach for Single Number II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Single Number II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Single Number II",
+      "Key insight 3: Understand the problem constraints for Single Number II"
     ]
   },
   {
@@ -3705,19 +3705,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 138: Copy List with Random Pointer - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Copy List with Random Pointer",
+        "input": "Input for Copy List with Random Pointer",
         "output": "Expected output for Copy List with Random Pointer",
         "explanation": "Explanation of how to solve Copy List with Random Pointer"
       }
     ],
-    "pseudocode": "Algorithm for Copy List with Random Pointer:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Copy List with Random Pointer\ndef solve_138():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve138():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_138():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Copy List with Random Pointer",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Copy List with Random Pointer",
+      "Key insight 3: Understand the problem constraints for Copy List with Random Pointer"
     ]
   },
   {
@@ -3788,19 +3788,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 141: Linked List Cycle - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Linked List Cycle",
+        "input": "Input for Linked List Cycle",
         "output": "Expected output for Linked List Cycle",
         "explanation": "Explanation of how to solve Linked List Cycle"
       }
     ],
-    "pseudocode": "Algorithm for Linked List Cycle:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Linked List Cycle\ndef solve_141():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve141():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_141():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Linked List Cycle",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Linked List Cycle",
+      "Key insight 3: Understand the problem constraints for Linked List Cycle"
     ]
   },
   {
@@ -3815,19 +3815,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 142: Linked List Cycle II - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Linked List Cycle II",
+        "input": "Input for Linked List Cycle II",
         "output": "Expected output for Linked List Cycle II",
         "explanation": "Explanation of how to solve Linked List Cycle II"
       }
     ],
-    "pseudocode": "Algorithm for Linked List Cycle II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Linked List Cycle II\ndef solve_142():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve142():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_142():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Linked List Cycle II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Linked List Cycle II",
+      "Key insight 3: Understand the problem constraints for Linked List Cycle II"
     ]
   },
   {
@@ -3842,19 +3842,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 143: Reorder List - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Reorder List",
+        "input": "Input for Reorder List",
         "output": "Expected output for Reorder List",
         "explanation": "Explanation of how to solve Reorder List"
       }
     ],
-    "pseudocode": "Algorithm for Reorder List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Reorder List\ndef solve_143():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve143():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_143():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Reorder List",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Reorder List",
+      "Key insight 3: Understand the problem constraints for Reorder List"
     ]
   },
   {
@@ -3869,19 +3869,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 144: Binary Tree Preorder Traversal - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Preorder Traversal",
+        "input": "Input for Binary Tree Preorder Traversal",
         "output": "Expected output for Binary Tree Preorder Traversal",
         "explanation": "Explanation of how to solve Binary Tree Preorder Traversal"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Preorder Traversal:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Preorder Traversal\ndef solve_144():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve144():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_144():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Preorder Traversal",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Preorder Traversal",
+      "Key insight 3: Understand the problem constraints for Binary Tree Preorder Traversal"
     ]
   },
   {
@@ -3895,19 +3895,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 145: Binary Tree Postorder Traversal - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Postorder Traversal",
+        "input": "Input for Binary Tree Postorder Traversal",
         "output": "Expected output for Binary Tree Postorder Traversal",
         "explanation": "Explanation of how to solve Binary Tree Postorder Traversal"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Postorder Traversal:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Postorder Traversal\ndef solve_145():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve145():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_145():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Postorder Traversal",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Postorder Traversal",
+      "Key insight 3: Understand the problem constraints for Binary Tree Postorder Traversal"
     ]
   },
   {
@@ -3922,19 +3922,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 146: LRU Cache - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for LRU Cache",
+        "input": "Input for LRU Cache",
         "output": "Expected output for LRU Cache",
         "explanation": "Explanation of how to solve LRU Cache"
       }
     ],
-    "pseudocode": "Algorithm for LRU Cache:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for LRU Cache\ndef solve_146():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve146():\n    // Algorithm approach for LRU Cache\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_146():\n    # Algorithm approach for LRU Cache\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for LRU Cache",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for LRU Cache",
+      "Key insight 3: Understand the problem constraints for LRU Cache"
     ]
   },
   {
@@ -3949,19 +3949,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 147: Insertion Sort List - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Insertion Sort List",
+        "input": "Input for Insertion Sort List",
         "output": "Expected output for Insertion Sort List",
         "explanation": "Explanation of how to solve Insertion Sort List"
       }
     ],
-    "pseudocode": "Algorithm for Insertion Sort List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Insertion Sort List\ndef solve_147():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve147():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_147():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Insertion Sort List",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Insertion Sort List",
+      "Key insight 3: Understand the problem constraints for Insertion Sort List"
     ]
   },
   {
@@ -3976,19 +3976,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 148: Sort List - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Sort List",
+        "input": "Input for Sort List",
         "output": "Expected output for Sort List",
         "explanation": "Explanation of how to solve Sort List"
       }
     ],
-    "pseudocode": "Algorithm for Sort List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Sort List\ndef solve_148():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve148():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_148():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Sort List",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Sort List",
+      "Key insight 3: Understand the problem constraints for Sort List"
     ]
   },
   {
@@ -4002,19 +4002,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 149: Max Points on a Line - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Max Points on a Line",
+        "input": "Input for Max Points on a Line",
         "output": "Expected output for Max Points on a Line",
         "explanation": "Explanation of how to solve Max Points on a Line"
       }
     ],
-    "pseudocode": "Algorithm for Max Points on a Line:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Max Points on a Line\ndef solve_149():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve149():\n    // Algorithm approach for Max Points on a Line\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_149():\n    # Algorithm approach for Max Points on a Line\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Max Points on a Line",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Max Points on a Line",
+      "Key insight 3: Understand the problem constraints for Max Points on a Line"
     ]
   },
   {
@@ -4029,19 +4029,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 150: Evaluate Reverse Polish Notation - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Evaluate Reverse Polish Notation",
+        "input": "Input for Evaluate Reverse Polish Notation",
         "output": "Expected output for Evaluate Reverse Polish Notation",
         "explanation": "Explanation of how to solve Evaluate Reverse Polish Notation"
       }
     ],
-    "pseudocode": "Algorithm for Evaluate Reverse Polish Notation:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Evaluate Reverse Polish Notation\ndef solve_150():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve150():\n    // Algorithm approach for Evaluate Reverse Polish Notation\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_150():\n    # Algorithm approach for Evaluate Reverse Polish Notation\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Evaluate Reverse Polish Notation",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Evaluate Reverse Polish Notation",
+      "Key insight 3: Understand the problem constraints for Evaluate Reverse Polish Notation"
     ]
   },
   {
@@ -4056,19 +4056,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 151: Reverse Words in a String - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Reverse Words in a String",
+        "input": "Input for Reverse Words in a String",
         "output": "Expected output for Reverse Words in a String",
         "explanation": "Explanation of how to solve Reverse Words in a String"
       }
     ],
-    "pseudocode": "Algorithm for Reverse Words in a String:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Reverse Words in a String\ndef solve_151():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve151():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_151():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Reverse Words in a String",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Reverse Words in a String",
+      "Key insight 3: Understand the problem constraints for Reverse Words in a String"
     ]
   },
   {
@@ -4109,19 +4109,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 153: Find Minimum in Rotated Sorted Array - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Find Minimum in Rotated Sorted Array",
+        "input": "Input for Find Minimum in Rotated Sorted Array",
         "output": "Expected output for Find Minimum in Rotated Sorted Array",
         "explanation": "Explanation of how to solve Find Minimum in Rotated Sorted Array"
       }
     ],
-    "pseudocode": "Algorithm for Find Minimum in Rotated Sorted Array:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Find Minimum in Rotated Sorted Array\ndef solve_153():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve153():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_153():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Find Minimum in Rotated Sorted Array",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Find Minimum in Rotated Sorted Array",
+      "Key insight 3: Understand the problem constraints for Find Minimum in Rotated Sorted Array"
     ]
   },
   {
@@ -4136,19 +4136,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 154: Find Minimum in Rotated Sorted Array II - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Find Minimum in Rotated Sorted Array II",
+        "input": "Input for Find Minimum in Rotated Sorted Array II",
         "output": "Expected output for Find Minimum in Rotated Sorted Array II",
         "explanation": "Explanation of how to solve Find Minimum in Rotated Sorted Array II"
       }
     ],
-    "pseudocode": "Algorithm for Find Minimum in Rotated Sorted Array II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Find Minimum in Rotated Sorted Array II\ndef solve_154():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve154():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_154():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Find Minimum in Rotated Sorted Array II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Find Minimum in Rotated Sorted Array II",
+      "Key insight 3: Understand the problem constraints for Find Minimum in Rotated Sorted Array II"
     ]
   },
   {
@@ -4163,19 +4163,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 155: Min Stack - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Min Stack",
+        "input": "Input for Min Stack",
         "output": "Expected output for Min Stack",
         "explanation": "Explanation of how to solve Min Stack"
       }
     ],
-    "pseudocode": "Algorithm for Min Stack:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Min Stack\ndef solve_155():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve155():\n    // Algorithm approach for Min Stack\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_155():\n    # Algorithm approach for Min Stack\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Min Stack",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Min Stack",
+      "Key insight 3: Understand the problem constraints for Min Stack"
     ]
   },
   {
@@ -4190,19 +4190,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 156: Binary Tree Upside Down - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Upside Down",
+        "input": "Input for Binary Tree Upside Down",
         "output": "Expected output for Binary Tree Upside Down",
         "explanation": "Explanation of how to solve Binary Tree Upside Down"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Upside Down:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Upside Down\ndef solve_156():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve156():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_156():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Upside Down",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Upside Down",
+      "Key insight 3: Understand the problem constraints for Binary Tree Upside Down"
     ]
   },
   {
@@ -4216,19 +4216,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 157: Read N Characters Given Read4 - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Read N Characters Given Read4",
+        "input": "Input for Read N Characters Given Read4",
         "output": "Expected output for Read N Characters Given Read4",
         "explanation": "Explanation of how to solve Read N Characters Given Read4"
       }
     ],
-    "pseudocode": "Algorithm for Read N Characters Given Read4:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Read N Characters Given Read4\ndef solve_157():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve157():\n    // Algorithm approach for Read N Characters Given Read4\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_157():\n    # Algorithm approach for Read N Characters Given Read4\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Read N Characters Given Read4",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Read N Characters Given Read4",
+      "Key insight 3: Understand the problem constraints for Read N Characters Given Read4"
     ]
   },
   {
@@ -4243,19 +4243,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 158: Read N Characters Given Read4 II - Call multiple times - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Read N Characters Given Read4 II - Call multiple times",
+        "input": "Input for Read N Characters Given Read4 II - Call multiple times",
         "output": "Expected output for Read N Characters Given Read4 II - Call multiple times",
         "explanation": "Explanation of how to solve Read N Characters Given Read4 II - Call multiple times"
       }
     ],
-    "pseudocode": "Algorithm for Read N Characters Given Read4 II - Call multiple times:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Read N Characters Given Read4 II - Call multiple times\ndef solve_158():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve158():\n    // Algorithm approach for Read N Characters Given Read4 II - Call multiple times\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_158():\n    # Algorithm approach for Read N Characters Given Read4 II - Call multiple times\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Read N Characters Given Read4 II - Call multiple times",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Read N Characters Given Read4 II - Call multiple times",
+      "Key insight 3: Understand the problem constraints for Read N Characters Given Read4 II - Call multiple times"
     ]
   },
   {
@@ -4270,19 +4270,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 159: Longest Substring with At Most Two Distinct Characters - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Longest Substring with At Most Two Distinct Characters",
+        "input": "Input for Longest Substring with At Most Two Distinct Characters",
         "output": "Expected output for Longest Substring with At Most Two Distinct Characters",
         "explanation": "Explanation of how to solve Longest Substring with At Most Two Distinct Characters"
       }
     ],
-    "pseudocode": "Algorithm for Longest Substring with At Most Two Distinct Characters:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Longest Substring with At Most Two Distinct Characters\ndef solve_159():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve159():\n    // Algorithm approach for Longest Substring with At Most Two Distinct Characters\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_159():\n    # Algorithm approach for Longest Substring with At Most Two Distinct Characters\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Longest Substring with At Most Two Distinct Characters",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Longest Substring with At Most Two Distinct Characters",
+      "Key insight 3: Understand the problem constraints for Longest Substring with At Most Two Distinct Characters"
     ]
   },
   {
@@ -4297,19 +4297,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 160: Intersection of Two Linked Lists - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Intersection of Two Linked Lists",
+        "input": "Input for Intersection of Two Linked Lists",
         "output": "Expected output for Intersection of Two Linked Lists",
         "explanation": "Explanation of how to solve Intersection of Two Linked Lists"
       }
     ],
-    "pseudocode": "Algorithm for Intersection of Two Linked Lists:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Intersection of Two Linked Lists\ndef solve_160():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve160():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_160():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Intersection of Two Linked Lists",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Intersection of Two Linked Lists",
+      "Key insight 3: Understand the problem constraints for Intersection of Two Linked Lists"
     ]
   },
   {
@@ -4323,19 +4323,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 161: One Edit Distance - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for One Edit Distance",
+        "input": "Input for One Edit Distance",
         "output": "Expected output for One Edit Distance",
         "explanation": "Explanation of how to solve One Edit Distance"
       }
     ],
-    "pseudocode": "Algorithm for One Edit Distance:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for One Edit Distance\ndef solve_161():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve161():\n    // Algorithm approach for One Edit Distance\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_161():\n    # Algorithm approach for One Edit Distance\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for One Edit Distance",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for One Edit Distance",
+      "Key insight 3: Understand the problem constraints for One Edit Distance"
     ]
   },
   {
@@ -4350,19 +4350,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 162: Find Peak Element - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Find Peak Element",
+        "input": "Input for Find Peak Element",
         "output": "Expected output for Find Peak Element",
         "explanation": "Explanation of how to solve Find Peak Element"
       }
     ],
-    "pseudocode": "Algorithm for Find Peak Element:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Find Peak Element\ndef solve_162():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve162():\n    // Algorithm approach for Find Peak Element\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_162():\n    # Algorithm approach for Find Peak Element\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Find Peak Element",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Find Peak Element",
+      "Key insight 3: Understand the problem constraints for Find Peak Element"
     ]
   },
   {
@@ -4377,19 +4377,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 163: Missing Ranges - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Missing Ranges",
+        "input": "Input for Missing Ranges",
         "output": "Expected output for Missing Ranges",
         "explanation": "Explanation of how to solve Missing Ranges"
       }
     ],
-    "pseudocode": "Algorithm for Missing Ranges:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Missing Ranges\ndef solve_163():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve163():\n    // Algorithm approach for Missing Ranges\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_163():\n    # Algorithm approach for Missing Ranges\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Missing Ranges",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Missing Ranges",
+      "Key insight 3: Understand the problem constraints for Missing Ranges"
     ]
   },
   {
@@ -4404,19 +4404,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 164: Maximum Gap - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Maximum Gap",
+        "input": "Input for Maximum Gap",
         "output": "Expected output for Maximum Gap",
         "explanation": "Explanation of how to solve Maximum Gap"
       }
     ],
-    "pseudocode": "Algorithm for Maximum Gap:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Maximum Gap\ndef solve_164():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve164():\n    // Algorithm approach for Maximum Gap\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_164():\n    # Algorithm approach for Maximum Gap\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Maximum Gap",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Maximum Gap",
+      "Key insight 3: Understand the problem constraints for Maximum Gap"
     ]
   },
   {
@@ -4430,19 +4430,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 165: Compare Version Numbers - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Compare Version Numbers",
+        "input": "Input for Compare Version Numbers",
         "output": "Expected output for Compare Version Numbers",
         "explanation": "Explanation of how to solve Compare Version Numbers"
       }
     ],
-    "pseudocode": "Algorithm for Compare Version Numbers:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Compare Version Numbers\ndef solve_165():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve165():\n    // Algorithm approach for Compare Version Numbers\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_165():\n    # Algorithm approach for Compare Version Numbers\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Compare Version Numbers",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Compare Version Numbers",
+      "Key insight 3: Understand the problem constraints for Compare Version Numbers"
     ]
   },
   {
@@ -4457,19 +4457,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 166: Fraction to Recurring Decimal - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Fraction to Recurring Decimal",
+        "input": "Input for Fraction to Recurring Decimal",
         "output": "Expected output for Fraction to Recurring Decimal",
         "explanation": "Explanation of how to solve Fraction to Recurring Decimal"
       }
     ],
-    "pseudocode": "Algorithm for Fraction to Recurring Decimal:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Fraction to Recurring Decimal\ndef solve_166():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve166():\n    // Algorithm approach for Fraction to Recurring Decimal\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_166():\n    # Algorithm approach for Fraction to Recurring Decimal\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Fraction to Recurring Decimal",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Fraction to Recurring Decimal",
+      "Key insight 3: Understand the problem constraints for Fraction to Recurring Decimal"
     ]
   },
   {
@@ -4484,19 +4484,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 167: Two Sum II - Input Array Is Sorted - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Two Sum II - Input Array Is Sorted",
+        "input": "Input for Two Sum II - Input Array Is Sorted",
         "output": "Expected output for Two Sum II - Input Array Is Sorted",
         "explanation": "Explanation of how to solve Two Sum II - Input Array Is Sorted"
       }
     ],
-    "pseudocode": "Algorithm for Two Sum II - Input Array Is Sorted:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Two Sum II - Input Array Is Sorted\ndef solve_167():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve167():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_167():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Two Sum II - Input Array Is Sorted",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Two Sum II - Input Array Is Sorted",
+      "Key insight 3: Understand the problem constraints for Two Sum II - Input Array Is Sorted"
     ]
   },
   {
@@ -4511,19 +4511,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 168: Excel Sheet Column Title - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Excel Sheet Column Title",
+        "input": "Input for Excel Sheet Column Title",
         "output": "Expected output for Excel Sheet Column Title",
         "explanation": "Explanation of how to solve Excel Sheet Column Title"
       }
     ],
-    "pseudocode": "Algorithm for Excel Sheet Column Title:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Excel Sheet Column Title\ndef solve_168():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve168():\n    // Algorithm approach for Excel Sheet Column Title\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_168():\n    # Algorithm approach for Excel Sheet Column Title\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Excel Sheet Column Title",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Excel Sheet Column Title",
+      "Key insight 3: Understand the problem constraints for Excel Sheet Column Title"
     ]
   },
   {
@@ -4537,19 +4537,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 169: Majority Element - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Majority Element",
+        "input": "Input for Majority Element",
         "output": "Expected output for Majority Element",
         "explanation": "Explanation of how to solve Majority Element"
       }
     ],
-    "pseudocode": "Algorithm for Majority Element:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Majority Element\ndef solve_169():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve169():\n    // Algorithm approach for Majority Element\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_169():\n    # Algorithm approach for Majority Element\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Majority Element",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Majority Element",
+      "Key insight 3: Understand the problem constraints for Majority Element"
     ]
   },
   {
@@ -4564,19 +4564,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 170: Two Sum III - Data structure design - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Two Sum III - Data structure design",
+        "input": "Input for Two Sum III - Data structure design",
         "output": "Expected output for Two Sum III - Data structure design",
         "explanation": "Explanation of how to solve Two Sum III - Data structure design"
       }
     ],
-    "pseudocode": "Algorithm for Two Sum III - Data structure design:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Two Sum III - Data structure design\ndef solve_170():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve170():\n    // Algorithm approach for Two Sum III - Data structure design\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_170():\n    # Algorithm approach for Two Sum III - Data structure design\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Two Sum III - Data structure design",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Two Sum III - Data structure design",
+      "Key insight 3: Understand the problem constraints for Two Sum III - Data structure design"
     ]
   },
   {
@@ -4591,19 +4591,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 171: Excel Sheet Column Number - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Excel Sheet Column Number",
+        "input": "Input for Excel Sheet Column Number",
         "output": "Expected output for Excel Sheet Column Number",
         "explanation": "Explanation of how to solve Excel Sheet Column Number"
       }
     ],
-    "pseudocode": "Algorithm for Excel Sheet Column Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Excel Sheet Column Number\ndef solve_171():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve171():\n    // Algorithm approach for Excel Sheet Column Number\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_171():\n    # Algorithm approach for Excel Sheet Column Number\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Excel Sheet Column Number",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Excel Sheet Column Number",
+      "Key insight 3: Understand the problem constraints for Excel Sheet Column Number"
     ]
   },
   {
@@ -4618,19 +4618,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 172: Factorial Trailing Zeroes - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Factorial Trailing Zeroes",
+        "input": "Input for Factorial Trailing Zeroes",
         "output": "Expected output for Factorial Trailing Zeroes",
         "explanation": "Explanation of how to solve Factorial Trailing Zeroes"
       }
     ],
-    "pseudocode": "Algorithm for Factorial Trailing Zeroes:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Factorial Trailing Zeroes\ndef solve_172():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve172():\n    // Algorithm approach for Factorial Trailing Zeroes\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_172():\n    # Algorithm approach for Factorial Trailing Zeroes\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Factorial Trailing Zeroes",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Factorial Trailing Zeroes",
+      "Key insight 3: Understand the problem constraints for Factorial Trailing Zeroes"
     ]
   },
   {
@@ -4644,19 +4644,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 173: Binary Search Tree Iterator - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Binary Search Tree Iterator",
+        "input": "Input for Binary Search Tree Iterator",
         "output": "Expected output for Binary Search Tree Iterator",
         "explanation": "Explanation of how to solve Binary Search Tree Iterator"
       }
     ],
-    "pseudocode": "Algorithm for Binary Search Tree Iterator:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Search Tree Iterator\ndef solve_173():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve173():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_173():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Search Tree Iterator",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Search Tree Iterator",
+      "Key insight 3: Understand the problem constraints for Binary Search Tree Iterator"
     ]
   },
   {
@@ -4699,19 +4699,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 175: Combine Two Tables - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Combine Two Tables",
+        "input": "Input for Combine Two Tables",
         "output": "Expected output for Combine Two Tables",
         "explanation": "Explanation of how to solve Combine Two Tables"
       }
     ],
-    "pseudocode": "Algorithm for Combine Two Tables:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Combine Two Tables\ndef solve_175():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve175():\n    // Algorithm approach for Combine Two Tables\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_175():\n    # Algorithm approach for Combine Two Tables\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Combine Two Tables",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Combine Two Tables",
+      "Key insight 3: Understand the problem constraints for Combine Two Tables"
     ]
   },
   {
@@ -4726,19 +4726,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 176: Second Highest Salary - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Second Highest Salary",
+        "input": "Input for Second Highest Salary",
         "output": "Expected output for Second Highest Salary",
         "explanation": "Explanation of how to solve Second Highest Salary"
       }
     ],
-    "pseudocode": "Algorithm for Second Highest Salary:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Second Highest Salary\ndef solve_176():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve176():\n    // Algorithm approach for Second Highest Salary\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_176():\n    # Algorithm approach for Second Highest Salary\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Second Highest Salary",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Second Highest Salary",
+      "Key insight 3: Understand the problem constraints for Second Highest Salary"
     ]
   },
   {
@@ -4752,19 +4752,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 177: Nth Highest Salary - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Nth Highest Salary",
+        "input": "Input for Nth Highest Salary",
         "output": "Expected output for Nth Highest Salary",
         "explanation": "Explanation of how to solve Nth Highest Salary"
       }
     ],
-    "pseudocode": "Algorithm for Nth Highest Salary:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Nth Highest Salary\ndef solve_177():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve177():\n    // Algorithm approach for Nth Highest Salary\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_177():\n    # Algorithm approach for Nth Highest Salary\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Nth Highest Salary",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Nth Highest Salary",
+      "Key insight 3: Understand the problem constraints for Nth Highest Salary"
     ]
   },
   {
@@ -4779,19 +4779,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 178: Rank Scores - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Rank Scores",
+        "input": "Input for Rank Scores",
         "output": "Expected output for Rank Scores",
         "explanation": "Explanation of how to solve Rank Scores"
       }
     ],
-    "pseudocode": "Algorithm for Rank Scores:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Rank Scores\ndef solve_178():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve178():\n    // Algorithm approach for Rank Scores\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_178():\n    # Algorithm approach for Rank Scores\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Rank Scores",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Rank Scores",
+      "Key insight 3: Understand the problem constraints for Rank Scores"
     ]
   },
   {
@@ -4806,19 +4806,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 179: Largest Number - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Largest Number",
+        "input": "Input for Largest Number",
         "output": "Expected output for Largest Number",
         "explanation": "Explanation of how to solve Largest Number"
       }
     ],
-    "pseudocode": "Algorithm for Largest Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Largest Number\ndef solve_179():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve179():\n    // Algorithm approach for Largest Number\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_179():\n    # Algorithm approach for Largest Number\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Largest Number",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Largest Number",
+      "Key insight 3: Understand the problem constraints for Largest Number"
     ]
   },
   {
@@ -4833,19 +4833,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 180: Consecutive Numbers - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Consecutive Numbers",
+        "input": "Input for Consecutive Numbers",
         "output": "Expected output for Consecutive Numbers",
         "explanation": "Explanation of how to solve Consecutive Numbers"
       }
     ],
-    "pseudocode": "Algorithm for Consecutive Numbers:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Consecutive Numbers\ndef solve_180():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve180():\n    // Algorithm approach for Consecutive Numbers\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_180():\n    # Algorithm approach for Consecutive Numbers\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Consecutive Numbers",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Consecutive Numbers",
+      "Key insight 3: Understand the problem constraints for Consecutive Numbers"
     ]
   },
   {
@@ -4859,19 +4859,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 181: Employees Earning More Than Their Managers - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Employees Earning More Than Their Managers",
+        "input": "Input for Employees Earning More Than Their Managers",
         "output": "Expected output for Employees Earning More Than Their Managers",
         "explanation": "Explanation of how to solve Employees Earning More Than Their Managers"
       }
     ],
-    "pseudocode": "Algorithm for Employees Earning More Than Their Managers:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Employees Earning More Than Their Managers\ndef solve_181():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve181():\n    // Algorithm approach for Employees Earning More Than Their Managers\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_181():\n    # Algorithm approach for Employees Earning More Than Their Managers\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Employees Earning More Than Their Managers",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Employees Earning More Than Their Managers",
+      "Key insight 3: Understand the problem constraints for Employees Earning More Than Their Managers"
     ]
   },
   {
@@ -4886,19 +4886,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 182: Duplicate Emails - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Duplicate Emails",
+        "input": "Input for Duplicate Emails",
         "output": "Expected output for Duplicate Emails",
         "explanation": "Explanation of how to solve Duplicate Emails"
       }
     ],
-    "pseudocode": "Algorithm for Duplicate Emails:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Duplicate Emails\ndef solve_182():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve182():\n    // Algorithm approach for Duplicate Emails\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_182():\n    # Algorithm approach for Duplicate Emails\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Duplicate Emails",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Duplicate Emails",
+      "Key insight 3: Understand the problem constraints for Duplicate Emails"
     ]
   },
   {
@@ -4913,19 +4913,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 183: Customers Who Never Order - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Customers Who Never Order",
+        "input": "Input for Customers Who Never Order",
         "output": "Expected output for Customers Who Never Order",
         "explanation": "Explanation of how to solve Customers Who Never Order"
       }
     ],
-    "pseudocode": "Algorithm for Customers Who Never Order:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Customers Who Never Order\ndef solve_183():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve183():\n    // Algorithm approach for Customers Who Never Order\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_183():\n    # Algorithm approach for Customers Who Never Order\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Customers Who Never Order",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Customers Who Never Order",
+      "Key insight 3: Understand the problem constraints for Customers Who Never Order"
     ]
   },
   {
@@ -4940,19 +4940,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 184: Department Highest Salary - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Department Highest Salary",
+        "input": "Input for Department Highest Salary",
         "output": "Expected output for Department Highest Salary",
         "explanation": "Explanation of how to solve Department Highest Salary"
       }
     ],
-    "pseudocode": "Algorithm for Department Highest Salary:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Department Highest Salary\ndef solve_184():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve184():\n    // Algorithm approach for Department Highest Salary\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_184():\n    # Algorithm approach for Department Highest Salary\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Department Highest Salary",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Department Highest Salary",
+      "Key insight 3: Understand the problem constraints for Department Highest Salary"
     ]
   },
   {
@@ -4966,19 +4966,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 185: Department Top Three Salaries - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Department Top Three Salaries",
+        "input": "Input for Department Top Three Salaries",
         "output": "Expected output for Department Top Three Salaries",
         "explanation": "Explanation of how to solve Department Top Three Salaries"
       }
     ],
-    "pseudocode": "Algorithm for Department Top Three Salaries:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Department Top Three Salaries\ndef solve_185():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve185():\n    // Algorithm approach for Department Top Three Salaries\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_185():\n    # Algorithm approach for Department Top Three Salaries\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Department Top Three Salaries",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Department Top Three Salaries",
+      "Key insight 3: Understand the problem constraints for Department Top Three Salaries"
     ]
   },
   {
@@ -4993,19 +4993,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 186: Reverse Words in a String II - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Reverse Words in a String II",
+        "input": "Input for Reverse Words in a String II",
         "output": "Expected output for Reverse Words in a String II",
         "explanation": "Explanation of how to solve Reverse Words in a String II"
       }
     ],
-    "pseudocode": "Algorithm for Reverse Words in a String II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Reverse Words in a String II\ndef solve_186():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve186():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_186():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Reverse Words in a String II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Reverse Words in a String II",
+      "Key insight 3: Understand the problem constraints for Reverse Words in a String II"
     ]
   },
   {
@@ -5020,19 +5020,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 187: Repeated DNA Sequences - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Repeated DNA Sequences",
+        "input": "Input for Repeated DNA Sequences",
         "output": "Expected output for Repeated DNA Sequences",
         "explanation": "Explanation of how to solve Repeated DNA Sequences"
       }
     ],
-    "pseudocode": "Algorithm for Repeated DNA Sequences:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Repeated DNA Sequences\ndef solve_187():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve187():\n    // Algorithm approach for Repeated DNA Sequences\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_187():\n    # Algorithm approach for Repeated DNA Sequences\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Repeated DNA Sequences",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Repeated DNA Sequences",
+      "Key insight 3: Understand the problem constraints for Repeated DNA Sequences"
     ]
   },
   {
@@ -5073,19 +5073,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 189: Rotate Array - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Rotate Array",
+        "input": "Input for Rotate Array",
         "output": "Expected output for Rotate Array",
         "explanation": "Explanation of how to solve Rotate Array"
       }
     ],
-    "pseudocode": "Algorithm for Rotate Array:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Rotate Array\ndef solve_189():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve189():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_189():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Rotate Array",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Rotate Array",
+      "Key insight 3: Understand the problem constraints for Rotate Array"
     ]
   },
   {
@@ -5100,19 +5100,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 190: Reverse Bits - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Reverse Bits",
+        "input": "Input for Reverse Bits",
         "output": "Expected output for Reverse Bits",
         "explanation": "Explanation of how to solve Reverse Bits"
       }
     ],
-    "pseudocode": "Algorithm for Reverse Bits:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Reverse Bits\ndef solve_190():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve190():\n    // Algorithm approach for Reverse Bits\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_190():\n    # Algorithm approach for Reverse Bits\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Reverse Bits",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Reverse Bits",
+      "Key insight 3: Understand the problem constraints for Reverse Bits"
     ]
   },
   {
@@ -5127,19 +5127,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 191: Number of 1 Bits - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Number of 1 Bits",
+        "input": "Input for Number of 1 Bits",
         "output": "Expected output for Number of 1 Bits",
         "explanation": "Explanation of how to solve Number of 1 Bits"
       }
     ],
-    "pseudocode": "Algorithm for Number of 1 Bits:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Number of 1 Bits\ndef solve_191():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve191():\n    // Algorithm approach for Number of 1 Bits\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_191():\n    # Algorithm approach for Number of 1 Bits\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Number of 1 Bits",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Number of 1 Bits",
+      "Key insight 3: Understand the problem constraints for Number of 1 Bits"
     ]
   },
   {
@@ -5154,19 +5154,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 192: Word Frequency - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Word Frequency",
+        "input": "Input for Word Frequency",
         "output": "Expected output for Word Frequency",
         "explanation": "Explanation of how to solve Word Frequency"
       }
     ],
-    "pseudocode": "Algorithm for Word Frequency:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Word Frequency\ndef solve_192():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve192():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_192():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Word Frequency",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Word Frequency",
+      "Key insight 3: Understand the problem constraints for Word Frequency"
     ]
   },
   {
@@ -5180,19 +5180,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 193: Valid Phone Numbers - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Valid Phone Numbers",
+        "input": "Input for Valid Phone Numbers",
         "output": "Expected output for Valid Phone Numbers",
         "explanation": "Explanation of how to solve Valid Phone Numbers"
       }
     ],
-    "pseudocode": "Algorithm for Valid Phone Numbers:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Valid Phone Numbers\ndef solve_193():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve193():\n    // Algorithm approach for Valid Phone Numbers\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_193():\n    # Algorithm approach for Valid Phone Numbers\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Valid Phone Numbers",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Valid Phone Numbers",
+      "Key insight 3: Understand the problem constraints for Valid Phone Numbers"
     ]
   },
   {
@@ -5207,19 +5207,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 194: Transpose File - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Transpose File",
+        "input": "Input for Transpose File",
         "output": "Expected output for Transpose File",
         "explanation": "Explanation of how to solve Transpose File"
       }
     ],
-    "pseudocode": "Algorithm for Transpose File:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Transpose File\ndef solve_194():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve194():\n    // Algorithm approach for Transpose File\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_194():\n    # Algorithm approach for Transpose File\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Transpose File",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Transpose File",
+      "Key insight 3: Understand the problem constraints for Transpose File"
     ]
   },
   {
@@ -5234,19 +5234,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 195: Tenth Line - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Tenth Line",
+        "input": "Input for Tenth Line",
         "output": "Expected output for Tenth Line",
         "explanation": "Explanation of how to solve Tenth Line"
       }
     ],
-    "pseudocode": "Algorithm for Tenth Line:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Tenth Line\ndef solve_195():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve195():\n    // Algorithm approach for Tenth Line\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_195():\n    # Algorithm approach for Tenth Line\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Tenth Line",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Tenth Line",
+      "Key insight 3: Understand the problem constraints for Tenth Line"
     ]
   },
   {
@@ -5261,19 +5261,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 196: Delete Duplicate Emails - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Delete Duplicate Emails",
+        "input": "Input for Delete Duplicate Emails",
         "output": "Expected output for Delete Duplicate Emails",
         "explanation": "Explanation of how to solve Delete Duplicate Emails"
       }
     ],
-    "pseudocode": "Algorithm for Delete Duplicate Emails:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Delete Duplicate Emails\ndef solve_196():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve196():\n    // Algorithm approach for Delete Duplicate Emails\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_196():\n    # Algorithm approach for Delete Duplicate Emails\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Delete Duplicate Emails",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Delete Duplicate Emails",
+      "Key insight 3: Understand the problem constraints for Delete Duplicate Emails"
     ]
   },
   {
@@ -5287,19 +5287,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 197: Rising Temperature - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Rising Temperature",
+        "input": "Input for Rising Temperature",
         "output": "Expected output for Rising Temperature",
         "explanation": "Explanation of how to solve Rising Temperature"
       }
     ],
-    "pseudocode": "Algorithm for Rising Temperature:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Rising Temperature\ndef solve_197():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve197():\n    // Algorithm approach for Rising Temperature\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_197():\n    # Algorithm approach for Rising Temperature\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Rising Temperature",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Rising Temperature",
+      "Key insight 3: Understand the problem constraints for Rising Temperature"
     ]
   },
   {
@@ -5341,19 +5341,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 199: Binary Tree Right Side View - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Right Side View",
+        "input": "Input for Binary Tree Right Side View",
         "output": "Expected output for Binary Tree Right Side View",
         "explanation": "Explanation of how to solve Binary Tree Right Side View"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Right Side View:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Right Side View\ndef solve_199():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve199():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_199():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Right Side View",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Right Side View",
+      "Key insight 3: Understand the problem constraints for Binary Tree Right Side View"
     ]
   },
   {
@@ -5368,19 +5368,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 200: Number of Islands - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Number of Islands",
+        "input": "Input for Number of Islands",
         "output": "Expected output for Number of Islands",
         "explanation": "Explanation of how to solve Number of Islands"
       }
     ],
-    "pseudocode": "Algorithm for Number of Islands:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Number of Islands\ndef solve_200():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve200():\n    // Algorithm approach for Number of Islands\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_200():\n    # Algorithm approach for Number of Islands\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Number of Islands",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Number of Islands",
+      "Key insight 3: Understand the problem constraints for Number of Islands"
     ]
   },
   {
@@ -5394,19 +5394,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 201: Bitwise AND of Numbers Range - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Bitwise AND of Numbers Range",
+        "input": "Input for Bitwise AND of Numbers Range",
         "output": "Expected output for Bitwise AND of Numbers Range",
         "explanation": "Explanation of how to solve Bitwise AND of Numbers Range"
       }
     ],
-    "pseudocode": "Algorithm for Bitwise AND of Numbers Range:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Bitwise AND of Numbers Range\ndef solve_201():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve201():\n    // Algorithm approach for Bitwise AND of Numbers Range\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_201():\n    # Algorithm approach for Bitwise AND of Numbers Range\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Bitwise AND of Numbers Range",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Bitwise AND of Numbers Range",
+      "Key insight 3: Understand the problem constraints for Bitwise AND of Numbers Range"
     ]
   },
   {
@@ -5421,19 +5421,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 202: Happy Number - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Happy Number",
+        "input": "Input for Happy Number",
         "output": "Expected output for Happy Number",
         "explanation": "Explanation of how to solve Happy Number"
       }
     ],
-    "pseudocode": "Algorithm for Happy Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Happy Number\ndef solve_202():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve202():\n    // Algorithm approach for Happy Number\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_202():\n    # Algorithm approach for Happy Number\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Happy Number",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Happy Number",
+      "Key insight 3: Understand the problem constraints for Happy Number"
     ]
   },
   {
@@ -5448,19 +5448,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 203: Remove Linked List Elements - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Remove Linked List Elements",
+        "input": "Input for Remove Linked List Elements",
         "output": "Expected output for Remove Linked List Elements",
         "explanation": "Explanation of how to solve Remove Linked List Elements"
       }
     ],
-    "pseudocode": "Algorithm for Remove Linked List Elements:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Remove Linked List Elements\ndef solve_203():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve203():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_203():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Remove Linked List Elements",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Remove Linked List Elements",
+      "Key insight 3: Understand the problem constraints for Remove Linked List Elements"
     ]
   },
   {
@@ -5475,19 +5475,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 204: Count Primes - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Count Primes",
+        "input": "Input for Count Primes",
         "output": "Expected output for Count Primes",
         "explanation": "Explanation of how to solve Count Primes"
       }
     ],
-    "pseudocode": "Algorithm for Count Primes:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Count Primes\ndef solve_204():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve204():\n    // Algorithm approach for Count Primes\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_204():\n    # Algorithm approach for Count Primes\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Count Primes",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Count Primes",
+      "Key insight 3: Understand the problem constraints for Count Primes"
     ]
   },
   {
@@ -5501,19 +5501,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 205: Isomorphic Strings - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Isomorphic Strings",
+        "input": "Input for Isomorphic Strings",
         "output": "Expected output for Isomorphic Strings",
         "explanation": "Explanation of how to solve Isomorphic Strings"
       }
     ],
-    "pseudocode": "Algorithm for Isomorphic Strings:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Isomorphic Strings\ndef solve_205():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve205():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_205():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Isomorphic Strings",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Isomorphic Strings",
+      "Key insight 3: Understand the problem constraints for Isomorphic Strings"
     ]
   },
   {
@@ -5528,19 +5528,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 206: Reverse Linked List - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Reverse Linked List",
+        "input": "Input for Reverse Linked List",
         "output": "Expected output for Reverse Linked List",
         "explanation": "Explanation of how to solve Reverse Linked List"
       }
     ],
-    "pseudocode": "Algorithm for Reverse Linked List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Reverse Linked List\ndef solve_206():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve206():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_206():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Reverse Linked List",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Reverse Linked List",
+      "Key insight 3: Understand the problem constraints for Reverse Linked List"
     ]
   },
   {
@@ -5555,19 +5555,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 207: Course Schedule - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Course Schedule",
+        "input": "Input for Course Schedule",
         "output": "Expected output for Course Schedule",
         "explanation": "Explanation of how to solve Course Schedule"
       }
     ],
-    "pseudocode": "Algorithm for Course Schedule:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Course Schedule\ndef solve_207():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve207():\n    // Algorithm approach for Course Schedule\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_207():\n    # Algorithm approach for Course Schedule\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Course Schedule",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Course Schedule",
+      "Key insight 3: Understand the problem constraints for Course Schedule"
     ]
   },
   {
@@ -5582,19 +5582,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 208: Implement Trie (Prefix Tree) - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Implement Trie (Prefix Tree)",
+        "input": "Input for Implement Trie (Prefix Tree)",
         "output": "Expected output for Implement Trie (Prefix Tree)",
         "explanation": "Explanation of how to solve Implement Trie (Prefix Tree)"
       }
     ],
-    "pseudocode": "Algorithm for Implement Trie (Prefix Tree):\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Implement Trie (Prefix Tree)\ndef solve_208():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve208():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_208():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Implement Trie (Prefix Tree)",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Implement Trie (Prefix Tree)",
+      "Key insight 3: Understand the problem constraints for Implement Trie (Prefix Tree)"
     ]
   },
   {
@@ -5608,19 +5608,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 209: Minimum Size Subarray Sum - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Minimum Size Subarray Sum",
+        "input": "Input for Minimum Size Subarray Sum",
         "output": "Expected output for Minimum Size Subarray Sum",
         "explanation": "Explanation of how to solve Minimum Size Subarray Sum"
       }
     ],
-    "pseudocode": "Algorithm for Minimum Size Subarray Sum:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Minimum Size Subarray Sum\ndef solve_209():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve209():\n    // Algorithm approach for Minimum Size Subarray Sum\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_209():\n    # Algorithm approach for Minimum Size Subarray Sum\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Minimum Size Subarray Sum",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Minimum Size Subarray Sum",
+      "Key insight 3: Understand the problem constraints for Minimum Size Subarray Sum"
     ]
   },
   {
@@ -5635,19 +5635,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 210: Course Schedule II - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Course Schedule II",
+        "input": "Input for Course Schedule II",
         "output": "Expected output for Course Schedule II",
         "explanation": "Explanation of how to solve Course Schedule II"
       }
     ],
-    "pseudocode": "Algorithm for Course Schedule II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Course Schedule II\ndef solve_210():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve210():\n    // Algorithm approach for Course Schedule II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_210():\n    # Algorithm approach for Course Schedule II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Course Schedule II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Course Schedule II",
+      "Key insight 3: Understand the problem constraints for Course Schedule II"
     ]
   },
   {
@@ -5662,19 +5662,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 211: Design Add and Search Words Data Structure - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Design Add and Search Words Data Structure",
+        "input": "Input for Design Add and Search Words Data Structure",
         "output": "Expected output for Design Add and Search Words Data Structure",
         "explanation": "Explanation of how to solve Design Add and Search Words Data Structure"
       }
     ],
-    "pseudocode": "Algorithm for Design Add and Search Words Data Structure:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Design Add and Search Words Data Structure\ndef solve_211():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve211():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_211():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Design Add and Search Words Data Structure",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Design Add and Search Words Data Structure",
+      "Key insight 3: Understand the problem constraints for Design Add and Search Words Data Structure"
     ]
   },
   {
@@ -5689,19 +5689,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 212: Word Search II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Word Search II",
+        "input": "Input for Word Search II",
         "output": "Expected output for Word Search II",
         "explanation": "Explanation of how to solve Word Search II"
       }
     ],
-    "pseudocode": "Algorithm for Word Search II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Word Search II\ndef solve_212():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve212():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_212():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Word Search II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Word Search II",
+      "Key insight 3: Understand the problem constraints for Word Search II"
     ]
   },
   {
@@ -5743,19 +5743,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 214: Shortest Palindrome - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Shortest Palindrome",
+        "input": "Input for Shortest Palindrome",
         "output": "Expected output for Shortest Palindrome",
         "explanation": "Explanation of how to solve Shortest Palindrome"
       }
     ],
-    "pseudocode": "Algorithm for Shortest Palindrome:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Shortest Palindrome\ndef solve_214():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve214():\n    // Algorithm approach for Shortest Palindrome\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_214():\n    # Algorithm approach for Shortest Palindrome\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Shortest Palindrome",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Shortest Palindrome",
+      "Key insight 3: Understand the problem constraints for Shortest Palindrome"
     ]
   },
   {
@@ -5770,19 +5770,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 215: Kth Largest Element in an Array - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Kth Largest Element in an Array",
+        "input": "Input for Kth Largest Element in an Array",
         "output": "Expected output for Kth Largest Element in an Array",
         "explanation": "Explanation of how to solve Kth Largest Element in an Array"
       }
     ],
-    "pseudocode": "Algorithm for Kth Largest Element in an Array:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Kth Largest Element in an Array\ndef solve_215():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve215():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_215():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Kth Largest Element in an Array",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Kth Largest Element in an Array",
+      "Key insight 3: Understand the problem constraints for Kth Largest Element in an Array"
     ]
   },
   {
@@ -5797,19 +5797,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 216: Combination Sum III - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Combination Sum III",
+        "input": "Input for Combination Sum III",
         "output": "Expected output for Combination Sum III",
         "explanation": "Explanation of how to solve Combination Sum III"
       }
     ],
-    "pseudocode": "Algorithm for Combination Sum III:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Combination Sum III\ndef solve_216():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve216():\n    // Algorithm approach for Combination Sum III\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_216():\n    # Algorithm approach for Combination Sum III\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Combination Sum III",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Combination Sum III",
+      "Key insight 3: Understand the problem constraints for Combination Sum III"
     ]
   },
   {
@@ -5823,19 +5823,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 217: Contains Duplicate - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Contains Duplicate",
+        "input": "Input for Contains Duplicate",
         "output": "Expected output for Contains Duplicate",
         "explanation": "Explanation of how to solve Contains Duplicate"
       }
     ],
-    "pseudocode": "Algorithm for Contains Duplicate:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Contains Duplicate\ndef solve_217():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve217():\n    // Algorithm approach for Contains Duplicate\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_217():\n    # Algorithm approach for Contains Duplicate\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Contains Duplicate",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Contains Duplicate",
+      "Key insight 3: Understand the problem constraints for Contains Duplicate"
     ]
   },
   {
@@ -5850,19 +5850,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 218: The Skyline Problem - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for The Skyline Problem",
+        "input": "Input for The Skyline Problem",
         "output": "Expected output for The Skyline Problem",
         "explanation": "Explanation of how to solve The Skyline Problem"
       }
     ],
-    "pseudocode": "Algorithm for The Skyline Problem:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for The Skyline Problem\ndef solve_218():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve218():\n    // Algorithm approach for The Skyline Problem\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_218():\n    # Algorithm approach for The Skyline Problem\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for The Skyline Problem",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for The Skyline Problem",
+      "Key insight 3: Understand the problem constraints for The Skyline Problem"
     ]
   },
   {
@@ -5877,19 +5877,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 219: Contains Duplicate II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Contains Duplicate II",
+        "input": "Input for Contains Duplicate II",
         "output": "Expected output for Contains Duplicate II",
         "explanation": "Explanation of how to solve Contains Duplicate II"
       }
     ],
-    "pseudocode": "Algorithm for Contains Duplicate II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Contains Duplicate II\ndef solve_219():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve219():\n    // Algorithm approach for Contains Duplicate II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_219():\n    # Algorithm approach for Contains Duplicate II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Contains Duplicate II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Contains Duplicate II",
+      "Key insight 3: Understand the problem constraints for Contains Duplicate II"
     ]
   },
   {
@@ -5904,19 +5904,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 220: Contains Duplicate III - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Contains Duplicate III",
+        "input": "Input for Contains Duplicate III",
         "output": "Expected output for Contains Duplicate III",
         "explanation": "Explanation of how to solve Contains Duplicate III"
       }
     ],
-    "pseudocode": "Algorithm for Contains Duplicate III:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Contains Duplicate III\ndef solve_220():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve220():\n    // Algorithm approach for Contains Duplicate III\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_220():\n    # Algorithm approach for Contains Duplicate III\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Contains Duplicate III",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Contains Duplicate III",
+      "Key insight 3: Understand the problem constraints for Contains Duplicate III"
     ]
   },
   {
@@ -5959,19 +5959,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 222: Count Complete Tree Nodes - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Count Complete Tree Nodes",
+        "input": "Input for Count Complete Tree Nodes",
         "output": "Expected output for Count Complete Tree Nodes",
         "explanation": "Explanation of how to solve Count Complete Tree Nodes"
       }
     ],
-    "pseudocode": "Algorithm for Count Complete Tree Nodes:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Count Complete Tree Nodes\ndef solve_222():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve222():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_222():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Count Complete Tree Nodes",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Count Complete Tree Nodes",
+      "Key insight 3: Understand the problem constraints for Count Complete Tree Nodes"
     ]
   },
   {
@@ -5986,19 +5986,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 223: Rectangle Area - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Rectangle Area",
+        "input": "Input for Rectangle Area",
         "output": "Expected output for Rectangle Area",
         "explanation": "Explanation of how to solve Rectangle Area"
       }
     ],
-    "pseudocode": "Algorithm for Rectangle Area:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Rectangle Area\ndef solve_223():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve223():\n    // Algorithm approach for Rectangle Area\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_223():\n    # Algorithm approach for Rectangle Area\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Rectangle Area",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Rectangle Area",
+      "Key insight 3: Understand the problem constraints for Rectangle Area"
     ]
   },
   {
@@ -6013,19 +6013,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 224: Basic Calculator - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Basic Calculator",
+        "input": "Input for Basic Calculator",
         "output": "Expected output for Basic Calculator",
         "explanation": "Explanation of how to solve Basic Calculator"
       }
     ],
-    "pseudocode": "Algorithm for Basic Calculator:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Basic Calculator\ndef solve_224():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve224():\n    // Algorithm approach for Basic Calculator\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_224():\n    # Algorithm approach for Basic Calculator\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Basic Calculator",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Basic Calculator",
+      "Key insight 3: Understand the problem constraints for Basic Calculator"
     ]
   },
   {
@@ -6039,19 +6039,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 225: Implement Stack using Queues - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Implement Stack using Queues",
+        "input": "Input for Implement Stack using Queues",
         "output": "Expected output for Implement Stack using Queues",
         "explanation": "Explanation of how to solve Implement Stack using Queues"
       }
     ],
-    "pseudocode": "Algorithm for Implement Stack using Queues:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Implement Stack using Queues\ndef solve_225():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve225():\n    // Algorithm approach for Implement Stack using Queues\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_225():\n    # Algorithm approach for Implement Stack using Queues\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Implement Stack using Queues",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Implement Stack using Queues",
+      "Key insight 3: Understand the problem constraints for Implement Stack using Queues"
     ]
   },
   {
@@ -6066,19 +6066,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 226: Invert Binary Tree - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Invert Binary Tree",
+        "input": "Input for Invert Binary Tree",
         "output": "Expected output for Invert Binary Tree",
         "explanation": "Explanation of how to solve Invert Binary Tree"
       }
     ],
-    "pseudocode": "Algorithm for Invert Binary Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Invert Binary Tree\ndef solve_226():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve226():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_226():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Invert Binary Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Invert Binary Tree",
+      "Key insight 3: Understand the problem constraints for Invert Binary Tree"
     ]
   },
   {
@@ -6093,19 +6093,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 227: Basic Calculator II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Basic Calculator II",
+        "input": "Input for Basic Calculator II",
         "output": "Expected output for Basic Calculator II",
         "explanation": "Explanation of how to solve Basic Calculator II"
       }
     ],
-    "pseudocode": "Algorithm for Basic Calculator II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Basic Calculator II\ndef solve_227():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve227():\n    // Algorithm approach for Basic Calculator II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_227():\n    # Algorithm approach for Basic Calculator II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Basic Calculator II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Basic Calculator II",
+      "Key insight 3: Understand the problem constraints for Basic Calculator II"
     ]
   },
   {
@@ -6120,19 +6120,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 228: Summary Ranges - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Summary Ranges",
+        "input": "Input for Summary Ranges",
         "output": "Expected output for Summary Ranges",
         "explanation": "Explanation of how to solve Summary Ranges"
       }
     ],
-    "pseudocode": "Algorithm for Summary Ranges:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Summary Ranges\ndef solve_228():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve228():\n    // Algorithm approach for Summary Ranges\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_228():\n    # Algorithm approach for Summary Ranges\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Summary Ranges",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Summary Ranges",
+      "Key insight 3: Understand the problem constraints for Summary Ranges"
     ]
   },
   {
@@ -6146,19 +6146,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 229: Majority Element II - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Majority Element II",
+        "input": "Input for Majority Element II",
         "output": "Expected output for Majority Element II",
         "explanation": "Explanation of how to solve Majority Element II"
       }
     ],
-    "pseudocode": "Algorithm for Majority Element II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Majority Element II\ndef solve_229():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve229():\n    // Algorithm approach for Majority Element II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_229():\n    # Algorithm approach for Majority Element II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Majority Element II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Majority Element II",
+      "Key insight 3: Understand the problem constraints for Majority Element II"
     ]
   },
   {
@@ -6173,19 +6173,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 230: Kth Smallest Element in a BST - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Kth Smallest Element in a BST",
+        "input": "Input for Kth Smallest Element in a BST",
         "output": "Expected output for Kth Smallest Element in a BST",
         "explanation": "Explanation of how to solve Kth Smallest Element in a BST"
       }
     ],
-    "pseudocode": "Algorithm for Kth Smallest Element in a BST:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Kth Smallest Element in a BST\ndef solve_230():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve230():\n    // Algorithm approach for Kth Smallest Element in a BST\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_230():\n    # Algorithm approach for Kth Smallest Element in a BST\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Kth Smallest Element in a BST",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Kth Smallest Element in a BST",
+      "Key insight 3: Understand the problem constraints for Kth Smallest Element in a BST"
     ]
   },
   {
@@ -6200,19 +6200,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 231: Power of Two - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Power of Two",
+        "input": "Input for Power of Two",
         "output": "Expected output for Power of Two",
         "explanation": "Explanation of how to solve Power of Two"
       }
     ],
-    "pseudocode": "Algorithm for Power of Two:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Power of Two\ndef solve_231():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve231():\n    // Algorithm approach for Power of Two\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_231():\n    # Algorithm approach for Power of Two\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Power of Two",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Power of Two",
+      "Key insight 3: Understand the problem constraints for Power of Two"
     ]
   },
   {
@@ -6227,19 +6227,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 232: Implement Queue using Stacks - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Implement Queue using Stacks",
+        "input": "Input for Implement Queue using Stacks",
         "output": "Expected output for Implement Queue using Stacks",
         "explanation": "Explanation of how to solve Implement Queue using Stacks"
       }
     ],
-    "pseudocode": "Algorithm for Implement Queue using Stacks:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Implement Queue using Stacks\ndef solve_232():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve232():\n    // Algorithm approach for Implement Queue using Stacks\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_232():\n    # Algorithm approach for Implement Queue using Stacks\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Implement Queue using Stacks",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Implement Queue using Stacks",
+      "Key insight 3: Understand the problem constraints for Implement Queue using Stacks"
     ]
   },
   {
@@ -6253,19 +6253,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 233: Number of Digit One - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Number of Digit One",
+        "input": "Input for Number of Digit One",
         "output": "Expected output for Number of Digit One",
         "explanation": "Explanation of how to solve Number of Digit One"
       }
     ],
-    "pseudocode": "Algorithm for Number of Digit One:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Number of Digit One\ndef solve_233():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve233():\n    // Algorithm approach for Number of Digit One\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_233():\n    # Algorithm approach for Number of Digit One\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Number of Digit One",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Number of Digit One",
+      "Key insight 3: Understand the problem constraints for Number of Digit One"
     ]
   },
   {
@@ -6280,19 +6280,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 234: Palindrome Linked List - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Palindrome Linked List",
+        "input": "Input for Palindrome Linked List",
         "output": "Expected output for Palindrome Linked List",
         "explanation": "Explanation of how to solve Palindrome Linked List"
       }
     ],
-    "pseudocode": "Algorithm for Palindrome Linked List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Palindrome Linked List\ndef solve_234():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve234():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_234():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Palindrome Linked List",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Palindrome Linked List",
+      "Key insight 3: Understand the problem constraints for Palindrome Linked List"
     ]
   },
   {
@@ -6307,19 +6307,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 235: Lowest Common Ancestor of a Binary Search Tree - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Lowest Common Ancestor of a Binary Search Tree",
+        "input": "Input for Lowest Common Ancestor of a Binary Search Tree",
         "output": "Expected output for Lowest Common Ancestor of a Binary Search Tree",
         "explanation": "Explanation of how to solve Lowest Common Ancestor of a Binary Search Tree"
       }
     ],
-    "pseudocode": "Algorithm for Lowest Common Ancestor of a Binary Search Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Lowest Common Ancestor of a Binary Search Tree\ndef solve_235():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve235():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_235():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Lowest Common Ancestor of a Binary Search Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Lowest Common Ancestor of a Binary Search Tree",
+      "Key insight 3: Understand the problem constraints for Lowest Common Ancestor of a Binary Search Tree"
     ]
   },
   {
@@ -6334,19 +6334,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 236: Lowest Common Ancestor of a Binary Tree - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Lowest Common Ancestor of a Binary Tree",
+        "input": "Input for Lowest Common Ancestor of a Binary Tree",
         "output": "Expected output for Lowest Common Ancestor of a Binary Tree",
         "explanation": "Explanation of how to solve Lowest Common Ancestor of a Binary Tree"
       }
     ],
-    "pseudocode": "Algorithm for Lowest Common Ancestor of a Binary Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Lowest Common Ancestor of a Binary Tree\ndef solve_236():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve236():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_236():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Lowest Common Ancestor of a Binary Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Lowest Common Ancestor of a Binary Tree",
+      "Key insight 3: Understand the problem constraints for Lowest Common Ancestor of a Binary Tree"
     ]
   },
   {
@@ -6360,19 +6360,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 237: Delete Node in a Linked List - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Delete Node in a Linked List",
+        "input": "Input for Delete Node in a Linked List",
         "output": "Expected output for Delete Node in a Linked List",
         "explanation": "Explanation of how to solve Delete Node in a Linked List"
       }
     ],
-    "pseudocode": "Algorithm for Delete Node in a Linked List:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Delete Node in a Linked List\ndef solve_237():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve237():\n    // Linked list traversal approach\n    if head == null:\n        return null\n    \n    dummy = new ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next != null:\n        // Your logic here\n        current = current.next\n    \n    return dummy.next",
+    "pythonCode": "def solve_237():\n    # Linked list traversal approach\n    if not head:\n        return None\n    \n    dummy = ListNode(0)\n    dummy.next = head\n    current = dummy\n    \n    while current.next:\n        # Your logic here\n        current = current.next\n    \n    return dummy.next",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Delete Node in a Linked List",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Delete Node in a Linked List",
+      "Key insight 3: Understand the problem constraints for Delete Node in a Linked List"
     ]
   },
   {
@@ -6387,19 +6387,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 238: Product of Array Except Self - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Product of Array Except Self",
+        "input": "Input for Product of Array Except Self",
         "output": "Expected output for Product of Array Except Self",
         "explanation": "Explanation of how to solve Product of Array Except Self"
       }
     ],
-    "pseudocode": "Algorithm for Product of Array Except Self:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Product of Array Except Self\ndef solve_238():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve238():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_238():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Product of Array Except Self",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Product of Array Except Self",
+      "Key insight 3: Understand the problem constraints for Product of Array Except Self"
     ]
   },
   {
@@ -6414,19 +6414,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 239: Sliding Window Maximum - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Sliding Window Maximum",
+        "input": "Input for Sliding Window Maximum",
         "output": "Expected output for Sliding Window Maximum",
         "explanation": "Explanation of how to solve Sliding Window Maximum"
       }
     ],
-    "pseudocode": "Algorithm for Sliding Window Maximum:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Sliding Window Maximum\ndef solve_239():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve239():\n    // Algorithm approach for Sliding Window Maximum\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_239():\n    # Algorithm approach for Sliding Window Maximum\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Sliding Window Maximum",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Sliding Window Maximum",
+      "Key insight 3: Understand the problem constraints for Sliding Window Maximum"
     ]
   },
   {
@@ -6441,19 +6441,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 240: Search a 2D Matrix II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Search a 2D Matrix II",
+        "input": "Input for Search a 2D Matrix II",
         "output": "Expected output for Search a 2D Matrix II",
         "explanation": "Explanation of how to solve Search a 2D Matrix II"
       }
     ],
-    "pseudocode": "Algorithm for Search a 2D Matrix II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Search a 2D Matrix II\ndef solve_240():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve240():\n    // Matrix traversal approach\n    if matrix.length == 0:\n        return []\n    \n    m = matrix.length\n    n = matrix[0].length\n    result = []\n    \n    for i = 0 to m - 1:\n        for j = 0 to n - 1:\n            // Your logic here\n            pass\n    \n    return result",
+    "pythonCode": "def solve_240():\n    # Matrix traversal approach\n    if not matrix:\n        return []\n    \n    m, n = len(matrix), len(matrix[0])\n    result = []\n    \n    for i in range(m):\n        for j in range(n):\n            # Your logic here\n            pass\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Search a 2D Matrix II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Search a 2D Matrix II",
+      "Key insight 3: Understand the problem constraints for Search a 2D Matrix II"
     ]
   },
   {
@@ -6467,19 +6467,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 241: Different Ways to Add Parentheses - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Different Ways to Add Parentheses",
+        "input": "Input for Different Ways to Add Parentheses",
         "output": "Expected output for Different Ways to Add Parentheses",
         "explanation": "Explanation of how to solve Different Ways to Add Parentheses"
       }
     ],
-    "pseudocode": "Algorithm for Different Ways to Add Parentheses:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Different Ways to Add Parentheses\ndef solve_241():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve241():\n    // Algorithm approach for Different Ways to Add Parentheses\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_241():\n    # Algorithm approach for Different Ways to Add Parentheses\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Different Ways to Add Parentheses",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Different Ways to Add Parentheses",
+      "Key insight 3: Understand the problem constraints for Different Ways to Add Parentheses"
     ]
   },
   {
@@ -6494,19 +6494,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 242: Valid Anagram - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Valid Anagram",
+        "input": "Input for Valid Anagram",
         "output": "Expected output for Valid Anagram",
         "explanation": "Explanation of how to solve Valid Anagram"
       }
     ],
-    "pseudocode": "Algorithm for Valid Anagram:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Valid Anagram\ndef solve_242():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve242():\n    // Algorithm approach for Valid Anagram\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_242():\n    # Algorithm approach for Valid Anagram\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Valid Anagram",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Valid Anagram",
+      "Key insight 3: Understand the problem constraints for Valid Anagram"
     ]
   },
   {
@@ -6521,19 +6521,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 243: Shortest Word Distance - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Shortest Word Distance",
+        "input": "Input for Shortest Word Distance",
         "output": "Expected output for Shortest Word Distance",
         "explanation": "Explanation of how to solve Shortest Word Distance"
       }
     ],
-    "pseudocode": "Algorithm for Shortest Word Distance:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Shortest Word Distance\ndef solve_243():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve243():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_243():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Shortest Word Distance",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Shortest Word Distance",
+      "Key insight 3: Understand the problem constraints for Shortest Word Distance"
     ]
   },
   {
@@ -6548,19 +6548,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 244: Shortest Word Distance II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Shortest Word Distance II",
+        "input": "Input for Shortest Word Distance II",
         "output": "Expected output for Shortest Word Distance II",
         "explanation": "Explanation of how to solve Shortest Word Distance II"
       }
     ],
-    "pseudocode": "Algorithm for Shortest Word Distance II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Shortest Word Distance II\ndef solve_244():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve244():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_244():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Shortest Word Distance II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Shortest Word Distance II",
+      "Key insight 3: Understand the problem constraints for Shortest Word Distance II"
     ]
   },
   {
@@ -6574,19 +6574,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 245: Shortest Word Distance III - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Shortest Word Distance III",
+        "input": "Input for Shortest Word Distance III",
         "output": "Expected output for Shortest Word Distance III",
         "explanation": "Explanation of how to solve Shortest Word Distance III"
       }
     ],
-    "pseudocode": "Algorithm for Shortest Word Distance III:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Shortest Word Distance III\ndef solve_245():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve245():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_245():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Shortest Word Distance III",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Shortest Word Distance III",
+      "Key insight 3: Understand the problem constraints for Shortest Word Distance III"
     ]
   },
   {
@@ -6601,19 +6601,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 246: Strobogrammatic Number - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Strobogrammatic Number",
+        "input": "Input for Strobogrammatic Number",
         "output": "Expected output for Strobogrammatic Number",
         "explanation": "Explanation of how to solve Strobogrammatic Number"
       }
     ],
-    "pseudocode": "Algorithm for Strobogrammatic Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Strobogrammatic Number\ndef solve_246():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve246():\n    // Algorithm approach for Strobogrammatic Number\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_246():\n    # Algorithm approach for Strobogrammatic Number\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Strobogrammatic Number",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Strobogrammatic Number",
+      "Key insight 3: Understand the problem constraints for Strobogrammatic Number"
     ]
   },
   {
@@ -6628,19 +6628,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 247: Strobogrammatic Number II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Strobogrammatic Number II",
+        "input": "Input for Strobogrammatic Number II",
         "output": "Expected output for Strobogrammatic Number II",
         "explanation": "Explanation of how to solve Strobogrammatic Number II"
       }
     ],
-    "pseudocode": "Algorithm for Strobogrammatic Number II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Strobogrammatic Number II\ndef solve_247():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve247():\n    // Algorithm approach for Strobogrammatic Number II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_247():\n    # Algorithm approach for Strobogrammatic Number II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Strobogrammatic Number II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Strobogrammatic Number II",
+      "Key insight 3: Understand the problem constraints for Strobogrammatic Number II"
     ]
   },
   {
@@ -6655,19 +6655,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 248: Strobogrammatic Number III - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Strobogrammatic Number III",
+        "input": "Input for Strobogrammatic Number III",
         "output": "Expected output for Strobogrammatic Number III",
         "explanation": "Explanation of how to solve Strobogrammatic Number III"
       }
     ],
-    "pseudocode": "Algorithm for Strobogrammatic Number III:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Strobogrammatic Number III\ndef solve_248():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve248():\n    // Algorithm approach for Strobogrammatic Number III\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_248():\n    # Algorithm approach for Strobogrammatic Number III\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Strobogrammatic Number III",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Strobogrammatic Number III",
+      "Key insight 3: Understand the problem constraints for Strobogrammatic Number III"
     ]
   },
   {
@@ -6681,19 +6681,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 249: Group Shifted Strings - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Group Shifted Strings",
+        "input": "Input for Group Shifted Strings",
         "output": "Expected output for Group Shifted Strings",
         "explanation": "Explanation of how to solve Group Shifted Strings"
       }
     ],
-    "pseudocode": "Algorithm for Group Shifted Strings:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Group Shifted Strings\ndef solve_249():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve249():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_249():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Group Shifted Strings",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Group Shifted Strings",
+      "Key insight 3: Understand the problem constraints for Group Shifted Strings"
     ]
   },
   {
@@ -6708,19 +6708,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 250: Count Univalue Subtrees - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Count Univalue Subtrees",
+        "input": "Input for Count Univalue Subtrees",
         "output": "Expected output for Count Univalue Subtrees",
         "explanation": "Explanation of how to solve Count Univalue Subtrees"
       }
     ],
-    "pseudocode": "Algorithm for Count Univalue Subtrees:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Count Univalue Subtrees\ndef solve_250():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve250():\n    // Algorithm approach for Count Univalue Subtrees\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_250():\n    # Algorithm approach for Count Univalue Subtrees\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Count Univalue Subtrees",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Count Univalue Subtrees",
+      "Key insight 3: Understand the problem constraints for Count Univalue Subtrees"
     ]
   },
   {
@@ -6735,19 +6735,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 251: Flatten 2D Vector - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Flatten 2D Vector",
+        "input": "Input for Flatten 2D Vector",
         "output": "Expected output for Flatten 2D Vector",
         "explanation": "Explanation of how to solve Flatten 2D Vector"
       }
     ],
-    "pseudocode": "Algorithm for Flatten 2D Vector:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Flatten 2D Vector\ndef solve_251():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve251():\n    // Algorithm approach for Flatten 2D Vector\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_251():\n    # Algorithm approach for Flatten 2D Vector\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Flatten 2D Vector",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Flatten 2D Vector",
+      "Key insight 3: Understand the problem constraints for Flatten 2D Vector"
     ]
   },
   {
@@ -6762,19 +6762,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 252: Meeting Rooms - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Meeting Rooms",
+        "input": "Input for Meeting Rooms",
         "output": "Expected output for Meeting Rooms",
         "explanation": "Explanation of how to solve Meeting Rooms"
       }
     ],
-    "pseudocode": "Algorithm for Meeting Rooms:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Meeting Rooms\ndef solve_252():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve252():\n    // Algorithm approach for Meeting Rooms\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_252():\n    # Algorithm approach for Meeting Rooms\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Meeting Rooms",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Meeting Rooms",
+      "Key insight 3: Understand the problem constraints for Meeting Rooms"
     ]
   },
   {
@@ -6788,19 +6788,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 253: Meeting Rooms II - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Meeting Rooms II",
+        "input": "Input for Meeting Rooms II",
         "output": "Expected output for Meeting Rooms II",
         "explanation": "Explanation of how to solve Meeting Rooms II"
       }
     ],
-    "pseudocode": "Algorithm for Meeting Rooms II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Meeting Rooms II\ndef solve_253():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve253():\n    // Algorithm approach for Meeting Rooms II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_253():\n    # Algorithm approach for Meeting Rooms II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Meeting Rooms II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Meeting Rooms II",
+      "Key insight 3: Understand the problem constraints for Meeting Rooms II"
     ]
   },
   {
@@ -6815,19 +6815,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 254: Factor Combinations - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Factor Combinations",
+        "input": "Input for Factor Combinations",
         "output": "Expected output for Factor Combinations",
         "explanation": "Explanation of how to solve Factor Combinations"
       }
     ],
-    "pseudocode": "Algorithm for Factor Combinations:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Factor Combinations\ndef solve_254():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve254():\n    // Algorithm approach for Factor Combinations\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_254():\n    # Algorithm approach for Factor Combinations\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Factor Combinations",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Factor Combinations",
+      "Key insight 3: Understand the problem constraints for Factor Combinations"
     ]
   },
   {
@@ -6842,19 +6842,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 255: Verify Preorder Sequence in Binary Search Tree - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Verify Preorder Sequence in Binary Search Tree",
+        "input": "Input for Verify Preorder Sequence in Binary Search Tree",
         "output": "Expected output for Verify Preorder Sequence in Binary Search Tree",
         "explanation": "Explanation of how to solve Verify Preorder Sequence in Binary Search Tree"
       }
     ],
-    "pseudocode": "Algorithm for Verify Preorder Sequence in Binary Search Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Verify Preorder Sequence in Binary Search Tree\ndef solve_255():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve255():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_255():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Verify Preorder Sequence in Binary Search Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Verify Preorder Sequence in Binary Search Tree",
+      "Key insight 3: Understand the problem constraints for Verify Preorder Sequence in Binary Search Tree"
     ]
   },
   {
@@ -6869,19 +6869,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 256: Paint House - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Paint House",
+        "input": "Input for Paint House",
         "output": "Expected output for Paint House",
         "explanation": "Explanation of how to solve Paint House"
       }
     ],
-    "pseudocode": "Algorithm for Paint House:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Paint House\ndef solve_256():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve256():\n    // Algorithm approach for Paint House\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_256():\n    # Algorithm approach for Paint House\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Paint House",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Paint House",
+      "Key insight 3: Understand the problem constraints for Paint House"
     ]
   },
   {
@@ -6895,19 +6895,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 257: Binary Tree Paths - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Paths",
+        "input": "Input for Binary Tree Paths",
         "output": "Expected output for Binary Tree Paths",
         "explanation": "Explanation of how to solve Binary Tree Paths"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Paths:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Paths\ndef solve_257():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve257():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_257():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Paths",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Paths",
+      "Key insight 3: Understand the problem constraints for Binary Tree Paths"
     ]
   },
   {
@@ -6922,19 +6922,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 258: Add Digits - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Add Digits",
+        "input": "Input for Add Digits",
         "output": "Expected output for Add Digits",
         "explanation": "Explanation of how to solve Add Digits"
       }
     ],
-    "pseudocode": "Algorithm for Add Digits:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Add Digits\ndef solve_258():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve258():\n    // Algorithm approach for Add Digits\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_258():\n    # Algorithm approach for Add Digits\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Add Digits",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Add Digits",
+      "Key insight 3: Understand the problem constraints for Add Digits"
     ]
   },
   {
@@ -6949,19 +6949,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 259: 3Sum Smaller - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for 3Sum Smaller",
+        "input": "Input for 3Sum Smaller",
         "output": "Expected output for 3Sum Smaller",
         "explanation": "Explanation of how to solve 3Sum Smaller"
       }
     ],
-    "pseudocode": "Algorithm for 3Sum Smaller:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for 3Sum Smaller\ndef solve_259():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve259():\n    // Algorithm approach for 3Sum Smaller\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_259():\n    # Algorithm approach for 3Sum Smaller\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for 3Sum Smaller",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for 3Sum Smaller",
+      "Key insight 3: Understand the problem constraints for 3Sum Smaller"
     ]
   },
   {
@@ -6976,19 +6976,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 260: Single Number III - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Single Number III",
+        "input": "Input for Single Number III",
         "output": "Expected output for Single Number III",
         "explanation": "Explanation of how to solve Single Number III"
       }
     ],
-    "pseudocode": "Algorithm for Single Number III:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Single Number III\ndef solve_260():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve260():\n    // Algorithm approach for Single Number III\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_260():\n    # Algorithm approach for Single Number III\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Single Number III",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Single Number III",
+      "Key insight 3: Understand the problem constraints for Single Number III"
     ]
   },
   {
@@ -7002,19 +7002,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 261: Graph Valid Tree - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Graph Valid Tree",
+        "input": "Input for Graph Valid Tree",
         "output": "Expected output for Graph Valid Tree",
         "explanation": "Explanation of how to solve Graph Valid Tree"
       }
     ],
-    "pseudocode": "Algorithm for Graph Valid Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Graph Valid Tree\ndef solve_261():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve261():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_261():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Graph Valid Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Graph Valid Tree",
+      "Key insight 3: Understand the problem constraints for Graph Valid Tree"
     ]
   },
   {
@@ -7029,19 +7029,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 262: Trips and Users - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Trips and Users",
+        "input": "Input for Trips and Users",
         "output": "Expected output for Trips and Users",
         "explanation": "Explanation of how to solve Trips and Users"
       }
     ],
-    "pseudocode": "Algorithm for Trips and Users:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Trips and Users\ndef solve_262():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve262():\n    // Algorithm approach for Trips and Users\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_262():\n    # Algorithm approach for Trips and Users\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Trips and Users",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Trips and Users",
+      "Key insight 3: Understand the problem constraints for Trips and Users"
     ]
   },
   {
@@ -7056,19 +7056,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 263: Ugly Number - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Ugly Number",
+        "input": "Input for Ugly Number",
         "output": "Expected output for Ugly Number",
         "explanation": "Explanation of how to solve Ugly Number"
       }
     ],
-    "pseudocode": "Algorithm for Ugly Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Ugly Number\ndef solve_263():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve263():\n    // Algorithm approach for Ugly Number\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_263():\n    # Algorithm approach for Ugly Number\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Ugly Number",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Ugly Number",
+      "Key insight 3: Understand the problem constraints for Ugly Number"
     ]
   },
   {
@@ -7110,19 +7110,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 265: Paint House II - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Paint House II",
+        "input": "Input for Paint House II",
         "output": "Expected output for Paint House II",
         "explanation": "Explanation of how to solve Paint House II"
       }
     ],
-    "pseudocode": "Algorithm for Paint House II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Paint House II\ndef solve_265():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve265():\n    // Algorithm approach for Paint House II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_265():\n    # Algorithm approach for Paint House II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Paint House II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Paint House II",
+      "Key insight 3: Understand the problem constraints for Paint House II"
     ]
   },
   {
@@ -7137,19 +7137,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 266: Palindrome Permutation - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Palindrome Permutation",
+        "input": "Input for Palindrome Permutation",
         "output": "Expected output for Palindrome Permutation",
         "explanation": "Explanation of how to solve Palindrome Permutation"
       }
     ],
-    "pseudocode": "Algorithm for Palindrome Permutation:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Palindrome Permutation\ndef solve_266():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve266():\n    // Algorithm approach for Palindrome Permutation\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_266():\n    # Algorithm approach for Palindrome Permutation\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Palindrome Permutation",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Palindrome Permutation",
+      "Key insight 3: Understand the problem constraints for Palindrome Permutation"
     ]
   },
   {
@@ -7164,19 +7164,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 267: Palindrome Permutation II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Palindrome Permutation II",
+        "input": "Input for Palindrome Permutation II",
         "output": "Expected output for Palindrome Permutation II",
         "explanation": "Explanation of how to solve Palindrome Permutation II"
       }
     ],
-    "pseudocode": "Algorithm for Palindrome Permutation II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Palindrome Permutation II\ndef solve_267():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve267():\n    // Algorithm approach for Palindrome Permutation II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_267():\n    # Algorithm approach for Palindrome Permutation II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Palindrome Permutation II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Palindrome Permutation II",
+      "Key insight 3: Understand the problem constraints for Palindrome Permutation II"
     ]
   },
   {
@@ -7191,19 +7191,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 268: Missing Number - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Missing Number",
+        "input": "Input for Missing Number",
         "output": "Expected output for Missing Number",
         "explanation": "Explanation of how to solve Missing Number"
       }
     ],
-    "pseudocode": "Algorithm for Missing Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Missing Number\ndef solve_268():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve268():\n    // Algorithm approach for Missing Number\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_268():\n    # Algorithm approach for Missing Number\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Missing Number",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Missing Number",
+      "Key insight 3: Understand the problem constraints for Missing Number"
     ]
   },
   {
@@ -7217,19 +7217,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 269: Alien Dictionary - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Alien Dictionary",
+        "input": "Input for Alien Dictionary",
         "output": "Expected output for Alien Dictionary",
         "explanation": "Explanation of how to solve Alien Dictionary"
       }
     ],
-    "pseudocode": "Algorithm for Alien Dictionary:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Alien Dictionary\ndef solve_269():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve269():\n    // Algorithm approach for Alien Dictionary\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_269():\n    # Algorithm approach for Alien Dictionary\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Alien Dictionary",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Alien Dictionary",
+      "Key insight 3: Understand the problem constraints for Alien Dictionary"
     ]
   },
   {
@@ -7244,19 +7244,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 270: Closest Binary Search Tree Value - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Closest Binary Search Tree Value",
+        "input": "Input for Closest Binary Search Tree Value",
         "output": "Expected output for Closest Binary Search Tree Value",
         "explanation": "Explanation of how to solve Closest Binary Search Tree Value"
       }
     ],
-    "pseudocode": "Algorithm for Closest Binary Search Tree Value:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Closest Binary Search Tree Value\ndef solve_270():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve270():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_270():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Closest Binary Search Tree Value",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Closest Binary Search Tree Value",
+      "Key insight 3: Understand the problem constraints for Closest Binary Search Tree Value"
     ]
   },
   {
@@ -7271,19 +7271,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 271: Encode and Decode Strings - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Encode and Decode Strings",
+        "input": "Input for Encode and Decode Strings",
         "output": "Expected output for Encode and Decode Strings",
         "explanation": "Explanation of how to solve Encode and Decode Strings"
       }
     ],
-    "pseudocode": "Algorithm for Encode and Decode Strings:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Encode and Decode Strings\ndef solve_271():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve271():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_271():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Encode and Decode Strings",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Encode and Decode Strings",
+      "Key insight 3: Understand the problem constraints for Encode and Decode Strings"
     ]
   },
   {
@@ -7298,19 +7298,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 272: Closest Binary Search Tree Value II - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Closest Binary Search Tree Value II",
+        "input": "Input for Closest Binary Search Tree Value II",
         "output": "Expected output for Closest Binary Search Tree Value II",
         "explanation": "Explanation of how to solve Closest Binary Search Tree Value II"
       }
     ],
-    "pseudocode": "Algorithm for Closest Binary Search Tree Value II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Closest Binary Search Tree Value II\ndef solve_272():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve272():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_272():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Closest Binary Search Tree Value II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Closest Binary Search Tree Value II",
+      "Key insight 3: Understand the problem constraints for Closest Binary Search Tree Value II"
     ]
   },
   {
@@ -7324,19 +7324,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 273: Integer to English Words - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Integer to English Words",
+        "input": "Input for Integer to English Words",
         "output": "Expected output for Integer to English Words",
         "explanation": "Explanation of how to solve Integer to English Words"
       }
     ],
-    "pseudocode": "Algorithm for Integer to English Words:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Integer to English Words\ndef solve_273():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve273():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_273():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Integer to English Words",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Integer to English Words",
+      "Key insight 3: Understand the problem constraints for Integer to English Words"
     ]
   },
   {
@@ -7351,19 +7351,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 274: H-Index - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for H-Index",
+        "input": "Input for H-Index",
         "output": "Expected output for H-Index",
         "explanation": "Explanation of how to solve H-Index"
       }
     ],
-    "pseudocode": "Algorithm for H-Index:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for H-Index\ndef solve_274():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve274():\n    // Algorithm approach for H-Index\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_274():\n    # Algorithm approach for H-Index\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for H-Index",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for H-Index",
+      "Key insight 3: Understand the problem constraints for H-Index"
     ]
   },
   {
@@ -7378,19 +7378,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 275: H-Index II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for H-Index II",
+        "input": "Input for H-Index II",
         "output": "Expected output for H-Index II",
         "explanation": "Explanation of how to solve H-Index II"
       }
     ],
-    "pseudocode": "Algorithm for H-Index II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for H-Index II\ndef solve_275():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve275():\n    // Algorithm approach for H-Index II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_275():\n    # Algorithm approach for H-Index II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for H-Index II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for H-Index II",
+      "Key insight 3: Understand the problem constraints for H-Index II"
     ]
   },
   {
@@ -7405,19 +7405,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 276: Paint Fence - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Paint Fence",
+        "input": "Input for Paint Fence",
         "output": "Expected output for Paint Fence",
         "explanation": "Explanation of how to solve Paint Fence"
       }
     ],
-    "pseudocode": "Algorithm for Paint Fence:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Paint Fence\ndef solve_276():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve276():\n    // Algorithm approach for Paint Fence\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_276():\n    # Algorithm approach for Paint Fence\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Paint Fence",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Paint Fence",
+      "Key insight 3: Understand the problem constraints for Paint Fence"
     ]
   },
   {
@@ -7431,19 +7431,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 277: Find the Celebrity - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Find the Celebrity",
+        "input": "Input for Find the Celebrity",
         "output": "Expected output for Find the Celebrity",
         "explanation": "Explanation of how to solve Find the Celebrity"
       }
     ],
-    "pseudocode": "Algorithm for Find the Celebrity:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Find the Celebrity\ndef solve_277():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve277():\n    // Algorithm approach for Find the Celebrity\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_277():\n    # Algorithm approach for Find the Celebrity\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Find the Celebrity",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Find the Celebrity",
+      "Key insight 3: Understand the problem constraints for Find the Celebrity"
     ]
   },
   {
@@ -7458,19 +7458,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 278: First Bad Version - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for First Bad Version",
+        "input": "Input for First Bad Version",
         "output": "Expected output for First Bad Version",
         "explanation": "Explanation of how to solve First Bad Version"
       }
     ],
-    "pseudocode": "Algorithm for First Bad Version:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for First Bad Version\ndef solve_278():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve278():\n    // Algorithm approach for First Bad Version\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_278():\n    # Algorithm approach for First Bad Version\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for First Bad Version",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for First Bad Version",
+      "Key insight 3: Understand the problem constraints for First Bad Version"
     ]
   },
   {
@@ -7513,19 +7513,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 280: Wiggle Sort - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Wiggle Sort",
+        "input": "Input for Wiggle Sort",
         "output": "Expected output for Wiggle Sort",
         "explanation": "Explanation of how to solve Wiggle Sort"
       }
     ],
-    "pseudocode": "Algorithm for Wiggle Sort:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Wiggle Sort\ndef solve_280():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve280():\n    // Array manipulation approach\n    if nums.length < 2:\n        return nums\n    \n    // Sort the array first\n    nums.sort()\n    \n    // Process the sorted array\n    for i = 0 to nums.length - 1:\n        // Your logic here\n        pass\n    \n    return nums",
+    "pythonCode": "def solve_280():\n    # Array manipulation approach\n    if len(nums) < 2:\n        return nums\n    \n    # Sort the array first\n    nums.sort()\n    \n    # Process the sorted array\n    for i in range(len(nums)):\n        # Your logic here\n        pass\n    \n    return nums",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Wiggle Sort",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Wiggle Sort",
+      "Key insight 3: Understand the problem constraints for Wiggle Sort"
     ]
   },
   {
@@ -7539,19 +7539,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 281: Zigzag Iterator - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Zigzag Iterator",
+        "input": "Input for Zigzag Iterator",
         "output": "Expected output for Zigzag Iterator",
         "explanation": "Explanation of how to solve Zigzag Iterator"
       }
     ],
-    "pseudocode": "Algorithm for Zigzag Iterator:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Zigzag Iterator\ndef solve_281():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve281():\n    // Algorithm approach for Zigzag Iterator\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_281():\n    # Algorithm approach for Zigzag Iterator\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Zigzag Iterator",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Zigzag Iterator",
+      "Key insight 3: Understand the problem constraints for Zigzag Iterator"
     ]
   },
   {
@@ -7566,19 +7566,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 282: Expression Add Operators - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Expression Add Operators",
+        "input": "Input for Expression Add Operators",
         "output": "Expected output for Expression Add Operators",
         "explanation": "Explanation of how to solve Expression Add Operators"
       }
     ],
-    "pseudocode": "Algorithm for Expression Add Operators:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Expression Add Operators\ndef solve_282():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve282():\n    // Algorithm approach for Expression Add Operators\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_282():\n    # Algorithm approach for Expression Add Operators\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Expression Add Operators",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Expression Add Operators",
+      "Key insight 3: Understand the problem constraints for Expression Add Operators"
     ]
   },
   {
@@ -7593,19 +7593,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 283: Move Zeroes - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Move Zeroes",
+        "input": "Input for Move Zeroes",
         "output": "Expected output for Move Zeroes",
         "explanation": "Explanation of how to solve Move Zeroes"
       }
     ],
-    "pseudocode": "Algorithm for Move Zeroes:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Move Zeroes\ndef solve_283():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve283():\n    // Algorithm approach for Move Zeroes\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_283():\n    # Algorithm approach for Move Zeroes\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Move Zeroes",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Move Zeroes",
+      "Key insight 3: Understand the problem constraints for Move Zeroes"
     ]
   },
   {
@@ -7620,19 +7620,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 284: Peeking Iterator - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Peeking Iterator",
+        "input": "Input for Peeking Iterator",
         "output": "Expected output for Peeking Iterator",
         "explanation": "Explanation of how to solve Peeking Iterator"
       }
     ],
-    "pseudocode": "Algorithm for Peeking Iterator:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Peeking Iterator\ndef solve_284():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve284():\n    // Algorithm approach for Peeking Iterator\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_284():\n    # Algorithm approach for Peeking Iterator\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Peeking Iterator",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Peeking Iterator",
+      "Key insight 3: Understand the problem constraints for Peeking Iterator"
     ]
   },
   {
@@ -7646,19 +7646,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 285: Inorder Successor in BST - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Inorder Successor in BST",
+        "input": "Input for Inorder Successor in BST",
         "output": "Expected output for Inorder Successor in BST",
         "explanation": "Explanation of how to solve Inorder Successor in BST"
       }
     ],
-    "pseudocode": "Algorithm for Inorder Successor in BST:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Inorder Successor in BST\ndef solve_285():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve285():\n    // Algorithm approach for Inorder Successor in BST\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_285():\n    # Algorithm approach for Inorder Successor in BST\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Inorder Successor in BST",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Inorder Successor in BST",
+      "Key insight 3: Understand the problem constraints for Inorder Successor in BST"
     ]
   },
   {
@@ -7673,19 +7673,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 286: Walls and Gates - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Walls and Gates",
+        "input": "Input for Walls and Gates",
         "output": "Expected output for Walls and Gates",
         "explanation": "Explanation of how to solve Walls and Gates"
       }
     ],
-    "pseudocode": "Algorithm for Walls and Gates:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Walls and Gates\ndef solve_286():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve286():\n    // Algorithm approach for Walls and Gates\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_286():\n    # Algorithm approach for Walls and Gates\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Walls and Gates",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Walls and Gates",
+      "Key insight 3: Understand the problem constraints for Walls and Gates"
     ]
   },
   {
@@ -7700,19 +7700,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 287: Find the Duplicate Number - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Find the Duplicate Number",
+        "input": "Input for Find the Duplicate Number",
         "output": "Expected output for Find the Duplicate Number",
         "explanation": "Explanation of how to solve Find the Duplicate Number"
       }
     ],
-    "pseudocode": "Algorithm for Find the Duplicate Number:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Find the Duplicate Number\ndef solve_287():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve287():\n    // Algorithm approach for Find the Duplicate Number\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_287():\n    # Algorithm approach for Find the Duplicate Number\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Find the Duplicate Number",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Find the Duplicate Number",
+      "Key insight 3: Understand the problem constraints for Find the Duplicate Number"
     ]
   },
   {
@@ -7727,19 +7727,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 288: Unique Word Abbreviation - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Unique Word Abbreviation",
+        "input": "Input for Unique Word Abbreviation",
         "output": "Expected output for Unique Word Abbreviation",
         "explanation": "Explanation of how to solve Unique Word Abbreviation"
       }
     ],
-    "pseudocode": "Algorithm for Unique Word Abbreviation:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Unique Word Abbreviation\ndef solve_288():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve288():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_288():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Unique Word Abbreviation",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Unique Word Abbreviation",
+      "Key insight 3: Understand the problem constraints for Unique Word Abbreviation"
     ]
   },
   {
@@ -7753,19 +7753,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 289: Game of Life - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Game of Life",
+        "input": "Input for Game of Life",
         "output": "Expected output for Game of Life",
         "explanation": "Explanation of how to solve Game of Life"
       }
     ],
-    "pseudocode": "Algorithm for Game of Life:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Game of Life\ndef solve_289():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve289():\n    // Algorithm approach for Game of Life\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_289():\n    # Algorithm approach for Game of Life\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Game of Life",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Game of Life",
+      "Key insight 3: Understand the problem constraints for Game of Life"
     ]
   },
   {
@@ -7780,19 +7780,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 290: Word Pattern - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Word Pattern",
+        "input": "Input for Word Pattern",
         "output": "Expected output for Word Pattern",
         "explanation": "Explanation of how to solve Word Pattern"
       }
     ],
-    "pseudocode": "Algorithm for Word Pattern:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Word Pattern\ndef solve_290():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve290():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_290():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Word Pattern",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Word Pattern",
+      "Key insight 3: Understand the problem constraints for Word Pattern"
     ]
   },
   {
@@ -7807,19 +7807,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 291: Word Pattern II - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Word Pattern II",
+        "input": "Input for Word Pattern II",
         "output": "Expected output for Word Pattern II",
         "explanation": "Explanation of how to solve Word Pattern II"
       }
     ],
-    "pseudocode": "Algorithm for Word Pattern II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Word Pattern II\ndef solve_291():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve291():\n    // String processing approach\n    if s.length == 0:\n        return \"\"\n    \n    // Convert to array for easier manipulation\n    chars = s.split(\"\")\n    \n    // Process the string\n    for i = 0 to chars.length - 1:\n        // Your logic here\n        pass\n    \n    return chars.join(\"\")",
+    "pythonCode": "def solve_291():\n    # String processing approach\n    if len(s) == 0:\n        return \"\"\n    \n    # Convert to list for easier manipulation\n    chars = list(s)\n    \n    # Process the string\n    for i in range(len(chars)):\n        # Your logic here\n        pass\n    \n    return ''.join(chars)",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Word Pattern II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Word Pattern II",
+      "Key insight 3: Understand the problem constraints for Word Pattern II"
     ]
   },
   {
@@ -7834,19 +7834,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 292: Nim Game - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Nim Game",
+        "input": "Input for Nim Game",
         "output": "Expected output for Nim Game",
         "explanation": "Explanation of how to solve Nim Game"
       }
     ],
-    "pseudocode": "Algorithm for Nim Game:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Nim Game\ndef solve_292():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve292():\n    // Algorithm approach for Nim Game\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_292():\n    # Algorithm approach for Nim Game\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Nim Game",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Nim Game",
+      "Key insight 3: Understand the problem constraints for Nim Game"
     ]
   },
   {
@@ -7860,19 +7860,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 293: Flip Game - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Flip Game",
+        "input": "Input for Flip Game",
         "output": "Expected output for Flip Game",
         "explanation": "Explanation of how to solve Flip Game"
       }
     ],
-    "pseudocode": "Algorithm for Flip Game:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Flip Game\ndef solve_293():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve293():\n    // Algorithm approach for Flip Game\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_293():\n    # Algorithm approach for Flip Game\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Flip Game",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Flip Game",
+      "Key insight 3: Understand the problem constraints for Flip Game"
     ]
   },
   {
@@ -7887,19 +7887,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 294: Flip Game II - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Flip Game II",
+        "input": "Input for Flip Game II",
         "output": "Expected output for Flip Game II",
         "explanation": "Explanation of how to solve Flip Game II"
       }
     ],
-    "pseudocode": "Algorithm for Flip Game II:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Flip Game II\ndef solve_294():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve294():\n    // Algorithm approach for Flip Game II\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_294():\n    # Algorithm approach for Flip Game II\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Flip Game II",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Flip Game II",
+      "Key insight 3: Understand the problem constraints for Flip Game II"
     ]
   },
   {
@@ -7914,19 +7914,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 295: Find Median from Data Stream - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Find Median from Data Stream",
+        "input": "Input for Find Median from Data Stream",
         "output": "Expected output for Find Median from Data Stream",
         "explanation": "Explanation of how to solve Find Median from Data Stream"
       }
     ],
-    "pseudocode": "Algorithm for Find Median from Data Stream:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Find Median from Data Stream\ndef solve_295():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve295():\n    // Algorithm approach for Find Median from Data Stream\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_295():\n    # Algorithm approach for Find Median from Data Stream\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Find Median from Data Stream",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Find Median from Data Stream",
+      "Key insight 3: Understand the problem constraints for Find Median from Data Stream"
     ]
   },
   {
@@ -7941,19 +7941,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 296: Best Meeting Point - An array manipulation problem that tests your understanding of array operations, indexing, and algorithmic thinking.",
     "testCases": [
       {
-        "input": "Example input for Best Meeting Point",
+        "input": "Input for Best Meeting Point",
         "output": "Expected output for Best Meeting Point",
         "explanation": "Explanation of how to solve Best Meeting Point"
       }
     ],
-    "pseudocode": "Algorithm for Best Meeting Point:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Best Meeting Point\ndef solve_296():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve296():\n    // Algorithm approach for Best Meeting Point\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_296():\n    # Algorithm approach for Best Meeting Point\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Best Meeting Point",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Best Meeting Point",
+      "Key insight 3: Understand the problem constraints for Best Meeting Point"
     ]
   },
   {
@@ -7967,19 +7967,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 297: Serialize and Deserialize Binary Tree - A dynamic programming problem that challenges your ability to break down complex problems into overlapping subproblems.",
     "testCases": [
       {
-        "input": "Example input for Serialize and Deserialize Binary Tree",
+        "input": "Input for Serialize and Deserialize Binary Tree",
         "output": "Expected output for Serialize and Deserialize Binary Tree",
         "explanation": "Explanation of how to solve Serialize and Deserialize Binary Tree"
       }
     ],
-    "pseudocode": "Algorithm for Serialize and Deserialize Binary Tree:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Serialize and Deserialize Binary Tree\ndef solve_297():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve297():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_297():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Serialize and Deserialize Binary Tree",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Serialize and Deserialize Binary Tree",
+      "Key insight 3: Understand the problem constraints for Serialize and Deserialize Binary Tree"
     ]
   },
   {
@@ -7994,19 +7994,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 298: Binary Tree Longest Consecutive Sequence - A tree traversal problem that tests your understanding of binary trees, tree algorithms, and recursive thinking.",
     "testCases": [
       {
-        "input": "Example input for Binary Tree Longest Consecutive Sequence",
+        "input": "Input for Binary Tree Longest Consecutive Sequence",
         "output": "Expected output for Binary Tree Longest Consecutive Sequence",
         "explanation": "Explanation of how to solve Binary Tree Longest Consecutive Sequence"
       }
     ],
-    "pseudocode": "Algorithm for Binary Tree Longest Consecutive Sequence:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Binary Tree Longest Consecutive Sequence\ndef solve_298():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve298():\n    // Tree traversal approach\n    if root == null:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack.length > 0:\n        node = stack.pop()\n        if node != null:\n            result.add(node.val)\n            if node.right:\n                stack.push(node.right)\n            if node.left:\n                stack.push(node.left)\n    \n    return result",
+    "pythonCode": "def solve_298():\n    # Tree traversal approach\n    if not root:\n        return []\n    \n    result = []\n    stack = [root]\n    \n    while stack:\n        node = stack.pop()\n        if node:\n            result.append(node.val)\n            if node.right:\n                stack.append(node.right)\n            if node.left:\n                stack.append(node.left)\n    \n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Binary Tree Longest Consecutive Sequence",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Binary Tree Longest Consecutive Sequence",
+      "Key insight 3: Understand the problem constraints for Binary Tree Longest Consecutive Sequence"
     ]
   },
   {
@@ -8021,19 +8021,19 @@ const topLeetCodeProblems = [
     "fullDescription": "Problem 299: Bulls and Cows - A computational problem that tests your algorithmic thinking and problem-solving skills.",
     "testCases": [
       {
-        "input": "Example input for Bulls and Cows",
+        "input": "Input for Bulls and Cows",
         "output": "Expected output for Bulls and Cows",
         "explanation": "Explanation of how to solve Bulls and Cows"
       }
     ],
-    "pseudocode": "Algorithm for Bulls and Cows:\n1. Understand the problem\n2. Design the algorithm\n3. Implement the solution",
-    "pythonCode": "# Solution for Bulls and Cows\ndef solve_299():\n    # Implementation here\n    pass",
+    "pseudocode": "function solve299():\n    // Algorithm approach for Bulls and Cows\n    \n    // Step 1: Handle edge cases\n    if input == null or input.length == 0:\n        return default_value\n    \n    // Step 2: Initialize variables\n    result = initial_value\n    // Additional variables as needed\n    \n    // Step 3: Main algorithm logic\n    for i = 0 to input.length - 1:\n        // Your core logic here\n        pass\n    \n    // Step 4: Return result\n    return result",
+    "pythonCode": "def solve_299():\n    # Algorithm approach for Bulls and Cows\n    \n    # Step 1: Handle edge cases\n    if not input or len(input) == 0:\n        return default_value\n    \n    # Step 2: Initialize variables\n    result = initial_value\n    # Additional variables as needed\n    \n    # Step 3: Main algorithm logic\n    for i in range(len(input)):\n        # Your core logic here\n        pass\n    \n    # Step 4: Return result\n    return result",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(1)",
     "keyInsights": [
       "Key insight 1: Understand the problem constraints for Bulls and Cows",
-      "Key insight 2: Consider edge cases and boundary conditions",
-      "Key insight 3: Optimize for time and space complexity"
+      "Key insight 2: Understand the problem constraints for Bulls and Cows",
+      "Key insight 3: Understand the problem constraints for Bulls and Cows"
     ]
   },
   {
