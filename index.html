@@ -684,22 +684,24 @@
 
         // Render pagination
         function renderPagination() {
+            // Remove any existing pagination first
+            const existingPagination = document.querySelector('.pagination-container');
+            if (existingPagination) {
+                existingPagination.remove();
+            }
+            
             const totalPages = Math.ceil(filteredProblems.length / problemsPerPage);
             if (totalPages <= 1) return;
             
             const paginationContainer = document.createElement('div');
-            paginationContainer.className = 'col-12 mt-4';
+            paginationContainer.className = 'col-12 mt-4 pagination-container';
             paginationContainer.innerHTML = `
                 <nav aria-label="Problems pagination">
                     <ul class="pagination justify-content-center">
                         <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                             <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Previous</a>
                         </li>
-                        ${Array.from({length: totalPages}, (_, i) => i + 1).map(page => `
-                            <li class="page-item ${page === currentPage ? 'active' : ''}">
-                                <a class="page-link" href="#" onclick="changePage(${page})">${page}</a>
-                            </li>
-                        `).join('')}
+                        ${generatePageNumbers(currentPage, totalPages)}
                         <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                             <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Next</a>
                         </li>
@@ -710,13 +712,66 @@
             document.getElementById('problems-container').parentNode.appendChild(paginationContainer);
         }
 
+        // Generate page numbers with ellipsis for better UX
+        function generatePageNumbers(currentPage, totalPages) {
+            if (totalPages <= 7) {
+                // Show all pages if 7 or fewer
+                return Array.from({length: totalPages}, (_, i) => i + 1).map(page => `
+                    <li class="page-item ${page === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="changePage(${page})">${page}</a>
+                    </li>
+                `).join('');
+            }
+            
+            let pages = [];
+            
+            // Always show first page
+            pages.push(`
+                <li class="page-item ${currentPage === 1 ? 'active' : ''}">
+                    <a class="page-link" href="#" onclick="changePage(1)">1</a>
+                </li>
+            `);
+            
+            if (currentPage > 4) {
+                pages.push('<li class="page-item disabled"><span class="page-link">...</span></li>');
+            }
+            
+            // Show pages around current page
+            const start = Math.max(2, currentPage - 1);
+            const end = Math.min(totalPages - 1, currentPage + 1);
+            
+            for (let i = start; i <= end; i++) {
+                pages.push(`
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                    </li>
+                `);
+            }
+            
+            if (currentPage < totalPages - 3) {
+                pages.push('<li class="page-item disabled"><span class="page-link">...</span></li>');
+            }
+            
+            // Always show last page if more than 1 page
+            if (totalPages > 1) {
+                pages.push(`
+                    <li class="page-item ${currentPage === totalPages ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="changePage(${totalPages})">${totalPages}</a>
+                    </li>
+                `);
+            }
+            
+            return pages.join('');
+        }
+
         // Change page function
         function changePage(page) {
-            const totalPages = Math.ceil(sampleProblems.length / problemsPerPage);
+            const totalPages = Math.ceil(filteredProblems.length / problemsPerPage);
             if (page < 1 || page > totalPages) return;
             
             currentPage = page;
             renderProblems();
+            renderPagination();
             window.scrollTo({top: document.getElementById('problems').offsetTop, behavior: 'smooth'});
         }
 
@@ -740,6 +795,7 @@
             
             currentPage = 1;
             renderProblems();
+            renderPagination();
         }
 
         // Reset filters
@@ -751,6 +807,7 @@
             filteredProblems = [...sampleProblems];
             currentPage = 1;
             renderProblems();
+            renderPagination();
         }
 
         // Populate tag filter
